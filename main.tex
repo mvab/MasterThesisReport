@@ -1,0 +1,141 @@
+\documentclass[10pt, openright,oneside]{book}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[english]{babel}
+\usepackage{subfiles}
+
+% Removes paragraph indentation (not needed most of the time now)
+\usepackage{parskip}
+
+% Provides ways to make nice looking tables
+\usepackage{booktabs}
+% Typesets URLs sensibly - with tt font, clickable in PDFs, and not breaking across lines
+\usepackage{url}
+
+
+% for adding pretty headings
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{wallpaper}
+
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{references.bib}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{sample.bib}
+
+\begin{document}
+
+%\begin{}
+\frontmatter
+%%  Begin title page
+%%  ==================================================================
+    \thispagestyle{empty}
+    \ULCornerWallPaper{1}{ku-coverpage/nat-farve.pdf}
+    \ULCornerWallPaper{1}{ku-coverpage/nat-en.pdf}
+    %\begin{adjustwidth}{-1cm}{-0.5cm}
+    
+    \vspace*{4.5cm} 
+    \noindent \textbf{\huge Signatures of autophagy-related genes in breast cancer using The Cancer Genome Atlas data} \\
+    \\[0.5cm]
+    \textit{\Large Master's Thesis} \\
+    [0.5cm]
+    \textbf{\Large MSc Bioinfromatics} \\
+    \vspace*{.1cm} \\
+%     {\huge Subtitle} \\
+    \begin{tabbing}
+    % adjust the hspace below for the longest author name
+    \textbf{Marina Vabistsevits} \hspace{1cm} \= \texttt{<rzq995@alumni.ku.dk>} \\
+    \\[9cm]
+    \textbf{\Large Supervisors} \\
+    Dr Elena Papaleo \> \texttt{<elenap@cancer.dk>} \\
+    Prof Albin Sandelin \> \texttt{<albin@binf.ku.dk>} \\
+    Dr Kristoffer Vitting-Seerup\> \texttt{<kristoffer.vittingseerup@bio.ku.dk>}
+    \\[1cm]
+    
+    \end{tabbing}
+    \begin{center}
+    \textit{7 August, 2017} 
+    \end{center}
+    %\end{adjustwidth}
+
+    \newpage
+    \ClearWallPaper
+    
+%%  ==================================================================
+%%  End title page
+%\end{}
+
+
+\pagestyle{plain}
+
+\tableofcontents
+
+\mainmatter
+
+\chapter*{Abstract}
+jcsdjfsdjfksdfsdAutophagy is a highly conserved process of cellular self-degradation that is essential for cell
+survival in unfavourable conditions. The genes involved in the autophagy pathway regulate
+uptake, degradation, and recycling of damaged organelles and proteins in order to sustain
+metabolism and homeostasis. Since autophagy can promote both cell death and survival, its
+dysregulation has been linked to different human pathologies, including cancer.
+
+
+Check out figure \ref{fig:x test1}\\
+
+
+Testing Citing: \cite{einstein}
+
+\listoffigures
+
+
+\listoftables
+
+
+\chapter*{Abbreviations}
+%\input{chapters/abbrevs}
+
+
+
+\chapter{Introduction}
+%\input{chapters/introduction}
+
+\chapter{Methods}
+%\input{chapters/methods}
+
+\chapter{Results}
+%\input{chapters/results}
+
+\chapter{Discussion}
+%\input{chapters/discussion}
+
+%%% more chapters!
+
+\chapter{Acknowledgements}
+I want to thank...
+
+
+
+
+
+
+
+\chapter*{Appendix}
+\appendix
+%\input{chapters/appendix}
+
+
+\backmatter
+ 
+\chapter*{References}
+\printbibliography
+
+\end{document}
