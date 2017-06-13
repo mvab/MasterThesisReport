@@ -10,7 +10,21 @@
 \usepackage{booktabs}
 % Typesets URLs sensibly - with tt font, clickable in PDFs, and not breaking across lines
 \usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=gray,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
 
+
+%abbreviations management 
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Abbreviations}
 
 % for adding pretty headings
 %\usepackage{fancyhdr}
@@ -21,16 +35,12 @@
 \graphicspath{ {images/} }
 \usepackage{wallpaper}
 
-%\usepackage[backend=biber]{biblatex}
-%\addbibresource{references.bib}
+\usepackage[backend=biber,style=draft]{biblatex}
+\addbibresource{mendeley.bib}
 
-
-\usepackage[
-backend=biber,
-style=alphabetic,
-sorting=ynt
-]{biblatex}
-\addbibresource{sample.bib}
+%allows subsub sections and paragraphs
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 
 \begin{document}
 
@@ -82,60 +92,56 @@ sorting=ynt
 \mainmatter
 
 \chapter*{Abstract}
-jcsdjfsdjfksdfsdAutophagy is a highly conserved process of cellular self-degradation that is essential for cell
+utophagy is a highly conserved process of cellular self-degradation that is essential for cell
 survival in unfavourable conditions. The genes involved in the autophagy pathway regulate
 uptake, degradation, and recycling of damaged organelles and proteins in order to sustain
 metabolism and homeostasis. Since autophagy can promote both cell death and survival, its
 dysregulation has been linked to different human pathologies, including cancer.
 
+TCGA
+
 
 Check out figure \ref{fig:x test1}\\
 
 
-Testing Citing: \cite{einstein}
-
-\listoffigures
+Testing Citing: \cite{einstein}, \cite{latexcompanion}, \cite{knuthwebsite}
 
 
-\listoftables
 
 
-\chapter*{Abbreviations}
-%\input{chapters/abbrevs}
+%\listoffigures
 
+%\listoftables
 
+%\printnomenclature[1in]
+%\hfill % add blank space
+%\nomenclature{TCGA}{The Cancer Genome Atlas}
+ 
 
 \chapter{Introduction}
-%\input{chapters/introduction}
+\input{chapters/introduction}
 
-\chapter{Methods}
-%\input{chapters/methods}
+\chapter{Methods and Materials}
+\input{chapters/methods}
 
 \chapter{Results}
-%\input{chapters/results}
+\input{chapters/results}
 
 \chapter{Discussion}
-%\input{chapters/discussion}
+\input{chapters/discussion}
 
 %%% more chapters!
 
-\chapter{Acknowledgements}
-I want to thank...
+%\chapter{Acknowledgements}
+%I want to thank...
 
-
-
-
-
-
-
-\chapter*{Appendix}
-\appendix
+%\chapter*{Appendix}
+%\appendix
 %\input{chapters/appendix}
 
 
 \backmatter
- 
-\chapter*{References}
+
 \printbibliography
 
 \end{document}
