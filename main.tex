@@ -1,7 +1,10 @@
 \documentclass[10pt, openright,oneside]{book}
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{csquotes} %fixes some error
+
 \usepackage[english]{babel}
 \usepackage{subfiles}
+\usepackage{float} % keepd tables etc in place
 
 % Removes paragraph indentation (not needed most of the time now)
 \usepackage{parskip}
@@ -19,7 +22,7 @@
     urlcolor=cyan,
 }
  
-
+\usepackage[table,xcdraw]{xcolor}
 
 %abbreviations management 
 \usepackage{nomencl}
@@ -35,8 +38,9 @@
 \graphicspath{ {images/} }
 \usepackage{wallpaper}
 
-\usepackage[backend=biber,style=draft]{biblatex}
+\usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{mendeley.bib}
+\addbibresource{nonmenrefs.bib}
 
 %allows subsub sections and paragraphs
 \setcounter{tocdepth}{4}
@@ -44,7 +48,7 @@
 
 \begin{document}
 
-%\begin{}
+
 \frontmatter
 %%  Begin title page
 %%  ==================================================================
@@ -82,7 +86,7 @@
     
 %%  ==================================================================
 %%  End title page
-%\end{}
+
 
 
 \pagestyle{plain}
@@ -102,9 +106,6 @@ TCGA
 
 
 Check out figure \ref{fig:x test1}\\
-
-
-Testing Citing: \cite{einstein}, \cite{latexcompanion}, \cite{knuthwebsite}
 
 
 

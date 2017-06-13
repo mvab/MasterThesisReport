@@ -1,14 +1,76 @@
 \section{Data}
     \subsection{Data sources}
-    %TCGA, curated lists of genes and patients, metadat from other studty
-    \subsection{Quantification pipeline}
-    \subsection{Prepossessing pipeline}
+    
+    The full TCGA-BRCA RNA-sequencing dataset was download from the GDC data portal using R/Bioincuctor package TCGAbiolinks v2.8.13
+\cite{Colaprico2016}. Table \ref{table:full} shows the overview of samples collected by the TCGA research network. \\
+    The original dataset has been subset to a more manageable collection of samples based of three main factors, i.e. include samples that are\textbf{ i)} female only (to reduce biological variation coming from gender) \textbf{ii)} present in the list of manually curated samples and their classifications \textbf{iii)} provided with enough metadata to benefit exploratory analysis. Only primary tumour and normal samples were included in the analysis.\\
+    
+    The curated lists of samples specifying stage and morphological type of samples were provided by the collaborators from other groups at DCRC.
+    Additionally, a curated collection of autophagy-related genes was provided by experts in the field at DCRC (in the Cell Death and Metabolism and Cell Stress and Survival Units).\\
+    
+    The metadata for each sample was collated from three sources. The original clinical sample annotation extracted with TCGAbiolinks was complimented with the additional subtype classifications for previuosly unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} \cite{Ciriello2015ComprehensiveCancer}. Further metadata was added from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. \\   
+    
+        
+    %   TABLE
+            \begin{table}[!htbp]
+                \centering
+                \caption{TCGA-BRCA full dataset sample number overview}
+                \label{table:full}
+                    \begin{tabular}{c|c|c|c}
+                    \textbf{Samples} & \textbf{Tumour} & \textbf{Normal} & \textbf{Metastasis} \\ \hline
+                    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}1212 \\ (F:1199, M:13)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}1093\\ (F:1082, M;12)\end{tabular} & \begin{tabular}[c]{@{}c@{}}112\\ (F: 111, M:1)\end{tabular} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}7\\ (F:7, M:0)\end{tabular}} \\ \hline
+                    \end{tabular}
+            \end{table}
+            
+            
+    \newpage
+    \subsection{Data quantification, extraction, and preprocessing}
+    The original RNA-seq data was quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline of included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification. \\
+
+    The data stored in TCGA data portal is accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g sequencing depth) \cite{Colaprico2016, PapaleoTCGAPackages}, such as quantile normalisation (cut-off 0.10).  The pipeline transfroms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. \\
+    
+   \subsection{Sample annotation and gene curation}
+   
+   % about samples
+   
+   %so each sample is annotated with stage
+   
+   
+   % about genes
+   
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!htbp]
+\centering
+\caption{My caption}
+\label{my-label}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccclcclc}
+\multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\ code\end{tabular}} & \textbf{} & \textbf{} & \multicolumn{1}{c}{\textbf{Stage}} & \textbf{} & \textbf{} & \multicolumn{1}{c}{\textbf{PAM50 subtype}} & \textbf{} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Lobular Carcinoma} & \multicolumn{1}{c|}{8520/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 1} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Luminal A} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Infiltrating Duct Carcinoma} & \multicolumn{1}{c|}{8500/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 2} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Luminal B} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Infiltrating Duct and Lobular Carcinoma} & \multicolumn{1}{c|}{8522/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 3} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Basal-like} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Metaplastic carcinoma} & \multicolumn{1}{c|}{8575/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 4} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{HER2-enriched} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Mucinous adenocarcinoma} & \multicolumn{1}{c|}{8480/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage X} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Normal-like} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
+\multicolumn{1}{|l|}{Other morphologies} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} &  & \multicolumn{1}{c}{} &  &  & \multicolumn{1}{c}{} &  \\ \cline{1-3}
+\end{tabular}%
+}
+\end{table}
+
+    
     \subsection{Finalised dataset}
+    %table with all classifications, descripron of SE and sample matrix; other metadata available for majority od samples 
     
     
 \section{Analysis methods}
+    % paragraph avout EDA and how it is need before hypothesis-driven analysis
 
     \subsection{Principal Component Analysis}
+    %what,why
+    
 
     \subsection{Clustering and Heatmap representation}
 
