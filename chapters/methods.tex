@@ -1,17 +1,10 @@
 \section{Data}
     \subsection{Data sources}
     
-    The full TCGA-BRCA RNA-sequencing dataset was download from the GDC data portal using R/Bioincuctor package TCGAbiolinks v2.8.13
-\cite{Colaprico2016}. Table \ref{table:full} shows the overview of samples collected by the TCGA research network. \\
-    The original dataset has been subset to a more manageable collection of samples based of three main factors, i.e. include samples that are\textbf{ i)} female only (to reduce biological variation coming from gender) \textbf{ii)} present in the list of manually curated samples and their classifications \textbf{iii)} provided with enough metadata to benefit exploratory analysis. Only primary tumour and normal samples were included in the analysis.\\
-    
-    The curated lists of samples specifying stage and morphological type of samples were provided by the collaborators from other groups at DCRC.
-    Additionally, a curated collection of autophagy-related genes was provided by experts in the field at DCRC (in the Cell Death and Metabolism and Cell Stress and Survival Units).\\
-    
-    The metadata for each sample was collated from three sources. The original clinical sample annotation extracted with TCGAbiolinks was complimented with the additional subtype classifications for previuosly unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} \cite{Ciriello2015ComprehensiveCancer}. Further metadata was added from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. \\   
-    
-        
-    %   TABLE
+    The full TCGA-BRCA RNA-sequencing dataset was downloaded from the GDC data portal using R/Bioincuctor package TCGAbiolinks v2.8.13
+\cite{Colaprico2016}. Table \ref{table:full} shows the overview of samples collected by the TCGA research network. 
+
+     %   TABLE 2.1
             \begin{table}[!htbp]
                 \centering
                 \caption{TCGA-BRCA full dataset sample number overview}
@@ -21,58 +14,161 @@
                     \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}1212 \\ (F:1199, M:13)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}1093\\ (F:1082, M;12)\end{tabular} & \begin{tabular}[c]{@{}c@{}}112\\ (F: 111, M:1)\end{tabular} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}7\\ (F:7, M:0)\end{tabular}} \\ \hline
                     \end{tabular}
             \end{table}
+
+    The original dataset has been subset to a more manageable collection of samples based of three main factors, which entailed including samples that \textbf{ i)} are female only (to reduce biological variation coming from gender) \textbf{ii)} are present in the list of manually curated samples and their classifications \textbf{iii)} are provided with enough metadata to benefit exploratory analysis. Only primary tumour and normal samples were included in the analysis.
+    
+    The curated lists of samples specifying stage and morphological type of samples were provided by the collaborators from other groups at DCRC.Table \ref{table:morphstage} shows the number of samples that were represented in the morphological groups and stages in the final dataset. 
+    
+    
+     %   TABLE 2.2
+            \begin{table}[!htbp]
+            \centering
+            \caption{The number of samples in each morphology type and stage in the final datset}
+            \label{table:morphstage}
+            \begin{tabular}{lccllclc}
+            \multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\ code\end{tabular}} & \textbf{} &  &  & \textbf{} & \multicolumn{1}{c}{\textbf{Stage}} & \textbf{} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Lobular Carcinoma} & \multicolumn{1}{c|}{8520/3} & \multicolumn{1}{c|}{100} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 1} & \multicolumn{1}{c|}{100} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Infiltrating Duct Carcinoma} & \multicolumn{1}{c|}{8500/3} & \multicolumn{1}{c|}{100} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 2} & \multicolumn{1}{c|}{100} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Infiltrating Duct and Lobular Carcinoma} & \multicolumn{1}{c|}{8522/3} & \multicolumn{1}{c|}{100} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 3} & \multicolumn{1}{c|}{100} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Metaplastic carcinoma} & \multicolumn{1}{c|}{8575/3} & \multicolumn{1}{c|}{100} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 4} & \multicolumn{1}{c|}{100} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Mucinous adenocarcinoma} & \multicolumn{1}{c|}{8480/3} & \multicolumn{1}{c|}{100} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage X} & \multicolumn{1}{c|}{100} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Other morphologies} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{100} &  &  &  & \multicolumn{1}{c}{} &  \\ \cline{1-3}
+            \end{tabular}
+            \end{table}
+    
+    
+    Each sample in the final dataset was annotated with clinical metadata, which included PAM50 molecular subtype, patient age subgroup, race/ethnicity, menopause status, tumour grade, nodal involvement, metastasis status, year sample was taken, tissue source site. 
+    The metadata for each sample was collected and integrated from three sources. The sample annotations extracted with TCGAbiolinks was complimented with the additional subtype classifications for the previously unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} \cite{Ciriello2015ComprehensiveCancer}. Further metadata was added from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. \\   
+    
+        
+    A curated collection of autophagy-related gene lists was provided by experts in the field at DCRC (in the Cell Death and Metabolism and Cell Stress and Survival Units). Table \ref{table:autophagy} shows the functional groups that autophagy-related genes are managed by. The autophagy core genes and as well as transcription factors are of the most interest. 
+    
+     %   TABLE 2.3
+    
+            \begin{table}[!htbp]
+            \centering
+            \caption{Autophagy-related genes functional groups. The numbers are reported for the dataset after pre-processing.}
+            \label{table:autophagy}
+            \begin{tabular}{l|c}
+            \textbf{Functional Group} & \multicolumn{1}{l}{\textbf{Number of genes}} \\ \hline
+            Autophagy core & 156 \\ \hline
+            Transcription factors & 101 \\ \hline
+            Lipid & 33 \\ \hline
+            Phosphatidyl & 40 \\ \hline
+            Endo and exosomes & 132 \\ \hline
+            Transport & 216 \\ \hline
+            RABs and effectors & 131 \\ \hline
+            Docking and fusion & 14 \\ \hline
+            Mitophagy & 65 \\ \hline
+            Receptors and ligands & 66 \\ \hline
+            mTOR induction & 138 \\ \hline
+            Lysosome & 218 \\ \hline
+            \multicolumn{1}{c|}{\textit{Total}} & \textit{1112}
+            \end{tabular}
+            \end{table}
             
             
-    \newpage
     \subsection{Data quantification, extraction, and preprocessing}
-    The original RNA-seq data was quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline of included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification. \\
+    The original RNA-seq data was quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
 
-    The data stored in TCGA data portal is accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g sequencing depth) \cite{Colaprico2016, PapaleoTCGAPackages}, such as quantile normalisation (cut-off 0.10).  The pipeline transfroms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. \\
+    The TCGA data portal dataset for different cancer types are accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation (cut-off 0.10)\cite{Colaprico2016, PapaleoTCGAPackages}.  The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
     
-   \subsection{Sample annotation and gene curation}
-   
-   % about samples
-   
-   %so each sample is annotated with stage
-   
-   
-   % about genes
-   
-
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[!htbp]
-\centering
-\caption{My caption}
-\label{my-label}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lccclcclc}
-\multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\ code\end{tabular}} & \textbf{} & \textbf{} & \multicolumn{1}{c}{\textbf{Stage}} & \textbf{} & \textbf{} & \multicolumn{1}{c}{\textbf{PAM50 subtype}} & \textbf{} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Lobular Carcinoma} & \multicolumn{1}{c|}{8520/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 1} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Luminal A} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Infiltrating Duct Carcinoma} & \multicolumn{1}{c|}{8500/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 2} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Luminal B} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Infiltrating Duct and Lobular Carcinoma} & \multicolumn{1}{c|}{8522/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 3} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Basal-like} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Metaplastic carcinoma} & \multicolumn{1}{c|}{8575/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 4} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{HER2-enriched} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Mucinous adenocarcinoma} & \multicolumn{1}{c|}{8480/3} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage X} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFCCC9}100} & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{Normal-like} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFC7}100} \\ \cline{1-3} \cline{5-6} \cline{8-9} 
-\multicolumn{1}{|l|}{Other morphologies} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\cellcolor[HTML]{BBDAFF}100} &  & \multicolumn{1}{c}{} &  &  & \multicolumn{1}{c}{} &  \\ \cline{1-3}
-\end{tabular}%
-}
-\end{table}
-
     
-    \subsection{Finalised dataset}
+    \subsection{Final dataset}
+    
+    After data pre-processing and filtering for samples with sufficient clinical information, the final dataset included 969 tumour and 112 normal samples, and  gene matrix included 17372 genes. 
+    All samples were annotated with PAM50 molecular classification. Table \ref{pam50counts} shows the sample counts for each PAM50 subtype. 
+    
+    
+     %   TABLE 2.4    
+                \begin{table}[!htbp]
+                \centering
+                \caption{The number of samples in each PAM50 subtype in the final dataset}
+                \label{pam50counts}
+                \begin{tabular}{ll}
+                \multicolumn{1}{c}{\textbf{PAM50}} &  \\ \hline
+                \multicolumn{1}{|l|}{Luminal A} & \multicolumn{1}{l|}{100} \\ \hline
+                \multicolumn{1}{|l|}{Luminal B} & \multicolumn{1}{l|}{100} \\ \hline
+                \multicolumn{1}{|l|}{Basal-like} & \multicolumn{1}{l|}{100} \\ \hline
+                \multicolumn{1}{|l|}{HER2-enriched} & \multicolumn{1}{l|}{100} \\ \hline
+                \multicolumn{1}{|l|}{Normal-like} & \multicolumn{1}{l|}{100} \\ \hline
+                \end{tabular}
+                \end{table}
+                
+    
     %table with all classifications, descripron of SE and sample matrix; other metadata available for majority od samples 
     
     
-\section{Analysis methods}
+\section{Exploratory analysis methods}
     % paragraph avout EDA and how it is need before hypothesis-driven analysis
+    
+    Exploratory data analysis (EDA) is an essential step in working with a large dataset of publicly available data, such as the TCGA-BRCA dataset. Exploratory analysis can be applied to raw and normalised transcriptomics data as a means to visualise the global structure of the data. Metadata available for all samples was rigorously explored to maximise the insight into the dataset, extract important features, and to highlight outliers and potential confounders.
+    
+    Principal component analysis (PCA) and clustering (as part of a heatmap and not) are the most commonly used exploratory tools. The underlying statistics and algorithms available for the calculations involved in PCA and clustering dendogram generation are fundamentally the same for the available packages in R/Bioconductor. This section will present a general introduction to PCA and clustering, and provide simple examples of use.
 
     \subsection{Principal Component Analysis}
-    %what,why
     
-
+    PCA is a method where a multivariate dataset is linearly transformed into a set of uncorrelated variables ordered in descending manner by the variance explained \cite{jolliffe2002principal}. In this way, the first few principal components (PC) often explain the largest amount of the variation in the data. For clustering of samples and visualisation of dataset structure, the first two or three PCs are selected, leading to a 2D representation of PCA plot. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}.
+    
+    In a PCA 2D scatter plot, each data point represents a sample. The relationship between two samples is reflected by the distance between corresponding dots in the plot. Therefore, the more similar gene expression profiles are, the closer the data points are.    
+   
+    Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the total variation in the data. PCA was performed using the R function \texttt{prcomp()}.
+    
+        % PCA plot 
+            \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.7]{pca_method.png}
+            \caption{An example graph}
+            \label{fig:pcamethod}
+            \end{figure}
+        
+    
+    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown as a scatter plot in Figure \ref{fig:pcamethod}. Here, however, one is able to see variation along more than two PCs at the time. This method is useful for checking if any of the other PCs have attention-worth variation in them. This is useful for checking for potential presence of batch effects or signatures left by other cofactors. 
+    
+        % PCA 1d
+            \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.7]{1dpcamethod.png}
+            \caption{An example graph}
+            \label{fig:1dpcamethod}
+            \end{figure}
+   
+  
     \subsection{Clustering and Heatmap representation}
+    
+    
+    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms\cite{Metsalu2015ClustVis:Heatmap}.
+    
+    
+    Hierarchical clustering is a popular method of re-ordering samples based
+on their distance in high dimensional space. This can be used to identify clusters
+and relationships between samples and also helps identify any potential outlier
+samples. The cluster is constructed based on the determination of two distances
+— the distance metric and the linkage criterion.
+
+Basic distance indices, such as Euclidean and Manhattan distances, are
+available to calculate these distance measures. These can be based on the
+similarity or dissimilarity of samples, differing predominantly in the objective of
+their proximity functions.
+Typically, studies tend to use the Euclidean distance but the results obtained
+from both metrics tend to be similar. This Euclidean  involves computing the square root of square differences between coordinates. The Manhattan distance
+between two points is calculated by taking the sum of the lengths of the
+differences between the coordinates.
+%The Euclidean distance calculates the shortest path, diagonally, between two
+%coordinates — sqrt(xA-xB)2 + (yA – yB)2. The Manhattan distance is not measured in
+%a straight line but on horizontal (x) and vertical (y) axes — (xA-xB) + (yA – yB).
+    
+    
+    The results obtained for summarising the data structure of transcriptomic data
+between PCA and HCL often portray similar findings. For instance, if HCL shows
+a clear segregation of the data, a PCA of the same data will support this
+    
+    
+    Heatmap is a datamatrix visualizing values in the cells by
+the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows and/or columns of the matrix are often clustered so that users can interpret sets of rows or columns rather than individual ones.
+
+
+\section{Hypothesis-driven analysis methods}    
 
     \subsection{Differential Expression Testing}
 
