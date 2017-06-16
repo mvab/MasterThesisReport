@@ -71,12 +71,12 @@
     \subsection{Data quantification, extraction, and preprocessing}
     The original RNA-seq data was quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
 
-    The TCGA data portal dataset for different cancer types are accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation (cut-off 0.10)\cite{Colaprico2016, PapaleoTCGAPackages}.  The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
+    The TCGA portal datasets for different cancer types are accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation (cut-off 0.10)\cite{Colaprico2016, PapaleoTCGAPackages}.  The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
     
     
     \subsection{Final dataset}
     
-    After data pre-processing and filtering for samples with sufficient clinical information, the final dataset included 969 tumour and 112 normal samples, and  gene matrix included 17372 genes. 
+    After data pre-processing and filtering for samples with sufficient clinical information, the final dataset included 969 tumour and 112 normal samples, and  the gene expression matrix was reduced to 17372 genes. 
     All samples were annotated with PAM50 molecular classification. Table \ref{pam50counts} shows the sample counts for each PAM50 subtype. 
     
     
@@ -108,9 +108,8 @@
 
     \subsection{Principal Component Analysis}
     
-    PCA is a method where a multivariate dataset is linearly transformed into a set of uncorrelated variables ordered in descending manner by the variance explained \cite{jolliffe2002principal}. In this way, the first few principal components (PC) often explain the largest amount of the variation in the data. For clustering of samples and visualisation of dataset structure, the first two or three PCs are selected, leading to a 2D representation of PCA plot. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}.
-    
-    In a PCA 2D scatter plot, each data point represents a sample. The relationship between two samples is reflected by the distance between corresponding dots in the plot. Therefore, the more similar gene expression profiles are, the closer the data points are.    
+    PCA is a method that linearly transforms a multivariate dataset into a set of uncorrelated variables ordered in descending manner by the variance explained \cite{jolliffe2002principal}. In this way, the first few principal components (PCs) often explain the largest amount of the variation in the data. PCA results can be visualised in a 2D scatter plot, where $x$ and $y$ axes are the selected principal components. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}. 
+    In a PCA 2D scatter plot, each data point represents a sample, which allows visualisation of sample clustering and dataset structure.  The relationship between two samples is reflected by the distance between corresponding dots in the plot. Therefore, the more similar gene expression profiles are, the closer the data points are.    
    
     Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the total variation in the data. PCA was performed using the R function \texttt{prcomp()}.
     
@@ -118,18 +117,21 @@
             \begin{figure}[h]
             \centering
             \includegraphics[scale=0.7]{pca_method.png}
-            \caption{An example graph}
+            \caption{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples}
             \label{fig:pcamethod}
             \end{figure}
         
-    
-    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown as a scatter plot in Figure \ref{fig:pcamethod}. Here, however, one is able to see variation along more than two PCs at the time. This method is useful for checking if any of the other PCs have attention-worth variation in them. This is useful for checking for potential presence of batch effects or signatures left by other cofactors. 
+    \newpage
+    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown as a scatter plot of first two PCs in Figure \ref{fig:pcamethod}. 
+    In contrast, one-dimensional PCA plots are able to show variation along more than two PCs at a time. This method is useful for checking if any of the other PCs contain variation worth exploring. This is useful for checking for potential presence of batch effects or signatures left by other cofactors. 
+    For each PC, the variation of each condition group, here - cancer and normal, is represented by a box plot. The PCs where condition boxes have the smallest overlap (e.g. PC1) will shows the clearest separation when plotted in 2D. 
+       
     
         % PCA 1d
             \begin{figure}[h]
             \centering
             \includegraphics[scale=0.7]{1dpcamethod.png}
-            \caption{An example graph}
+            \caption{An example of one-dimensional PCA plots for the cancer/normal dataset. }
             \label{fig:1dpcamethod}
             \end{figure}
    
@@ -137,42 +139,50 @@
     \subsection{Clustering and Heatmap representation}
     
     
-    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms\cite{Metsalu2015ClustVis:Heatmap}.
-    
-    
-    Hierarchical clustering is a popular method of re-ordering samples based
-on their distance in high dimensional space. This can be used to identify clusters
-and relationships between samples and also helps identify any potential outlier
-samples. The cluster is constructed based on the determination of two distances
-— the distance metric and the linkage criterion.
+    In clustering, or unsupervised classification, the aim is to identify subsets (clusters) in the data based on the similarity between single objects. Similar objects should be assigned to the same cluster, while objects which are not similar to each other, should be assigned to different clusters.
+    Cluster analysis is applied to transcriptomics data to search for similar gene expression patterns between individual samples. This can help to reveal the data structure and give first insights into the data, which is especially useful if prior knowledge is little or non-existent. Clustering can, therefore, be seen as exploratory data analysis. 
+        
+    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a datamatrix visualising values in the cells by the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.\\
 
-Basic distance indices, such as Euclidean and Manhattan distances, are
-available to calculate these distance measures. These can be based on the
-similarity or dissimilarity of samples, differing predominantly in the objective of
-their proximity functions.
-Typically, studies tend to use the Euclidean distance but the results obtained
-from both metrics tend to be similar. This Euclidean  involves computing the square root of square differences between coordinates. The Manhattan distance
-between two points is calculated by taking the sum of the lengths of the
-differences between the coordinates.
-%The Euclidean distance calculates the shortest path, diagonally, between two
-%coordinates — sqrt(xA-xB)2 + (yA – yB)2. The Manhattan distance is not measured in
-%a straight line but on horizontal (x) and vertical (y) axes — (xA-xB) + (yA – yB).
+    One of the popular methods is hierarchical clustering, which involves re-ordering of samples based on their distance in high dimensional space. The cluster is constructed based on the determination of two parameters — the distance metric and the linkage criterion.
+    The two most common distance measures used for clustering are Euclidean and Manhattan distances. Typically the results of the two are quite similar, but most studies default to using the Euclidean measure. 
+    The Euclidean distance involves computing the square root of square differences between two coordinates. In this way, the shortest path diagonally is calculated: $ \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}}$, where the first point is $(x1, y1)$ and the second point is $(x2, y2).$
+    The Manhattan distance between two points is calculated by taking the sum of the lengths of the differences between the coordinates. Therefore, the distance is measure not in a straight line, but on horizontal (x) and vertical (y) axes — $ (x_{1}-x_{2})+(y_{1}-y_{2}).$
+    
+    Clustering works well when the data to be clustered is processed correctly. The low expressed genes have to be filtered out to remove non-informative noise after the counts data has been normalised and log2-transformed as will be discussed in section \ref{}, prior to clustering with the R function \texttt{hclust()} with default parameters. Hierarchical clustering on all genes was performed on all genes on data subgroup averages (Results section \ref{}).
+    
+    Heatmap clustering was performed on gene subsets, such as autophagy groups or $n$ genes with the highest variance (Results section \ref{}). The heatmaps were generated using Manhattan distance with avegare linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}.\\
+    
+    The results obtained for summarising the structure of transcriptomics data between PCA and clustering often show similar findings. For instance, if PCA shows a clear segregation of the data, clustering normally will support this.
     
     
-    The results obtained for summarising the data structure of transcriptomic data
-between PCA and HCL often portray similar findings. For instance, if HCL shows
-a clear segregation of the data, a PCA of the same data will support this
     
+%     HCL implementing the Euclidean distance metric and the average linkage
+% distance method to analyse the same data used to generate the PCA in figure 6
+% determines that the data clusters into two predominant groups — one comprising
+% all cancer samples and the other consisting of all control (healthy) samples. This
+% indicates that the cancer transcriptomic profiles are more similar to each other
+% than any of the control samples. These findings are reflected by those obtained
+% from the PCA.
     
-    Heatmap is a datamatrix visualizing values in the cells by
-the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows and/or columns of the matrix are often clustered so that users can interpret sets of rows or columns rather than individual ones.
+\newpage
+
 
 
 \section{Hypothesis-driven analysis methods}    
 
+    %why
+
     \subsection{Differential Expression Testing}
+    
+    %why
+        \subsubsection{data preprocessing}
+        \subsubsection{DE background}
+        \subsubsection{limma}
+        \subsubsection{multiple tesing correction}
 
     \subsection{Soft clustering}
+        \subsubsection{prepossessing}
     
     \subsection{Enrichment Analysis}
     
