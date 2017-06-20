@@ -5,15 +5,18 @@
 \cite{Colaprico2016}. Table \ref{table:full} shows the overview of samples collected by the TCGA research network. 
 
      %   TABLE 2.1
+     
             \begin{table}[!htbp]
-                \centering
-                \caption{TCGA-BRCA full dataset sample number overview}
-                \label{table:full}
-                    \begin{tabular}{c|c|c|c}
-                    \textbf{Samples} & \textbf{Tumour} & \textbf{Normal} & \textbf{Metastasis} \\ \hline
-                    \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}1212 \\ (F:1199, M:13)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}1093\\ (F:1082, M;12)\end{tabular} & \begin{tabular}[c]{@{}c@{}}112\\ (F: 111, M:1)\end{tabular} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}7\\ (F:7, M:0)\end{tabular}} \\ \hline
-                    \end{tabular}
+            \centering
+            \caption{RNA-Seq samples from TCGA-BRCA dataset. Full and final dataset sample count is shown}
+            \label{table:full}          
+            \begin{tabular}{cc|c|c|c}
+            \multicolumn{1}{l}{} & \textbf{Samples} & \textbf{Tumour} & \textbf{Normal} & \textbf{Metastasis} \\ \cline{2-5} 
+            \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Full\\  dataset\end{tabular}}} & 1212 & \begin{tabular}[c]{@{}c@{}}1093\\ (F: 1081, M: 12)\end{tabular} & \begin{tabular}[c]{@{}c@{}}112\\ (F: 112, M :0)\end{tabular} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}7\\ (F: 7, M: 0)\end{tabular}} \\ \hline
+            \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Final\\  dataset\end{tabular}}} & 969 & F:857 & F:112 & \multicolumn{1}{l|}{} \\ \cline{2-5} 
+            \end{tabular}
             \end{table}
+                 
 
     The original dataset has been subset to a more manageable collection of samples based of three main factors, which entailed including samples that \textbf{ i)} are female only (to reduce biological variation coming from gender) \textbf{ii)} are present in the list of manually curated samples and their classifications \textbf{iii)} are provided with enough metadata to benefit exploratory analysis. Only primary tumour and normal samples were included in the analysis.
     
@@ -50,6 +53,7 @@
             \caption{Autophagy-related genes functional groups. The numbers are reported for the dataset after pre-processing.}
             \label{table:autophagy}
             \begin{tabular}{l|c}
+            \small
             \textbf{Functional Group} & \multicolumn{1}{l}{\textbf{Number of genes}} \\ \hline
             Autophagy core & 156 \\ \hline
             Transcription factors & 101 \\ \hline
@@ -84,7 +88,7 @@
                 \begin{table}[!htbp]
                 \centering
                 \caption{The number of samples in each PAM50 subtype in the final dataset}
-                \label{pam50counts}
+                \label{table:pam50counts}
                 \begin{tabular}{ll}
                 \multicolumn{1}{c}{\textbf{PAM50}} &  \\ \hline
                 \multicolumn{1}{|l|}{Luminal A} & \multicolumn{1}{l|}{100} \\ \hline
@@ -111,12 +115,12 @@
     PCA is a method that linearly transforms a multivariate dataset into a set of uncorrelated variables ordered in descending manner by the variance explained \cite{jolliffe2002principal}. In this way, the first few principal components (PCs) often explain the largest amount of the variation in the data. PCA results can be visualised in a 2D scatter plot, where $x$ and $y$ axes are the selected principal components. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}. 
     In a PCA 2D scatter plot, each data point represents a sample, which allows visualisation of sample clustering and dataset structure.  The relationship between two samples is reflected by the distance between corresponding dots in the plot. Therefore, the more similar gene expression profiles are, the closer the data points are.    
    
-    Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the total variation in the data. PCA was performed using the R function \texttt{prcomp()}.
+    Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the total variation in the data. PCA was performed using the R function \texttt{prcomp()}, the plots were generated with R package \texttt{ggplot2} \cite{ggplot2}.
     
         % PCA plot 
             \begin{figure}[h]
             \centering
-            \includegraphics[scale=0.7]{pca_method.png}
+            \includegraphics[scale=0.6]{pca_method.png}
             \caption{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples}
             \label{fig:pcamethod}
             \end{figure}
@@ -151,10 +155,19 @@
     
     Clustering works well when the data to be clustered is processed correctly. The low expressed genes have to be filtered out to remove non-informative noise after the counts data has been normalised and log2-transformed as will be discussed in section \ref{}, prior to clustering with the R function \texttt{hclust()} with default parameters. Hierarchical clustering on all genes was performed on all genes on data subgroup averages (Results section \ref{}).
     
-    Heatmap clustering was performed on gene subsets, such as autophagy groups or $n$ genes with the highest variance (Results section \ref{}). The heatmaps were generated using Manhattan distance with avegare linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}.\\
+    Heatmap clustering was performed on gene subsets, such as autophagy groups or $n$ genes with the highest variance (Results section \ref{}). The heatmaps were generated using Euclidean distance with avegare linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}.\\
     
     The results obtained for summarising the structure of transcriptomics data between PCA and clustering often show similar findings. For instance, if PCA shows a clear segregation of the data, clustering normally will support this.
     
+    Figure \ref{fig:heatmapmethod} shows an example of unsupervised clustering of samples with heatmap. The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bar above the heatmap shows cancer/normal samples as pink/blue lines, and clustering forms blocks of colour. The heatmap colours  represent gene expression intensity according to the scale (high expression - dark blue, low expression - light yellow). This example shows how cancer and normal samples form two major clusters in the dendogram, which is noticeable in the heatmap colouring as well. Some of the samples are not within the expected clusters, i.e. are outliers, but that is OK, as some of mix up is seen in PCA too. 
+    
+            % PCA 1d
+            \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.4]{heatmapmethod2.png}
+            \caption{An example of clustering of the cancer/normal samples with heatmap representation. The data was clustered with Euclidean distance and average linkage. }
+            \label{fig:heatmapmethod}
+            \end{figure}
     
     
 %     HCL implementing the Euclidean distance metric and the average linkage
