@@ -65,10 +65,9 @@
                 \begin{table}[!h]
                 \centering
                 \caption{Samples number counts in pairwise comparisons of three main breast cancer samples classifications. Top table: PAM50 and stages, Middle table: PAM50 and morphology, Bottom table: stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
-                \label{table:counts}
+                \label{table:counts}      
                 \resizebox{\textwidth}{!}{%
                 \begin{tabular}{ccccccc}
-                \small
                 \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\textbf{Luminal A}} & \multicolumn{1}{c|}{\textbf{Luminal B}} & \multicolumn{1}{c|}{\textbf{Basal-like}} & \multicolumn{1}{c|}{\textbf{HER2-enriched}} & \multicolumn{1}{c|}{\textbf{Normal-like}} & {\color[HTML]{9B9B9B} \textit{rowsums}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{stage 1}} & \multicolumn{1}{c|}{94} & \multicolumn{1}{c|}{22} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{{\color[HTML]{656565} 148}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{stage 2}} & \multicolumn{1}{c|}{217} & \multicolumn{1}{c|}{99} & \multicolumn{1}{c|}{105} & \multicolumn{1}{c|}{47} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{{\color[HTML]{656565} 481}} \\ \hline
@@ -89,9 +88,9 @@
                 \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{stage 1}} & \multicolumn{1}{c|}{\textbf{stage 2}} & \multicolumn{1}{c|}{\textbf{stage 3}} & \multicolumn{1}{c|}{\textbf{stage 4}} & \multicolumn{1}{c|}{\textbf{unknown}} & {\color[HTML]{9B9B9B} \textit{rowsums}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Lobular}} & \multicolumn{1}{c|}{14} & \multicolumn{1}{c|}{78} & \multicolumn{1}{c|}{49} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{143} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Ductal}} & \multicolumn{1}{c|}{118} & \multicolumn{1}{c|}{368} & \multicolumn{1}{c|}{129} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{18} & \multicolumn{1}{c|}{644} \\ \hline
-                \multicolumn{1}{c|}{\textbf{LobDuctal}} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{644} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{24} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{7} \\ \hline
+                \multicolumn{1}{c|}{\textbf{LobDuctal}} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{24} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{7} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{12} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Other}} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{27} \\ \hline
                 \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} & \multicolumn{1}{c|}{148} & \multicolumn{1}{c|}{481} & \multicolumn{1}{c|}{195} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
                 \end{tabular}%
@@ -130,27 +129,75 @@
     
     Lastly, seeing the samples cluster primarily by PAM50 and only then by stage in Figure \ref{fig:dendogram}, is yet another evidence to what was observed with PCA and heatmap clustering. PAM50 is the main classification effect of breast cancer samples. When using other classification methods, PAM50 subtypes have to be taken into account. For example, comparing two morphologies might now produce expected results if their PAM50 subtype sample composition will be the main driving effect of differences. So the heterogeneity of groups has to be taken into account, and the downstream analysis has to be done on sub-subgroups.  
     
- 
-   
-
-    
+     
 
     
  
     
     \newpage
-     \subsubsection{Cofactors and batch effects}
-    The metadata available for each sample was explored with PCA to check for sources of unusual variation.
+    \subsection{Cofactors and batch effects}
     
-    The potential batch effect groups are the year the sample was taken from the patient (i.e. lab protocol standards have changed over the years), as well as the actual source site (i.e. where the sample was taken and processed). Additionally, patient age groups were explored. 
+    Morphology, cancer stages, and PAM50 molecular subtype are the expected main sources of variation in the dataset, namely biological variation. However, in a large and heterogeneous dataset such as TCGA-BRCA there are potentially several other sources of variation that may be contributing to the differences in gene expression between samples. Having sufficient clinical and meta annotation for the present samples allows us to explore potential sources of technical variation.
     
-    One-dimensional PCA plots were used to visualise variation over the years and across the sites. 
-    Figure \ref{} shows the first X PCs of PCA on the year data. Each boxplot represents samples taken in a single year. The boxplots are samples sequentially (as shown in the figure legend)
+    Among the available annotations, the most interesting ones are the patient age group, year sample was taken, and tissue source site. These were explored with PCA to visualise any outlying subgroups that may be creating an unwanted batch effect.
+    Exploring the samples by year may identify significant differences between years, as the lab protocols for sample processing would have changes in the given years (1988-2013). Such differences could also be observed between the source sites, i.e. clinical institutions and research centers where the original samples were handled. 
+
+    One-dimensional PCA plots were used to visualise variation over the years and across the sample sites. As there are many (>20) subgroups in both year ans site data, PCA scatter plots are not helpful for spotting outlying subgroups. 
+    
+    Figure \ref{fig:1dpcayear} shows the first 6 PCs of PCA of the year data. Each boxplot represents samples taken in a single year, with individual years shown as gitter-dots to visualise each year group approximate size and sample variation within it (according to y-axis). The boxplots are shown for years in sequential order (1988-2013). 
+        
+            % 1D PCA YEAR
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.45]{1dpcayear.png}
+            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) taken in years 1988-2013. The points over each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
+            \label{fig:1dpcayear}
+            \end{figure}
     
     
-    %talk about variton in years.  protocls in introduced in 2005. 
+    Overall, it is evident that there is a lot of variation between the years. This is especially the case for the earlier years, however, this is partially due to low number of samples taken in those years.  The variation stabilises after year 2005, which can be explained by the fact that this is when the pilot of TCGA project started and the universal protocols were introduced. Also it is can be seen that the majority of samples were collected after that time point. An observation worth noticing is that samples in years 1997-2000 appear to be quite different to previous and following years (PC1). This could have had a very serious batch effect on the downstream analyses, and had to be explored further.\\
     
-    %sites
+    As established in the previous section, we expect PAM50 subtypes to be the main point of interest for further investigation, therefore, it was crucial to check the sample composition of every year group in terms of PAM50 subtypes to make sure that, for example, a particular subtype was *not*  collected in only one year, which would be confounding the dataset exploration in that context. Figure \ref{fig:baryear} shows the stacked barplot of all samples organised by year.  Each bar shows the total count of samples in a year, and the proportion of samples of each PAM50 subtype are coloured according to the legend. 
+    
+    
+             % bar per year
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.7]{bar_year.png}
+            \caption{Stacked barplots of sample counts per year (1988-2013). The coloured proportions represent PAM50 subtypes samples within each year group. }
+            \label{fig:baryear}
+            \end{figure}
+    
+    As already noted from 1D PCA plot fro year data, the total number of samples in the earlier years is marginally smaller than in the last decade of given years. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, the dataset is not confounded by a particular year-subtype combination.  Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot. It can be seen in Figure \ref{fig:baryear} that these years have about 50\% composition of normal samples in them, which is not the case for all other years. Having such high proportion of normal samples in them, makes their mean seem different. Appendix \ref{} shows a 1D PCA plot for cancer samples only, confirming this possible explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
+    
+        %sites
+    \newpage
+    As with year data, the sample source data also had to be explored and variation among sources assessed. Figure \ref{fig:1dpcatss} shows a 1D PCA plot analogous to the one showing variation for samples grouped by year. This plot shows variation for all samples grouped by samples source site (24 sites in total).\\  
+            
+            % 1D PCA YEAR
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.45]{1dpcatss.png}
+            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) from different source sites (two letter abbreviations; NA - site unknown). The points over each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
+            \label{fig:1dpcatss}
+            \end{figure}
+
+    It is clear that the variation between source sites exists, as anticipated. As with year data, some source groups have very few samples, which makes the variation between them and large groups more prominent. One source site that really stands out (PC1) is BH (red). A possible explanation to this could have been that the sample handling protocol at this site is very different  from the rest, or, as it turned out, this differences has the same cause as the difference seen in year data.\\
+    
+              % bar per tss
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.5]{bar_tss.png}
+            \caption{Stacked barplots of sample counts per source site (alphabetic order). The coloured proportions represent PAM50 subtypes samples within each year group. }
+            \label{fig:bartss}
+            \end{figure}
+    
+    The source site data was visualised as stacked bar plots to inspect sample subtype variety coming from each site, Figure \ref{fig:bartss}. As observed on the 1D PCA plot, some sites have very few samples coming from them. The larger groups are relatively well-balanced in terms of their PAM50 subtype composition, with the exception of Normal-like, which comes only from 7 sites. This is, however, expected, as there are only 26 Normal-like samples in total. Another observation, which may be of bigger concern, is that the majority of normal samples come from one site, BH. This should not affect downstream analyses, as we are interested in differences between cancer subgroups. But seeing this explains the abnormal variation seen in 1D PCA plot for this site. As with year data, this one site is ~50\% composed of normal samples, making it appear very different from the rest as a group. If analysis is done only on cancer samples, this is no longer the case (Appendix \ref{}). 
+    
+  
+    
+    
+
     
     %age groups
     
