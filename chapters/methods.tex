@@ -72,10 +72,55 @@
             \end{table}
             
             
-    \subsection{Data quantification, extraction, and preprocessing}
+    \subsection{Extraction and preprocessing}
+    
+    %NB mention that all data was HTseq etc.·
+
+    
     The original RNA-seq data was quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
 
-    The TCGA portal datasets for different cancer types are accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level 2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation (cut-off 0.10)\cite{Colaprico2016, PapaleoTCGAPackages}.  The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
+    The TCGA portal datasets for different cancer types are accessible at three levels: 1) raw and uncontrolled, 2) normalised and controlled, and 3) integrated and interpreted. In this project, level-2 Legacy Breast Cancer dataset was downloaded and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation (cut-off 0.10)\cite{Colaprico2016, PapaleoTCGAPackages}.  The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
+    
+    
+    %here will be more about normalising to lib sizes +TMM etc
+    
+    
+    
+    gene expression from Illumina HiSeq 2000 RNA Sequencing Version 2 analysis
+    
+    
+%     The individual samples in the EM cannot be compared before they have been normalized.
+% • The main reason for this is differences in library size or sequencing depth between samples in the same experiments (In R terms different colSums(EM)).
+% • The basic way of dealing with this problem is to consider counts as fractions of total, usually scaled to a human scale unit, such as counts-per-million (cpm)
+
+
+% Counts with 1-3 counts are not very interesting, since they are likely to be either noise or expressed at biologically irrelevant levels. It's customary to perfom som ad-hoc trimming or filtering to remove these prior to analysis.
+% Here we only keep genes with at least 2 counts in at least 4 samples
+
+
+
+% Now we have a clearer picture of the distribution of counts within each sample. The large difference in distributions shows the need for normalization, before the samples can be compared.
+% As with everything in R, we do not have to recode the matrix. The edgeR package has a function cpm which has implented a large number of normalization methods and log-transformation.
+% edgeR does this by implementing the use of normalization factors, which is use to rescale the actual library sizes to take into account differences in RNA-composition.
+
+
+% Normalisation:
+% DE-based methods: Assume most genes are non-DE, i.e. have generally similar distributions:
+% Trimmed Mean of M-values (TMM): edgeR
+
+% DE-based methods performs similarly or outperforms the simpler scaling methods.
+% RLE and TMM generally produce similar results, except in some extreme use cases (RLE is better at handling many zero counts for example)
+
+
+
+% After normalization (and maybe pre-normalization trimming), the EM can be readily analyzed
+% using standard machine learning techniques (Decompositions, clustering, etc.).
+% • EDA have 3 major components:
+% – 1) Discover patterns incl Spot anomalies
+% – 2) Frame hypothesis
+% 3) Check assumptions
+    
+    
     
     
     \subsection{Final dataset}
@@ -153,6 +198,8 @@
     The Euclidean distance involves computing the square root of square differences between two coordinates. In this way, the shortest path diagonally is calculated: $ \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}}$, where the first point is $(x1, y1)$ and the second point is $(x2, y2).$
     The Manhattan distance between two points is calculated by taking the sum of the lengths of the differences between the coordinates. Therefore, the distance is measure not in a straight line, but on horizontal (x) and vertical (y) axes — $ (x_{1}-x_{2})+(y_{1}-y_{2}).$
     
+    *the rest of this section has to be rewritten and restructured*
+    
     Clustering works well when the data to be clustered is processed correctly. The low expressed genes have to be filtered out to remove non-informative noise after the counts data has been normalised and log2-transformed as will be discussed in section \ref{}, prior to clustering with the R function \texttt{hclust()} with default parameters. Hierarchical clustering on all genes was performed on all genes on data subgroup averages (Results section \ref{}).
     
     Heatmap clustering was performed on gene subsets, such as autophagy groups or $n$ genes with the highest variance (Results section \ref{}). The heatmaps were generated using Euclidean distance with avegare linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}.\\
@@ -178,7 +225,42 @@
 % than any of the control samples. These findings are reflected by those obtained
 % from the PCA.
     
+    
+    
+%     Hierarchical clustering A statistical method in which objects (for example, gene expression profiles for different individuals) are grouped
+% into a hierarchy, which is visualized in a dendrogram. Objects close to each other in the hierarchy, measured by tracing the branch heights, are also close by some measure of distance — for example, individuals with similar expression profiles will be close together in terms of branch lengths#
+
 \newpage
+
+
+\subsection{Batch effects}
+
+Batch effects are a common and powerful source of variation in high-throughput biology.  They are artifacts not related to the biological variation of scientific interests, and may substantially affect the downstream analysis results if not dealt with properly. 
+To identify the existence of batch effects, exploratory analyses must be carried out to help quantify their effect, so that downstream statistical analyses can then be adjusted to account for these unwanted effects. 
+ 
+Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological variables in a study \cite{Leek2010TacklingData}. For example, batch effects may occur if a subset of experiments was run on two different week days, if two technicians were responsible for different subsets of the experiments or if two different lots of reagents or instruments were used. This becomes a major problem when batch effects are correlated with an outcome of interest and lead to incorrect conclusions.
+ 
+Although batch effects are difficult or impossible to detect in low-dimensional assays, high-throughput technologies provide enough data to detect and even remove them \cite{Leek2010TacklingData}. 
+ 
+One way to quantify the affect of non-biological variables is to examine the principal components of the data. Principal components are estimates of the most common patterns that exist across features, as discussed in the previous section. Principal components can capture both biological and technical variability and therefore can be used to quantify the effects of artifacts on the high-throughput data \cite{LeekCapturingAnalysis}. Principal components can be com- pared to known variables, such as sample source and time. 
+ 
+Of more concern are cases in which batch effects are confounded with an outcome of interest and result in misleading biological or clinical conclusions \cite{Leek2010TacklingData}. An example of confounding is when all of the cases are processed on one day and all of the controls are processed on another. In this project, it will be crucial to check if any of the cancer sample subgroups are linear with sample processing site or time (year sample taken). In an ideal experimental design comparing a molecular profile in tumour and healthy samples, the samples should be equally distributed between multiple laboratories and across different processing times. These steps can help to minimize the probability of confounding between biological and batch effects.
+ 
+%this part is a bit weird
+In sum, the first step in the exploratory statistical analysis of batch effects is to identify and quantify batch effects using principal components analysis or other visualization techniques. If strong batch effects exist, they must be accounted for in downstream statistical analyses. 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -190,13 +272,70 @@
     
     %why
         \subsubsection{data preprocessing}
+        % Normalization is a data analysis technique that adjusts global properties of measurements for individual samples so that they can be more appropriately compared. Including a normalization step is now standard in data analysis of gene expression experiments. . But normalization does not remove batch effects, which affect specific subsets of genes and may affect different genes in different ways. In some cases, these normalization procedures may even exacerbate technical artefacts in high-throughput measurements, as batch and other technical effects  violate the assumptions of normalization methods. Although specific normalization methods have been developed for microarray studies that take into account study design7 or otherwise correct for the batch problem8, they are still not widely used.
         \subsubsection{DE background}
         \subsubsection{limma}
         \subsubsection{multiple tesing correction}
 
-    \subsection{Soft clustering}
-        \subsubsection{prepossessing}
+
+
+    \newpage
+    \subsection{Gene Expression Clustering}
+    
+ 
+\subsubsection{Approach Motivation}
+Clustering, or unsupervised classification,  is a powerful tool in gene expression data analysis, as it can help to reveal the structured expression patterns hidden in high-dimensional gene expression datasets \cite{Kumar2007Mfuzz:Data}. Genes showing similar expression patterns (coexpressed genes) are often functionally related and are controlled by the same regulatory mechanisms (coregulated genes), resulting  in expression clusters frequently being enriched by genes of certain functions. This makes clustering an attractive method for using in the search for autophagy signatures. 
+ 
+There are many clustering methods that can be applied to gene expression data, such as k-means clustering or the aforementioned hierarchical clustering. These common methods, however, produce hard partitions of the data, i.e. genes are assigned to exactly one cluster even if their expression profile is similar to several cluster patterns. For experiments where the change of expression over time is of interest, this might not be the best approach. It is known that regulation of genes is generally not in an `on-off` fashion, but rather is a gradual change which allows a more refined control of the genes' functions  \cite{Kumar2007Mfuzz:Data}. Therefore, clustering should ideally take into account this complexity and produce clusters by not only assigning genes to clusters where they follow the dominant pattern the best, but also allow assignment to several clusters.
+ 
+This type of clustering algorithms is termed soft-clustering, as it does not not create hard boundaries between clusters. 
+ 
+\subsubsection{Soft-clustering}
+ 
+Soft-clustering algorithm is implemented in R package \texttt{mfuzz} \cite{Kumar2007Mfuzz:Data}  using the fuzzy c-means algorithm (of the \texttt{e1071} package) based on the iterative optimization of an
+objective function to minimize the variation of objects within clusters  \cite{Bezdek1981PatternAlgorithms}.
+ 
+Fuzzy clustering differentiates how closely a gene follows the dominant cluster patterns and  assigns it degrees of membership to a cluster. The membership value $\mu_{ij}$ can vary between zero and one, and is an indication of how well gene $i$ is represented by cluster $j$. This approach strongly contrasts hard-clustering where membership is binary i.e. 0 or 1), and enables fuzzy clustering to provide more information about the structure of gene expression data \cite{Kumar2007Mfuzz:Data}. 
+The formed clusters are visualised by the mfuzz plotting function, example shown in Figure \ref{fig:mfuzzmethod}. 
+
+            % mfuzz 
+            \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.3]{mfuzz_method.png}
+            \caption{An example of soft-clustering results on gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green colored lines correspond to genes with low membership value; red and purple colored lines -- high membership value.              
+            }
+            \label{fig:mfuzzmethod}
+            \end{figure}
+            
+ The genes in each cluster are represented as lines color-coded by their cluster membership value.  Each cluster describes a particular expression pattern, for instance Cluster 1 comprises genes that are upregulated at all stages of cancer compared to Normal, whereas Cluster 5 shows the opposite, i.e. downregulation trend. Other, more stage-specific patterns, such as in Clusters 2 and 6 with distinct expression is Stage 4, can also be identified with this method. 
+ 
+The formed clusters are visualised by the mfuzz plotting function, example shown in Figure \ref{fig:mfuzzmethod}. The genes in each cluster are represented as lines color-coded by their cluster membership value.  Each cluster describes a particular expression pattern, for instance Cluster 1 comprises genes that are upregulated at all stages of cancer compared to Normal, whereas Cluster 5 shows the opposite, i.e. downregulation trend. Other, more stage-specific patterns, such as in Clusters 2 and 6 with distinct expression is Stage 4, can also be identified with this method. 
+ 
+ 
+ 
+The two parameters that need to be chosen in advance in fuzzy clustering are the number of clusters $c$ and the fuzziness parameter $m$. The fuzziness parameter value should be chosen to minimise clustering of random data and produce maximally stable clusters. Stable clusters are usually compact are are not affected by variation of $m$, whereas weak clusters disappear if $m$ is increased \cite{Kumar2007Mfuzz:Data}. The $m$ parameter is often easiest to estimate by using the \texttt{mestimate} function specifically built for this purpose \cite{Schwammle2010AAnalysis}. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\subsubsection{Application/preprocessing}
+ 
+The method was originally introduced for microarray data, but is perfectly acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered for low-expressed genes data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one.
+The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The cut-off score to select genes representing a cluster throughout this project was 0.6. 
+The steps prior to clustering:
+ 
+%TODO
+ 
+ 
+
+
     
     \subsection{Enrichment Analysis}
     
-    \subsection{PPi, TF, miRNA networks}
+    \subsection{????}
+    
+    
+    % This is based on the observation that genes showing similar expression patterns (coexpressed genes) are often functionally related and are controlled by the same regulatory mechanisms (coregulated genes). Ex- pression clusters are, therefore, frequently enriched by genes of certain functions e.g. DNA replication, or protein synthesis

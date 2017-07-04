@@ -2,6 +2,23 @@
 \section{Exploratory Analysis}
 
     %data was preprocessed as described in methods
+    
+    
+    % The outcome of the EDA will have a major impact on how you analyze the data:
+    %  – Sample outliers and noise: Should some samples be discarded?
+    % Can I perform a meaningful test for different expression between different groups?
+    % What factors (wanted/unwanted, observed/unobserved) should be included in the model?
+    
+    % • EDA is the first part of the analysis where you start drawing biological conclusions specific to a
+    % given experiment.
+    % – Does the data look like I expected/designed?
+    % – Do I have batch effects?
+    % – Subgroups?
+    % • In DE you formalize your observations in the EDA to extract statistically valid results.
+    % • The resulting DE analysis will serve as the foundation of biological interpretation of the data.
+
+    
+    
 
     \subsection{Main effect subgroups}
 
@@ -138,7 +155,7 @@
     \subsection{Cofactors and batch effects}
     
     Morphology, cancer stages, and PAM50 molecular subtype are the expected main sources of variation in the dataset, namely biological variation. However, in a large and heterogeneous dataset such as TCGA-BRCA there are potentially several other sources of variation that may be contributing to the differences in gene expression between samples. Having sufficient clinical and meta annotation for the present samples allows us to explore potential sources of technical variation.
-    
+    %AGE is a standard covariate
     Among the available annotations, the most interesting ones are the patient age group, year sample was taken, and tissue source site. These were explored with PCA to visualise any outlying subgroups that may be creating an unwanted batch effect.
     Exploring the samples by year may identify significant differences between years, as the lab protocols for sample processing would have changes in the given years (1988-2013). Such differences could also be observed between the source sites, i.e. clinical institutions and research centers where the original samples were handled. 
 
@@ -211,6 +228,20 @@
 
     \subsection{Soft clustering}
     
-        \subsubsection{Enrichment Analysis}
+    %identify distinct transcriptome clusters
+    %classify genes into groups
     
+        \subsubsection{Enrichment Analysis}
+    %     The expression profiles of these 348 genes were sorted into 5 clusters by using the fuzzy c-means algorithm implemented in the R package Mfuzz (20). The Mfuzz package uses a “fuzzy” clustering approach to compute the strength of the association of each gene with the central behavior of the cluster, referred to as a “fuzzy score.” The fuzzy scores for each gene sum to 1. This allows one to define a set of genes that associate with each cluster with a high probability, while other genes may not have a high score for association with a single cluster but may instead have scores that allow partial placement in more than one cluster. This approach is more flexible and less sensitive to experimental noise than traditional “hard” clustering, where each gene must belong to one and only one cluster.
+ 
+% Table S1 in the supplemental material shows each of the 348 genes assigned to the 5 clusters and their individual fuzzy scores. The median fuzzy score for each cluster was >0.98, and the average fuzzy score was >0.9, indicating strongly correlated behaviors of the genes within each cluster with respect to changes in growth rate and substrate. Thus, each cluster has a core set of genes with very high fuzzy scores (i.e., close to 1) which indicate that their collective expression behavior is strongly correlated with that of other members of the cluster with respect to their changes in growth rate and substrate. Moreover, the lack of significant overlap of genes between the clusters also supports the unique characteristics of the clusters and their embedded genes.
+
+
+
+ 
+% To overcome the limitations of hard clustering, soft clustering can be applied o
+% ering several advantages to researchers [1, 2]. First, it generates accessible internal cluster structures, i.e. it indicates how well corresponding clusters represent genes/proteins. This additional information can be used for a rened search for regulatory elements. Second, the overall relation between clusters, and thus a global clustering structure, can be dened. Additionally, soft clustering is more noise robust and a priori pre-ltering of genes can be avoided. This prevents the exclusion of biologically relevant genes/proteins from the data analysis.
+
+
+
 \section{Downstream}
