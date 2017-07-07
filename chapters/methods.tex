@@ -109,14 +109,12 @@
     
     \subsection{Normalisation and Filtering}
     
+    **** THIS section will include desciption of low count filteing, TMM normalisation, library sizes, CPM etc. 
     
-        The full TCGA-BRCA RNA-seq data was generated using \textit{Illumina HiSeq 2000 RNA Sequencing Version 2 analysis} platform and quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
-
-    Level 3 legacy TCGA-BRCA gene expression dataset was downloaded from the GDC portal and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation\cite{Colaprico2016, PapaleoTCGAPackages}. 
-    In this project, the dataset was normalised for GC-content and filtered with with quantile cut-off of 0.10. The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
+    Random text as placeholder at the moment: 
     
-        
-    After data pre-processing and filtering for samples with sufficient clinical information, the final dataset included 969 tumour and 112 normal samples, and  the gene expression matrix was reduced to 17372 genes. The next will describe further processing applied to the data prior to analysis. 
+    \blindtext
+    \blindtext
     
     
     %here will be more about normalising to lib sizes +TMM etc
@@ -265,7 +263,7 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
         \subsubsection{Limma-voom}
         \subsubsection{Multiple Testing correction}
 
-
+        \subsubsection{Application}
 
     \newpage
     \subsection{Gene Expression Clustering}
@@ -315,10 +313,10 @@ The genes in the resulting clusters can be accessed and filtered by their member
     
     \subsection{Enrichment Analysis}
     
-    \subsection{Motivation}
+    \subsubsection{Motivation}
         % why we do it
     
-    \subsection{Fisher Exact Test}
+    \subsubsection{Fisher Exact Test}
         %details
     
     
