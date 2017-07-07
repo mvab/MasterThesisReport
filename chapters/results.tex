@@ -148,6 +148,15 @@
     
      
 
+    % HCL implementing the Euclidean distance metric and the average linkage
+    % distance method to analyse the same data used to generate the PCA in figure determines that the data clusters into two predominant groups — one comprising
+    % all cancer samples and the other consisting of all control (healthy) samples. This
+    % indicates that the cancer transcriptomic profiles are more similar to each other
+    % than any of the control samples. These findings are reflected by those obtained
+    % from the PCA.
+
+
+
     
  
     
@@ -218,20 +227,28 @@
     
     %age groups
     
-
+    \subsection{Summary}
 
 \section{Looking for Autophagy signatures}
 
-    \subsection{Differential Expression Testing}
-    
-        \subsubsection{Enrichment Analysis}
+    \subsection{Differential Expression Analysis}
+        %section about setup
+        \subsubsection{Simple main effect models}
+        \subsubsection{Complex models}
+        \subsubsection{Summary}
 
     \subsection{Soft clustering}
+        %section about setup
+        \subsubsection{All samples}
+        \subsubsection{Subtype specific}
+        \subsubsection{Summary}
+
+        
+    
     
     %identify distinct transcriptome clusters
     %classify genes into groups
     
-        \subsubsection{Enrichment Analysis}
     %     The expression profiles of these 348 genes were sorted into 5 clusters by using the fuzzy c-means algorithm implemented in the R package Mfuzz (20). The Mfuzz package uses a “fuzzy” clustering approach to compute the strength of the association of each gene with the central behavior of the cluster, referred to as a “fuzzy score.” The fuzzy scores for each gene sum to 1. This allows one to define a set of genes that associate with each cluster with a high probability, while other genes may not have a high score for association with a single cluster but may instead have scores that allow partial placement in more than one cluster. This approach is more flexible and less sensitive to experimental noise than traditional “hard” clustering, where each gene must belong to one and only one cluster.
  
 % Table S1 in the supplemental material shows each of the 348 genes assigned to the 5 clusters and their individual fuzzy scores. The median fuzzy score for each cluster was >0.98, and the average fuzzy score was >0.9, indicating strongly correlated behaviors of the genes within each cluster with respect to changes in growth rate and substrate. Thus, each cluster has a core set of genes with very high fuzzy scores (i.e., close to 1) which indicate that their collective expression behavior is strongly correlated with that of other members of the cluster with respect to their changes in growth rate and substrate. Moreover, the lack of significant overlap of genes between the clusters also supports the unique characteristics of the clusters and their embedded genes.
@@ -244,4 +261,4 @@
 
 
 
-\section{Downstream}
+\section{Combined Analysis}
