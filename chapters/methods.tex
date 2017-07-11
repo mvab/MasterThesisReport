@@ -21,7 +21,7 @@
     
     
     \subsection{Samples Annotation}
-    Morphological and stage annotation of samples included in the analysis was curated by the collaborators from other groups at DCRC.Table \ref{table:morphstage} shows the number of samples that were represented in the morphological groups and stages in the final dataset. 
+    Morphological and stage annotation of samples included in the analysis was curated by the members of CBL group and the collaborators from other groups at DCRC. Table \ref{table:morphstage} shows the number of samples that were represented in the morphological groups and stages in the final dataset. 
     
     
      %   TABLE 2.2
@@ -172,7 +172,6 @@
             \end{figure}
    
   
-    \\
     \subsection{Clustering and Heatmap representation}
     
     In clustering, or unsupervised classification, the aim is to identify subsets (clusters) in the data based on the similarity between single objects. Similar objects should be assigned to the same cluster, while objects which are not similar to each other, should be assigned to different clusters.
@@ -231,23 +230,54 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
 
 \section{Hypothesis-driven analysis methods}    
 
-    %why
+
+
 
     \subsection{Differential Expression Testing}
-    
-        %why
+    \subsubsection{Approach Motivation/Background}
+    In RNA-seq, mapped reads are aggregated to counts at different levels, such as transcripts, exons, or genes. The counts for a given gene quantifies the expression of that gene. The predominant point of interest is to find which genes have different levels of expression under different experimental conditions –- this is known as differential expression.
+    The detection of differentially expressed genes between two or more conditions is one of the most commonly asked questions biological research, and RNA-sequencing has become the primary technology used for gene expression profiling.
 
-        \subsubsection{Approach Motivation/Background}
+    Several emerging tools within Bioconductor have been developed for the differential analysis of count data, including DESeq \cite{}, DESeq2 \cite{}, edgeR \cite{Robinson2010EdgeR:Data}, limma (voom) \cite{Ritchie2015LimmaStudies}.
+
+    The two main goals of all differential expression tools are:
+    \begin{enumerate}
+    \item Estimate the magnitude of differential expression between two or more conditions based on read counts from replicated samples, i.e. calculate the fold change of read counts, taking into account the differences in sequencing depth and variability.
+    \item Estimate the significance of the difference and correct for multiple testing.
+    \end{enumerate}
+
+        
         \subsubsection{Limma-voom}
-        \subsubsection{Multiple Testing correction}
+        \textit{limma} is an R/Bioconductor package \cite{Ritchie2015LimmaStudies, smyth2004linear}  that provides an integrated set of tools for differential expression analysis. The \textit{limma} pipeline includes linear modeling with extensive features for handling complex experimental designs with multiple treatment factors, and empirical Bayes statistical methods to borrow strength between genes to overcome the problem of small sample sizes.
 
-        \subsubsection{Application}
+        The \textit{limma} approach estimates the mean-variance relationship of gene expression data in log-CPM  (log-counts normalized for sequence depth) \cite{Law2014}. The \texttt{voom()} method (an acronym for ‘variance modeling at the observational level’) incorporates the mean-variance trend into a precision weight for each individual normalised observation. The normalised log-counts and associated precision weights are then passed on to the \textit{limma} empirical Bayes analysis pipeline \cite{Law2014}.
+        
+        Simulation studies show that the \textit{limma-voom} performs as well or better than other count-based methods even when the data are generated according to the assumptions of the earlier methods  \cite{Law2014}. A key advantage of the \textit{limma} pipeline is that it provides accurate type I error rate control even when the number of samples in the analysis is small \cite{SmythLimma:Guide}, which is a problem for other methods. Additionally, \textit{voom} can robustly handle heterogeneous data with outliers and hypervariable genes \cite{phipson2013empirical} and the analysis run-time is fast, which makes it the most suitable tool for differential expression testing in this project. 
+        
+        \subsubsection{Linear Models}
+        
+        The hallmark of the \textit{limma} approach is the use of gene-wise linear models to analyse entire experiments as an integrated whole rather than simple comparisons between pairs of treatments  \cite{Ritchie2015LimmaStudies}, therefore allowing more flexible hypotheses. The effect of sharing information between samples allows one to model correlations that may exist between samples due to replication of samples or presence of covariates. This kind of information would not accessible if the data was partitioned into subsets and analysed as a series of pairwise comparisons \cite{Love2016RNA-SeqApproved}. In this way, linear models permit very general analyses, in which it is possible to adjust for the effects of multiple experimental factors or batch effects  \cite{Ritchie2015LimmaStudies}.
+        
+        In the linear model approach,  two matrices have to be specified. The first is the design matrix which provides a representation of the experimental design, i.e. each column corresponds to a coefficient that describes the sample source. The second is the contrast matrix which specifies which comparisons have to be made between the samples. In this way, linear models describe how the treatment factors are assigned to the different samples, in matrix terms: $$ E(y_g) = X \beta_g$$ where $y_g$ is the vector of log-CPM values (expression data) for a gene $g$ and $X$ is the design matrix with the $x_i $ as rows, and $ \beta_g$ is a vector of coefficients. The contrasts of interest are given by $$\alpha_j = C^T \beta_g$$ where $C$ is the contrast matrix. The coefficients component of the fitted model produced by \textit{limma} function \texttt{lmFit()} contains estimated values for the $\beta_g$. After applying \texttt{contrasts.fit()}, the coefficients component now contains estimated values for the $\alpha_j$ \cite{Smyth2005}.
+        
+        \subsubsection{Significance Testing}
+        
+        The number of differentially expressed (i.e. up- and downregulated) genes for each contrast (i.e. condition comparison) can be obtained after the linear model has been fit. Significance of differential expression is defined using an adjusted p-value cutoff and a log fold change (logFC) threshold.
+        Fold change shows how much a gene’s expression level has changed between two conditions. This value is reported on a logarithmic scale to base 2: for example, a $log2$ fold change of $1.5$ means that the gene’s expression is increased by a multiplicative factor of $2^{1.5} \approx 2.82$.
+        
+        The results of fitting a linear model are summarised and subjected to hypothesis testing to see whether there is enough evidence to reject the null hypothesis that there is zero effect of the condition on the gene and that the observed difference between the conditions being compared is due to experimental variability (i.e. variability expected to be between different samples in the same treatment group) \cite{Love2016RNA-SeqApproved}.
+        
+        The results of hypothesis testing is reported as a p-value. A p-value indicates the probability that a fold change as strong as the observed one, or even stronger, would be seen under the            situation described by the null hypothesis  \cite{Love2016RNA-SeqApproved}.  For analyses comprising a large number of hypothesis tests, as it is in differential expression studies, a large number of inferences may occur by chance, leading to falsely significant results \cite{pounds2006estimation}. As the hypothesis is tested for every comparison, the p-values need to be corrected/adjusted for multiple testing. The most popular form of adjustment is 'FDR' which is Benjamini and Hochberg’s method to control the false discovery rate \cite{BH1995}. The adjusted p-values satisfy the property that thresholding at a specific value defines a set of tests (one for each gene) with a bounded false discovery rate (FDR), typically a useful metric for assessing which genes to target for further analysis [??].
+
+
+
+        \subsubsection{Application to the dataset}
 
     \newpage
     \subsection{Gene Expression Clustering}
     
  
-\subsubsection{Approach Motivation}
+\subsubsection{Approach Motivation/Background}
 Clustering, or unsupervised classification,  is a powerful tool in gene expression data analysis, as it can help to reveal the structured expression patterns hidden in high-dimensional gene expression datasets \cite{Kumar2007Mfuzz:Data}, as already discussed in Section 2.2.2 in exploratory context. Genes showing similar expression patterns (\textit{co-expressed} genes) are often functionally related and controlled by the same regulatory mechanisms (\textit{co-regulated} genes), resulting in expression clusters frequently being enriched by genes of certain functions. This makes clustering an attractive method for using in the search for autophagy signatures. 
  
 There are many clustering methods that can be applied to gene expression data, such as k-means clustering or the aforementioned hierarchical clustering. These common methods, however, produce hard partitions of the data, i.e. genes are assigned to exactly one cluster even if their expression profile is similar to several cluster patterns. For experiments where the change of expression over time is of interest, this might not be the best approach. It is known that regulation of genes is generally not in an `on-off` fashion, but rather is a gradual change which allows a more refined control of the genes' functions  \cite{Kumar2007Mfuzz:Data}. Therefore, clustering should ideally take into account this complexity and produce clusters by not only assigning genes to clusters where they follow the dominant pattern the best, but also allow assignment to several clusters.
@@ -278,24 +308,21 @@ The two parameters that need to be chosen in advance in fuzzy clustering are the
  
   
  
- 
-\subsubsection{Application/preprocessing}
- 
-The method was originally introduced for microarray data, but it is perfectly acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered for low-expressed genes data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one.
+The method was originally introduced for microarray data, but it is acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered for low-expressed genes data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one.
 The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The used cut-off membership score to select genes representing a particular cluster throughout this project was 0.6. 
+\subsubsection{Application to the dataset}
 
 
 
 
-
-    
+    \newpage
     \subsection{Enrichment Analysis}
     
-    \subsubsection{Motivation}
+    \subsubsection{Approach Motivation/Background}
         % why we do it
     
     \subsubsection{Fisher Exact Test}
         %details
     
-    
+    \subsubsection{Application to the dataset}
     
