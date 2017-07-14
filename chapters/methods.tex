@@ -120,7 +120,15 @@
     Normalisation adjusts global properties of measurements for individual samples so that they can be more appropriately compared, and is now a standard practice in analysis of gene expression data. However, normalisation does not remove batch effects, which can affect subsets of genes in different ways. The topic of batch effects in gene expression data will discussed in section \textbf{xxx}. 
 
     
- 
+                % workflow
+            \begin{figure}[h]
+            \centering
+            \includegraphics[scale=0.8]{analysis_workflow_test.png}
+            \caption{Project worfkow }
+            \label{fig:workflow}
+            \end{figure} 
+    
+   
     
     
    
@@ -272,6 +280,13 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
 
 
         \subsubsection{Application to the dataset}
+        Limma-voom was used to perform differential expression (DE) analysis on the final dataset of TCGA-BRCA RNA-seq samples. The differential expression was quantified between the subgroups of the three main classification methods/effects (PAM50, stage, morphology), and also the normal samples. 
+        For each main effect, a separate design matrix was created and used to fit the model. All three effects were not included into one model together, as this would have resulted in non-estimable coefficients due to linear dependency of the effects. All created models were intercept-free and included other co-factors and batch effect terms. 
+        
+        However, as the combination of subgroups of the main classification methods can potentially have a unique effect in terms of differential expression, additional models were created with each pair of subgroups as factors. In this way it was possible to test DE not only between stages, but also between stages of a particular PAM50 subtype or morphology. 
+        
+        DE results were filtered with cut-offs of adjusted p-value of 0.5 and logFC of 1. The genes that passed this step were used in the enrichment analysis (Section 3.3.3). 
+
 
     \newpage
     \subsection{Gene Expression Clustering}
@@ -318,11 +333,69 @@ The genes in the resulting clusters can be accessed and filtered by their member
     \newpage
     \subsection{Enrichment Analysis}
     
-    \subsubsection{Approach Motivation/Background}
-        % why we do it
     
-    \subsubsection{Fisher Exact Test}
-        %details
-    
-    \subsubsection{Application to the dataset}
+      \subsubsection{Approach Motivation/Background}
+        Gene expression analysis approaches produce lists of genes that are classified as ‘interesting’ in terms of their expression pattern (e.g. differentially expressed or clustered genes), but their immediate relevance to the study objective may be unclear. If 1,000 genes have changed in an experimental condition, it may be difficult to interpret the meaning of this change, and also one may be biased to only pay attention to the genes that are relevant to the study. 
+
+        A solution is the use of enrichment/overrepresentation analysis, which aims to detect whether a group of objects has certain properties more (or less) frequent than can be expected by chance \cite{Goeman2007AnalyzingIssues}. In biological sense, whether a candidate set of genes appears in the list of ‘interesting’ genes more frequently than genes picked at random would. 
+
+        A gene set is a classified groups of genes into a biologically relevant group, which can be the members of the same biochemical pathway, be annotated with the same molecular function or expressed in the same cellular compartments. In this project, the gene set is the curated list of autophagy-related genes. 
+        
+        For enrichment analysis, four groups of genes are defined (Figure \ref{fig:fishervenn}):
+        
+        \begin{itemize}
+        \textit{m} is the total number of genes\\
+        \textit{n} is the number of genes in a set, e.g. autophagy genes\\
+        \textit{j}  is the number of ‘interesting’ genes, e.g. differentially expressed genes or genes in a cluster\\
+        \textit{k} is the number of ‘interesting’ genes in the gene set\\
+        \end{itemize}
+        
+         % fisher venn
+                    \begin{figure}[!h]
+                    \centering
+                   \includegraphics[scale=0.18]{fisher_venn2.png}
+                    \caption{The relationships between groups of genes defined in Enrichment Analysis}
+                    \label{fig:fishervenn}
+                    \end{figure}
+                    
+        \subsubsection{Fisher's Exact Test}
+        
+        A common approach for performing enrichment analysis is the Fisher’s exact test. It is a statistical significance procedure for examining the association between two categorical variables \cite{Fishersexacttest}. 
+        
+        To answer the question of whether a gene set is enriched in the list of interesting genes, it is common to start with a \textit{2-by-2} contingency table. Table \ref{table:constable} shows the setup for a contingency table with the distribution of one variable in rows and another in columns. The character group labels (\textit{m,n,k,j}) indicate how each values is calculated. The resulting matrix is used directly in the R function \texttt{fisher.test()}. 
+        
+       \begin{table}[!h]
+        \centering
+        \caption{The set up for \textit{2-by-2} contingency table. The gene set in this project is the autophagy-related genes, and the ‘interesting’ genes can me differentially expressed genes or genes represented by a cluster.  }
+        \label{table:constable}
+        \begin{tabular}{c|c|c}
+             & \textbf{Not interesting genes} & \textbf{Interesting genes} \\ \hline
+            \textbf{\begin{tabular}[c]{@{}c@{}}Other\\  genes\end{tabular}} & \textit{m-n-j+k} & \textit{j-k} \\ \hline
+            \textbf{\begin{tabular}[c]{@{}c@{}}Gene set\\  genes\end{tabular}} & \textit{n-k} & \textit{k}
+            \end{tabular}
+        \end{table}
+        
+
+        \newpage
+        The null hypothesis of the Fisher's test assumes that the variables are independent and the sums of columns and rows are  fixed\cite{Goeman2007AnalyzingIssues}. Consequently, the values in contingency table are used to calculate the probability that this or any table with more extreme joint values (unobserved) would occur under the null hypothesis \cite{PathwayGuide.}. The calculated probabilities are expressed as p-values, and a small p-value indicates a discrepancy between the data and the null hypothesis of no association between variables.
+        
+        In addition to p-value, \texttt{fisher.test()} also returns an \textit{odds-ratio}, which is the ratio between proportions in and outside the sample. In other words, it is a measure of the magnitude of the difference. When testing for enrichment, the upper tail of the distribution, which means that a one-sided test is performed. A two-sided test would imply also testing the the lower tail of the distribution, so testing for depletion.
+
+
+        \subsubsection{Application to the dataset}
+        
+        
+        Enrichment analysis was carried out on the results of differential expression testing to check whether autophagy-related genes are enriched among the DE genes in any of the model contrasts. The Fisher's test was performed on all DE genes, and also on up- or downregulated separately. As three individual gene sets, all autophagy genes, only autophagy core genes, and only autophagy-related transcription factors were used. 
+        The same enrichment analysis set-up was applied to the soft-clustering results. Genes in separate clusters with membership value of at least $0.6$ were tested for enrichment of the gene sets.
+
+        The significance of autophagy enrichment was defined by odds-ratio 
+        $>1$, and FDR-adjusted p-value $>0.05$. 
+
+
+
+
+        %for results/disc:
+        % High level understanding of the biology behind gene expression – Interpretation!·
+        % Translating changes of hundreds/thousands of differentially expressed genes into a few biological processes (reducing dimensionality)
+
     
