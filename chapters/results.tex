@@ -228,48 +228,79 @@
     %age groups
     
     \subsection{Summary}
-
+\newpage
 \section{Looking for Autophagy signatures}
 
     \subsection{Differential Expression Analysis}
-        This section will re-iterate the setup of DE models (i.e. separate for each main affect because of linearity). Then mention that batch effects are included in the models. 
-        \subsubsection{Simple main effect models}
-        This subsection will talk about DEA results for models: 
-        
-       \texttt{ design <-model.matrix(~ 0 + stages + age + tss+ year, data=y\$samples)\\
-        design <-model.matrix(~ 0 + PAM50 + age + tss+ year , data=y\$samples)\\
-        design <-model.matrix(~ 0 + morphology + age + tss+ year , data=y\$samples)\\}
     
+    Differential expression (DE) analysis was performed on the final dataset which included 857 tumour and 112 normal samples. After all filtering steps the dataset included 15784 genes, 1090 of which were autophagy-related genes. 
+
+    Limma-voom method was used to quantify differential expression between the samples representing subgroups of the main breast cancer classification methods (PAM50 molecular subtypes, cancer stages, tumour morphology). The subgroups are described in Section XX and the number of samples per subgroup in the final dataset are presented in Tables \ref{table:morphstage} and \ref{table:pam50counts}. Figure \ref{fig:deaworkflow} shows the outline of DE analysis workflow. 
+
+       
+    % DEA workflow
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.19]{dea_workflow.png} 
+            \caption{Differential Expression analysis workflow for the TCGA-BRCA dataset. The main classification groups/effects (PAM50, stages, morphology) as well as additional cofactors (age group, sample source site and year) were included in the model for differential expression testing. The Venn diagram shows the six tested models; the outer sections show the three main effect models, and the overlapping 'Groups' show the three models of combined main effects. In total, $\approx 400$ contrasts across the six models were made to test for DE expression. For enrichment analysis, three gene sets were used (all autophagy genes (1090), core only (155), and TFs only (95)). Enrichment was tested in all differentially expressed genes groups, and also in up- or downregulated only. In total, 400x3x3 tests were made prior to downstream analysis.  }
+            \label{fig:deaworkflow}
+            \end{figure}
+
+        \subsubsection{Main Effect Models}
+        
+        Each of the main sample classifications groups (PAM50, stages, morphology) were used as the main effect in individual models for DE testing. For each main effect, all combinations of subgroups and normal samples were included in the contrast matrix. In this way, for each PAM50 subtype (or each stage and morphology) differentially expressed genes were identified compared to the rest of subtypes and the normal samples. All models included the age group covariate as well as the two sources of batch effect: year and site. The raw numbers of differentially expressed genes in each contrast are available from Appendix X.
+
+        Differential expression testing based on PAM50 subgroups has detected a fairly large number of differentially expressed genes (DEGs) in each comparison (min 5\% - Luminal A vs Luminal B, max 31\% - Basal-like vs Normal). Understandably, more of DEGs were found in contrasts with normal samples, with a noticeably larger proportion being downregulated in cancer samples. The proportions of DE-regulated genes between PAM50 subtypes ranged between 5\% and 22\% (Luminal A vs Luminal B and Luminal A vs Basal-like), and a subtype vs normal 12\% (Normal-like) to 31\% (Basal-like). 
+        
+        Differential expression testing based on cancer stages showed a considerable number of differentially expressed genes between stages and normal samples, $\approx 23\%$ at each stage. Interestingly, the analysis has found only very few genes to be DE between individual stages.
+        
+        Differential expression testing based on tumour morphology showed again that the most DEGs-rich contrasts are the ones with the normal samples. For morphology types the proportion of DEGs compared to normal varied between 21\% and 28\%. The two main morphologies, Lobular and Ductal carcinomas,  had only 6\% (924) DEGs between them. When both were tested with the mixed Lobular+Ductal morphology, both had less than 20 DEGs, meaning that this morphology is too of a blend between the two separate ones to detect differential expression. Metaplastic and Mucinous morphologies were found to have the most DEGs with Lobular morphology (approx. 14\% for both), and less with Ductal (9\%) and Lobular+Ductal (8\%) morphologies. The largest number of DEGs between two morphologies was between Metaplastic and Mucinous - 19\%. 
+        
+        Overall, large numbers of differentially expressed genes between PAM50 subtypes is an expected and reassuring result, as it is known from exploratory analysis that the differences between them is the strongest source of variation the breast cancer. Not seeing many differentially expressed between stages can be due to heterogeneity of the dataset, which is also probably contribution to differential expression in morphology. As noted previously from PCA of morphological types, the two types that show a clear separation (Metaplastic and Mucinous) are likely to be driven by their exclusivity of PAM50 sample composition. Therefore, a large number of differentially expressed genes between them is also a result of that. 
+
+        \subsubsection{Grouped Effect Models}
+        
+        The reduce the effect of data heterogeneity in the differential expression analysis, additional models with combined groups effect were tested. Three models were created: PAM50 + stage (Group1), morphology + stage (Group2), PAM50 + morphology (Group3), as shown in venn diagram in Figure \ref{fig:deaworkflow}. This analysis setup allowed testing for differential expression in more precisely defined groups,  for example, Group1 model is able to quantify expression between stages of a specific subtype, i.e. between stages 1 and 2 of Luminal A. Again, all models included the age group, year, and source site as cofactors.
+
+        Overall,  a large number of separate PAM50 subtype-specific differentially expressed genes were found at individual stages and in specific morphologies. As the number of contrasts for each Group is around a hundred, the details will be omitted. 
+        
+        Differential expression analysis with Group1 model (PAM50 + stage) has shown that at all stages all subtypes had a large number of DEGs compared to normal samples. Between stages of one subtype, only Basal-like and Luminal B subtypes had a reasonable number of DE genes. Contrasts between the same stages of different PAM50 subtypes has shown that Luminal A and Basal-like have the largest number of differentially expressed genes consistently at all stages. Interestingly, at stage 4 there is the smallest numbers of differentially expressed genes between subtypes. 
+        
+        Differential expression analysis with Group2 model (stage + morphology) has shown that Ductal morphology has the largest number of DEGs at all stages.  Also, Ductal is the only morphology that contains stage 4 samples in this dataset, so the comparisons for the rest morphologies were made based only on first three stages. The stage-wise comparison of Lobular and Ductal carcinomas has shown that the number of DEGs between them increases with stage. This seems reasonable, as both of them have a decent number of samples per stage, and also both are represented by a good mix of PAM50 subtypes (Table \ref{table:counts}). This is, however, not the case for contrasts involving Mucinous and Metaplastic types. As mentioned before, their PAM50 composition is restricted to Luminal and Basal subtypes, respectively, which makes all comparisons made with them dubious. The DE results between the two have shown a very large number of differentially expressed genes, particularly at stage 2. There, the comparison being made is between 4 and 5 samples, which are exclusively Basal-like and Luminal A. As noted earlier, the two subtypes show the highest number of DEGs on the all-samples level, and this compelling difference is maintained at the few-samples level too. 
+        
+        Differential expression analysis with Group3 model (PAM50 + morphology) is of interest mostly only for Lobular and Ductal morphologies, as they contain enough samples to represent each PAM50 subtype (Table \ref{table:counts}). Both have a large number of differentially expressed genes between all subtypes, with Ductal carcinoma having a distinctly large number for the contrast between Luminal A and Basal-like.  
+
+        \subsubsection{Enrichment Analysis}
+        
+        Ultimately, we are interested not in the numbers of differentially expressed genes in each contrast per se, but in whether these subsets of DEGs are enriched for autophagy-related genes. As shown in the diagram in Figure \ref{fig:dea}, groups of up-, down-, and both direction regulated genes were tested for enrichment. As three separate gene sets, all autophagy genes, only autophagy core genes, and only autophagy-related transcription factors (TFs) were used in the Fisher’s test. The significance of autophagy enrichment was evaluated based on the cut-off for adjusted p-value ($<0.05$) and the odds-ratios score ($>1$). 
+
+        The enrichment results have however largely been unfruitful, particularly on the differential expression results from the individual main effect models. The raw data is shown in Appendix X2. 
+        
+        For the individual main effect models (only PAM50, stage, or morphology) none of the subsets of differentially expressed genes detected by the contrast tests have been assigned an odds-ratio $>1$ and simultaneously been significant at adjusted p-value level. There have been several contrasts which have been enriched for TFs but only at non-adjusted p-value. These are: \\
+        
+        {add after re-running}
+        
+        
+        When using ‘Group’ models, i.e. combining two effects, some contrasts were found enriched at acceptable level. In Group1, ‘all autophagy’ genes were enriched in the downregulated genes at stage 4 of Basal-like compared to stage 4 of Luminal A and Luminal B, and also to normal samples. At non-adjusted p-value level, there were 13 contrasts enriched for TFs downregulated in a cancer type vs normal. Among these, there was stage 1 of every PAM50 subtype, all stages of Basal-like subtype (Appendix X3). 
+         
+        In Group2, autophagy TFs were enriched in the downregulated genes in every morphology compared to normal, at varying stages. There was also a strong enrichment in TFs that are differentially expressed between Lobular and Ductal carcinomas at stage 1. At non-adjusted p-value level, there was a large number of contrasts enriched for autophagy TFs, mainly in the downregulated in cancer vs normal fashion. Among these are all stages of Ductal and Mucinous types, as well as stages 1 and 3 of Metaplastic. Interestingly, Lobular carcinoma did not appear in this context at all. Nonetheless, groups of upregulated genes in Lobular compared to Metaplastic (stage 3) and Mucinous (stage 2) were enriched for autophagy (Appendix X3). 
+        
+        In Group3, ‘all autophagy’ genes were enriched in the downregulated genes in Basal-like samples compared to Luminal A and Normal-like samples (all of Lobular morphology) and normal samples. When looking at non-adjusted p-value, Luminal B can also be added to this pattern. For non-adjusted p-value enrichment for TFs, there were multiple enriched contrasts, again including several instances of downregulation in cancer vs normal (particularly Basal-like and Luminal B), DE between morphologies within Basal-like subtype, and again similar for Lobular carcinoma as for ‘all autophagy’.
+        
+        Overall, it seems that using the combined main effects models allows to detect more autophagy enrichment in the differential expression results. As only specific combinations of samples are considered, the heterogeneity is decresed, allowing for a stronger differential expression signal, i.e. more genes are reported. However, the enrichment results attained from the combined models do not provide strong evidence of a particular group of samples to be enriched for autophagy. The main observations are:
+        
         \begin{itemize}
-          \item talk about each 'within main effect' comparisons in terms of what contrast produce most/least DE genes
-                 \begin{itemize}
-                     \item lots DE between PAM50 subtypes - OK and expected
-                     \item much less between stages and morph : explain that it is difficult to pick up changes because data is heterogeneous and driven by PAM50
-                     \item  in stages and morph a lot DE between any cancer and normal [expected]
-               \end{itemize}
-            \item move on to doing enrichment for autophagy in every contrast : report poor results
-        \end{itemize}
-        
-        
-        \subsubsection{Complex models}
-        This subsection will talk about DEA results for models:
-        
- \texttt{design <-model.matrix(~ 0 + Group1 + age + tss+ year , data=y\$samples) PAM50+stage\\
-        design <-model.matrix(~ 0 + Group2 + age + tss+ year , data=y\$samples) stage+morphology\\
-        design <-model.matrix(~ 0 + Group3 + age + tss+ year , data=y\$samples) PAM50+morphology\\
-        }
-        \begin{itemize}
-            \item explain trying combined models, i.e. trying to reduce effect of heterogeneity and look at changes within specific subtypes
-            \item enrichment results : still ambiguous, but definitely see some enrichment in the downregulted genes, particularly TFs
-            \item mention that stage 4 seems a lot of going on, but we cannot focus full attention on it, because there is feew few samples to make reliable/solid conclusion
-                    
-        \end{itemize}
             
+        
+        \item Consistent enrichment for autophagy TFs in genes downregulated in separate stages/morphologies (at adjusted and non-adjusted p-value level)
+        \item Samples that belong to subgroups Basal-like subtype, Lobular morphology, stage 4, seem to often appear among the enriched groups. This could have been an interesting target, but this data set does not contain enough samples in these subgroups to make speculation sound. Stage 4 samples in the dataset are only of Ductal morphology. Samples that are Basal-like and are of Lobular morphology, there are only 3, Table \ref{table:counts}.  
+        \item The main recurrent trend is enrichment for autophagy in genes downregulated in cancer
+        \item No enrichment is found between stages. Neither when stages is the main effect, and also not when looking at stages in separate PAM50 subtypes or morphologies.
+        \end{itemize}
         \subsubsection{Summary}
         
-        This will be a section summary that will make a conclusion about DE results in one paragraph. Something like: no strong enrichment, need to explore other methods?
-        
 
+\newpage
     \subsection{Soft clustering}
     
     
