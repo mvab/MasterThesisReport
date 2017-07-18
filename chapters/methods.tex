@@ -32,8 +32,8 @@
             \begin{tabular}{lccllclc}
             \multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\ code\end{tabular}} & \textbf{} &  &  & \textbf{} & \multicolumn{1}{c}{\textbf{Stage}} & \textbf{} \\ \cline{1-3} \cline{7-8} 
             \multicolumn{1}{|l|}{Lobular Carcinoma} & \multicolumn{1}{c|}{8520/3} & \multicolumn{1}{c|}{143} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 1} & \multicolumn{1}{c|}{148} \\ \cline{1-3} \cline{7-8} 
-            \multicolumn{1}{|l|}{Infiltrating Duct Carcinoma} & \multicolumn{1}{c|}{8500/3} & \multicolumn{1}{c|}{644} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 2} & \multicolumn{1}{c|}{481} \\ \cline{1-3} \cline{7-8} 
-            \multicolumn{1}{|l|}{Infiltrating Duct and Lobular Carcinoma} & \multicolumn{1}{c|}{8522/3} & \multicolumn{1}{c|}{24} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 3} & \multicolumn{1}{c|}{195} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Infiltrating Ductal Carcinoma} & \multicolumn{1}{c|}{8500/3} & \multicolumn{1}{c|}{644} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 2} & \multicolumn{1}{c|}{481} \\ \cline{1-3} \cline{7-8} 
+            \multicolumn{1}{|l|}{Infiltrating Ductal and Lobular Carcinoma} & \multicolumn{1}{c|}{8522/3} & \multicolumn{1}{c|}{24} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 3} & \multicolumn{1}{c|}{195} \\ \cline{1-3} \cline{7-8} 
             \multicolumn{1}{|l|}{Metaplastic carcinoma} & \multicolumn{1}{c|}{8575/3} & \multicolumn{1}{c|}{7} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage 4} & \multicolumn{1}{c|}{12} \\ \cline{1-3} \cline{7-8} 
             \multicolumn{1}{|l|}{Mucinous adenocarcinoma} & \multicolumn{1}{c|}{8480/3} & \multicolumn{1}{c|}{12} &  &  & \multicolumn{1}{c|}{} & \multicolumn{1}{l|}{stage X} & \multicolumn{1}{c|}{21} \\ \cline{1-3} \cline{7-8} 
             \multicolumn{1}{|l|}{Other morphologies} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{27} &  &  &  & \multicolumn{1}{c}{} &  \\ \cline{1-3}
@@ -42,8 +42,8 @@
     
  
 
-    All samples in the final dataset were annotated with clinical data, which included PAM50 molecular subtype, patient age subgroup, race/ethnicity, menopause status, tumour grade, nodal involvement, metastasis status, year sample was taken, tissue source site. The annotations extracted with TCGAbiolinks were integrated with further information from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. 
-    The original set of PAM50 subtype annotations present in the TCGA data obtained by a large TCGA-BRCA study in 2012 \cite{CancerGenomeAtlasNetwork2012ComprehensiveTumours}, was complemented with the additional subtype labels for the previously unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} in 2015 \cite{Ciriello2015ComprehensiveCancer}. A small minority of samples that had discrepancies in labels between the two studies were omitted in this project.  Table \ref{pam50counts} shows the sample counts for each PAM50 subtype. 
+    All samples in the final dataset were annotated with clinical data, which included PAM50 molecular subtype, patient age subgroup, race/ethnicity, menopause status, tumour grade, nodal involvement, metastasis status, year sample was taken, and tissue source site. The annotations extracted with TCGAbiolinks were integrated with further information from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. 
+    The original set of PAM50 subtype annotations available for TCGA data that was obtained by a large TCGA-BRCA study in 2012 \cite{CancerGenomeAtlasNetwork2012ComprehensiveTumours}, was further complemented with the additional subtype labels for the previously unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} in 2015 \cite{Ciriello2015ComprehensiveCancer}. A small minority of samples that had discrepancies in labels between the two studies were omitted in this project.  Table \ref{table:pam50counts} shows the sample counts for each PAM50 subtype. 
     
     
      %   TABLE 2.3   
@@ -71,7 +71,7 @@
     
             \begin{table}[!htbp]
             \centering
-            \caption{Autophagy-related genes functional groups. The numbers are reported for the dataset after pre-processing with TCGAbiolinks. Genes overlap between groups. }
+            \caption{Autophagy-related genes functional groups. The numbers are reported for the dataset after pre-processing with TCGAbiolinks. Some genes are present in more that one group. }
             \label{table:autophagy}
             \begin{tabular}{l|c}
             \small
@@ -98,36 +98,37 @@
             
     \subsection{Extraction and Preparation}
     
-    The full TCGA-BRCA RNA-seq data was generated using \textit{Illumina HiSeq 2000 RNA Sequencing Version 2 analysis} platform and quantified by University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
+    The TCGA-BRCA RNA-seq data was generated using \textit{Illumina HiSeq 2000 RNA Sequencing Version 2 analysis} platform and quantified at University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
 
     Level 3 legacy TCGA-BRCA gene expression dataset was downloaded from the GDC portal and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation \cite{Colaprico2016, PapaleoTCGAPackages}. 
     In this project, the dataset was normalised for GC-content and filtered with with quantile cut-off of 0.10. The pipeline transforms the data into a '\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
     
         
-    After data pre-processing and filtering for samples with sufficient clinical information, the final dataset included 969 tumour and 112 normal samples, and  the gene expression matrix was reduced to 17372 genes. The next section will describe further processing applied to the data prior to analysis. 
+    After data pre-processing and selecting the samples with sufficient clinical information, the final dataset included 857 tumour and 112 normal samples, and  the gene expression matrix was reduced to 17372 genes. Figure \ref{fig:workflow} aims to summarise the data flow from the original dataset thorough to the downstream analysis. The next section will describe the further processing applied to the data prior to analysis. 
     
     
-    \subsection{Filtering and Normalisation}
-    
-   Throughout the analysis workflow the counts data is stored in a simple list-based data object \texttt{DGEList} from R package \texttt{edgeR} \cite{Robinson2010EdgeR:Data}, which in addition to counts data contains samples and library sizes information and optionally gene annotations. 
-
-    For differential expression and related analyses, gene expression is not considered as raw counts since libraries sequenced at a greater depth will result in higher counts. Therefore, it is common practice to transform raw counts onto a scale that accounts for such library size differences \cite{law2016rna}. Popular transformations include counts per million (CPM), log2-counts per million (log-CPM), reads per kilobase of transcript per million (RPKM), and fragments per kilobase of transcript per million (FPKM). The former two are calculated using a counts matrix alone and do not account for gene length differences, like the latter two do. Data in the form of CPM, log-CPM, and RPKM will be used for different analyses in this project. 
-    
-    Prior to the analysis it is important to filter out genes with very low counts across all libraries, as they provide more noise than evidence, e.g. for differential expression. Genes that are not expressed at a biologically meaningful level in any condition should be discarded to reduce the subset of genes to those that are of interest, and to reduce the number of tests carried out downstream. In this project, filtering was done based on CPM to account for library sizes, and the genes with at least 2 CPM in at least how many samples are present in the smallest condition group \cite{}.
-    
-    After filtering, the samples have to be normalised before they can be compared. Normalisation is required to ensure that the expression distributions of each sample are similar across the entire experiment, which may not be the case in the original data \cite{Robinson2010}. In this project, normalisation by the method of trimmed mean of M-values (TMM) \cite{RobinsonAData} was performed using the \texttt{calcNormFactors} function in \texttt{edgeR}, which rescales the actual library sizes to take into account differences in RNA-composition. The effective library size replaces the original library size in all downstream analyses. 
-    
-    Normalisation adjusts global properties of measurements for individual samples so that they can be more appropriately compared, and is now a standard practice in analysis of gene expression data. However, normalisation does not remove batch effects, which can affect subsets of genes in different ways. The topic of batch effects in gene expression data will discussed in section \textbf{xxx}. 
-
-    
-                % workflow
+       % workflow
             \begin{figure}[h]
             \centering
             \includegraphics[scale=0.8]{analysis_workflow_test.png}
-            \caption{Project worfkow }
+            \caption{Project workflow overview. Several pre-processing and filtering steps reduce the number of samples and genes in the original dataset prior to Exploratory and Hypothesis-driven data analyses. The data is normalised so that samples can be more appropriately compared. Exploratory Analysis guides Hypothesis-driven Analysis. The observations from both are used for biological interpretation. }
             \label{fig:workflow}
             \end{figure} 
     
+    \subsection{Filtering and Normalisation}
+    
+   Throughout different parts of analysis the counts data is stored in a simple list-based data object \texttt{DGEList} from R package \texttt{edgeR} \cite{Robinson2010EdgeR:Data}, which also contains sample annotation and library size information. 
+
+    For differential expression and related analyses, gene expression is not considered as raw counts, because library sizes (total number of mapped reads) differ and result in higher counts. Therefore, it is a common practice to transform raw counts onto a scale that accounts for such library size differences \cite{law2016rna}. Popular transformations include (log2-)counts per million (log-CPM/CPM), and reads/fragments per kilobase of transcript per million (RPKM/FPKM). CPM is a simple measure of read abundance that can be compared across libraries of different sizes, i.e. it is relative change in expression \cite{Law2014}. Standardising further by gene length gives RPKM, which is an absolute expression. Data in the form of CPM, log-CPM, and RPKM will be used for different parts of analysis in this project. 
+    
+    Prior to the analysis it is important to filter out genes with very low counts across all libraries, as they provide more noise than evidence, e.g. for differential expression. Genes that are not expressed at a biologically meaningful level in any condition should be discarded to reduce the subset of genes to those that are of interest, and to minimise the number of tests carried out downstream. In this project, filtering was done based on CPM to account for library sizes. The selected cut-off for keeping the genes was guided by the mean-variance plot produced by \texttt{voom} function (discussed in Section 3.3.1.2). The genes with at least 2 CPM expression in at least 19 samples passed the threshold and were used in the analysis.
+    
+    After filtering, the samples have to be normalised before they can be compared. This step is required to ensure that the expression distribution of samples is similar across the entire experiment \cite{Robinson2010}. In this project, normalisation by the method of trimmed mean of M-values (TMM) \cite{RobinsonAData} was performed using the \texttt{calcNormFactors} function in \texttt{edgeR} to rescale the library sizes to take into account differences in RNA-composition. In this way, the effective library size replaces the original library size in all downstream analyses. 
+    
+    Normalisation adjusts global properties of measurements for individual samples so that they can be more appropriately compared, and is now a standard practice in analysis of gene expression data. However, normalisation does not remove batch effects, which can affect subsets of genes in different ways. The topic of batch effects in gene expression data will discussed in Section 3.2.3. 
+
+    
+             
    
     
     
@@ -297,17 +298,17 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
 \subsubsection{Approach Motivation/Background}
 Clustering, or unsupervised classification,  is a powerful tool in gene expression data analysis, as it can help to reveal the structured expression patterns hidden in high-dimensional gene expression datasets \cite{Kumar2007Mfuzz:Data}, as already discussed in Section 2.2.2 in exploratory context. Genes showing similar expression patterns (\textit{co-expressed} genes) are often functionally related and controlled by the same regulatory mechanisms (\textit{co-regulated} genes), resulting in expression clusters frequently being enriched by genes of certain functions. This makes clustering an attractive method for using in the search for autophagy signatures. 
  
-There are many clustering methods that can be applied to gene expression data, such as k-means clustering or the aforementioned hierarchical clustering. These common methods, however, produce hard partitions of the data, i.e. genes are assigned to exactly one cluster even if their expression profile is similar to several cluster patterns. For experiments where the change of expression over time is of interest, this might not be the best approach. It is known that regulation of genes is generally not in an `on-off` fashion, but rather is a gradual change which allows a more refined control of the genes' functions  \cite{Kumar2007Mfuzz:Data}. Therefore, clustering should ideally take into account this complexity and produce clusters by not only assigning genes to clusters where they follow the dominant pattern the best, but also allow assignment to several clusters.
+There are many clustering methods that can be applied to gene expression data, such as k-means clustering or the aforementioned hierarchical clustering. These common methods, however, produce hard partitions of the data, i.e. genes are assigned to exactly one cluster even if their expression profile is similar to several cluster patterns. For experiments where the change of expression over time is of interest, this might not be the best approach. It is known that regulation of genes is generally not in an `on-off` fashion, but rather is a gradual change which allows a more refined control of the genes' functions  \cite{Kumar2007Mfuzz:Data}. Therefore, clustering should ideally take into account this complexity and produce more flexible clusters by allowing gene assignment to several clusters.
  
-This type of clustering algorithm is termed soft-clustering, as it does not  create hard boundaries between clusters. 
+This type of clustering algorithm is termed \textit{soft-clustering}, as it does not  create hard boundaries between clusters. 
  
 \subsubsection{Soft-clustering}
  
-Soft-clustering algorithm is implemented in R package \texttt{mfuzz} \cite{Kumar2007Mfuzz:Data}  using the fuzzy c-means algorithm (of the \texttt{e1071} package) based on the iterative optimization of an
+The soft-clustering algorithm used in this project is implemented in R package \texttt{mfuzz} \cite{Kumar2007Mfuzz:Data}  using the fuzzy c-means algorithm (of the \texttt{e1071} package) based on the iterative optimization of an
 objective function to minimize the variation of objects within clusters  \cite{Bezdek1981PatternAlgorithms}.
  
-Fuzzy clustering differentiates how closely a gene follows the dominant cluster patterns and assigns it degrees of membership to a cluster. The membership value $\mu_{ij}$ can vary between zero and one, and is an indication of how well gene $i$ is represented by cluster $j$. This approach strongly contrasts hard-clustering where membership is binary i.e. 0 or 1), and enables fuzzy clustering to provide more information about the structure of gene expression data \cite{Kumar2007Mfuzz:Data}. 
-The formed clusters are visualised by the mfuzz plotting function, example shown in Figure \ref{fig:mfuzzmethod}. 
+Fuzzy clustering differentiates how closely a gene follows the dominant cluster patterns and assigns it degrees of membership to a cluster. The membership value $\mu_{ij}$ can vary between zero and one, and is an indication of how well gene $i$ is represented by cluster $j$. This approach strongly contrasts hard-clustering where membership is binary (i.e. 0 or 1), and enables fuzzy clustering to provide more information about the structure of gene expression data \cite{Kumar2007Mfuzz:Data}. 
+The formed clusters are visualised by the mfuzz plotting function, an example shown in Figure \ref{fig:mfuzzmethod}. 
 
             % mfuzz 
             \begin{figure}[h]
@@ -321,12 +322,12 @@ The formed clusters are visualised by the mfuzz plotting function, example shown
  The genes in each cluster are represented as lines color-coded by their cluster membership value.  Each cluster describes a particular expression pattern, for instance Cluster 1 comprises genes that are upregulated at all stages of cancer compared to Normal, whereas Cluster 5 shows the opposite, i.e. downregulation trend. Other, more stage-specific patterns, such as in Clusters 2 and 6 with distinct expression is Stage 4, can also be identified with this method. 
  
   
-The two parameters that need to be chosen in advance in fuzzy clustering are the number of clusters $c$ and the fuzziness parameter $m$. The fuzziness parameter value should be chosen to minimise clustering of random data and produce maximally stable clusters. Stable clusters are usually compact and are not affected by variation of $m$, whereas weak clusters disappear if $m$ is increased \cite{Kumar2007Mfuzz:Data}. The $m$ parameter is often easiest to estimate by using the \texttt{mestimate} function specifically built for this purpose \cite{Schwammle2010AAnalysis}. 
+The two parameters that are specified in fuzzy clustering are the number of clusters $c$ and the fuzziness parameter $m$. The fuzziness parameter value should be chosen to minimise clustering of random data and produce maximally stable clusters. Stable clusters are usually compact and are not affected by variation of $m$, whereas weak clusters disappear if $m$ is increased \cite{Kumar2007Mfuzz:Data}. The $m$ parameter is often easiest to estimate by using the \texttt{mestimate} function specifically built for this purpose \cite{Schwammle2010AAnalysis}. 
  
   
  
-The method was originally introduced for microarray data, but it is acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered for low-expressed genes data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one.
-The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The used cut-off membership score to select genes representing a particular cluster throughout this project was 0.6. 
+The method was originally introduced for microarray data, but it is acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one (scale on y-axis).
+The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The cut-off membership score used to select genes representing a particular cluster throughout this project was 0.6. 
 \subsubsection{Application to the dataset}
 
 
