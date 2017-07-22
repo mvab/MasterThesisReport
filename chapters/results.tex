@@ -307,29 +307,155 @@
 
 \newpage
     \subsection{Soft clustering}
+    Soft clustering was performed on all samples together to evaluate the expression patterns in the dataset as whole, and also on separate PAM50 subtypes individually to detect any molecular profile-specific patterns. Classification by morphological groups was decided not to be included in the analysis due to the underlying imbalance of PAM50 composition of each morphology, and also the fact that only one morphology contains samples of all stages (Ductal carcinoma). 
+
     
-    
-        This section will talk about the clustering setup: how many clusters, what input gene list and why (DE genes to account for BE), membership score etc.
-        
-        Then explain that we are interested in clustering by stage - to see expression patterns, and then enrich clusters for autophagy.
-        
-        \subsubsection{All samples}
-        
-        Results from clustering on all subtypes: autophagy enriched in downregulated cluster. 
-        
-        
-        \subsubsection{Subtype specific}
-        
-        Results from clustering on each PAM50 subtype separately, enrichment.
+   
+        \subsubsection{Full Dataset Clustering}
+         Gene clustering results based on full dataset expression data are presented in Figure \ref{fig:mfuzzall}. The genes were grouped in six clusters according to expression changes between normal samples and cancer samples at different stages. 
+         Clusters 4 and 5 represent genes that are downregulated or upregulated, respectively, in cancer compared to normal, regardless of the stage. Clusters 1 and 2 represent patterns of more gradual down- and up- regulation in cancer, with a distinct rapid change in stage 4. Clusters 3 and 6 are assigned genes that have altered expression at initial stages of cancer, while towards the most serious stage, i.e. stage 4, the expression resembles normal expression. 
+         Here, only the genes with $>0.6$ cluster membership score are presented, as they are the main contributors to a cluster's stability and dominant expression pattern. Only those genes are considered in downstream analysis as cluster representatives. 
 
         
-        \subsubsection{Summary}
+         % mfuzz all samples
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.65]{mfuzz_allsamples_6cl_15k.pdf} 
+            \caption{Soft-clustering results based on all samples data. Each cluster describes an expression change pattern (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis). Genes only with membership score $>0.6$ are shown. Number of genes per cluster: 1 - 792, 2 - 1005, 3 - 796, 4 - 3224, 5 - 2889, 6 - 743.}
+            \label{fig:mfuzzall}
+            \end{figure}
+            
+        In this way, the obtained six gene groups were tested for autophagy enrichment. As previously with differential expression results, three gene sets were used: all autophagy genes, only autophagy core genes, and only autophagy-related transcription factors (TFs). The significance of autophagy enrichment was evaluated based on the cut-off for adjusted p-value ($<0.05$) and the odds-ratios score ($>1$).
+        
+        Table \ref{table:mfuzzall} presents the enrichment results for clustering on all samples. For each gene set, the number of autophagy genes present in the cluster is reported, along with odds-ratio score, p-value, and adjusted p-value. The cluster that is found to be enriched for autophagy is marked with bold (Cluster 4), at both all genes and TFs-only levels. Cluster 4 comprises the genes that are downregulated at all cancer stages compared to normal. 264 autophagy-related genes display this expression pattern, 39 of them are TFs.
+    
 
         
+            %TABLE
+             \begin{table}[!h]
+            \centering
+            \small
+            \caption{Autophagy enrichment results on soft-clustering results based on all samples. Three autophagy gene sets were tested: all genes, core autophagy genes, and autophagy TFs. The cluster that is significantly enriched is cluster 4. }
+            \label{table:mfuzzall}
+            \begin{tabular}{lcccc}
+            \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\textbf{n genes}} & \multicolumn{1}{l|}{\textbf{odds-ratio}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l}{\textbf{adj. p-value}} \\ \hline
+            \multicolumn{5}{l}{\textit{all autophagy genes}} \\ \hline
+            \multicolumn{1}{l|}{cluster1} & \multicolumn{1}{c|}{47} & \multicolumn{1}{c|}{0.84} & \multicolumn{1}{c|}{0.31} & 0.63 \\ \hline
+            \multicolumn{1}{l|}{cluster2} & \multicolumn{1}{c|}{69} & \multicolumn{1}{c|}{0.99} & \multicolumn{1}{c|}{1} & 1 \\ \hline
+            \multicolumn{1}{l|}{cluster3} & \multicolumn{1}{c|}{51} & \multicolumn{1}{c|}{0.92} & \multicolumn{1}{c|}{0.61} & 0.92 \\ \hline
+            \multicolumn{1}{l|}{\textbf{cluster4}} & \multicolumn{1}{c|}{264} & \multicolumn{1}{c|}{1.26} & \multicolumn{1}{c|}{2e-03} & 7e-03 \\ \hline
+            \multicolumn{1}{l|}{cluster5} & \multicolumn{1}{c|}{150} & \multicolumn{1}{c|}{0.69} & \multicolumn{1}{c|}{4e-05} & 2e-04 \\ \hline
+            \multicolumn{1}{l|}{cluster6} & \multicolumn{1}{c|}{53} & \multicolumn{1}{c|}{1.04} & \multicolumn{1}{c|}{0.76} & 0.92 \\ \hline
+            \multicolumn{5}{l}{\textit{autophagy core genes}} \\ \hline
+            \multicolumn{1}{l|}{cluster1} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{0.49} & \multicolumn{1}{c|}{0.19} & 0.42 \\ \hline
+            \multicolumn{1}{l|}{cluster2} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{0.79} & \multicolumn{1}{c|}{0.74} & 0.89 \\ \hline
+            \multicolumn{1}{l|}{cluster3} & \multicolumn{1}{c|}{9} & \multicolumn{1}{c|}{1.16} & \multicolumn{1}{c|}{0.58} & 0.87 \\ \hline
+            \multicolumn{1}{l|}{cluster4} & \multicolumn{1}{c|}{32} & \multicolumn{1}{c|}{1.01} & \multicolumn{1}{c|}{1} & 1 \\ \hline
+            \multicolumn{1}{l|}{cluster5} & \multicolumn{1}{c|}{22} & \multicolumn{1}{c|}{0.73} & \multicolumn{1}{c|}{0.21} & 0.42 \\ \hline
+            \multicolumn{1}{l|}{cluster6} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{1.87} & \multicolumn{1}{c|}{0.05} & 0.31 \\ \hline
+            \multicolumn{5}{l}{\textit{autophagy TFs}} \\ \hline
+            \multicolumn{1}{l|}{cluster1} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{1.48} & \multicolumn{1}{c|}{0.34} & 0.41 \\ \hline
+            \multicolumn{1}{l|}{cluster2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0.31} & \multicolumn{1}{c|}{0.09} & 0.19 \\ \hline
+            \multicolumn{1}{l|}{cluster3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{1.02} & \multicolumn{1}{c|}{0.82} & 0.82 \\ \hline
+            \multicolumn{1}{l|}{\textbf{cluster4}} & \multicolumn{1}{c|}{39} & \multicolumn{1}{c|}{2.62} & \multicolumn{1}{c|}{1e-05} & 7e-05 \\ \hline
+            \multicolumn{1}{l|}{cluster5} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{0.51} & \multicolumn{1}{c|}{0.05} & 0.14 \\ \hline
+            \multicolumn{1}{l|}{cluster6} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{0.42} & \multicolumn{1}{c|}{0.33} & 0.41 \\ \hline
+            \end{tabular}
+            \end{table}
+        
+     
+        \newpage
+        \subsubsection{Subtype-specific Clustering}
+        
+        Clustering was performed on individual PAM50 subtype samples to evaluate the presence of any characteristic expression patterns and test for subtype-specific autophagy enrichment. 
+        For individual subtypes, the full clustering figures and enrichment results tables can be found in Appendix X3. Here, only selected cluster details are presented. 
+        
+        
+        \begin{wrapfigure}{R}{0.28\textwidth}
+        \hfill
+        \captionsetup{justification=centering}
+        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_basal_enriched_cluster.pdf}}
+        \vspace*{-8mm}
+        \caption{\label{fig:mfuzzbasal}Basal-like\newline downregulation cluster}
+        \end{wrapfigure}
+
+        
+        \textbf{Basal-like subtype}\\
+        The expression patterns of Basal-like samples are different from the full dataset patterns. There are no clusters with strict up- or downregulation trend in cancer, instead, there are patterns with additional up- or downregulation in stage 4 (Appendix X3; Clusters 1 and 4). Additionally, there are two new patterns, in which the expression is the same in normal and stages 1-3, but drastically up- or downregulated in stage 4 (Clusters 2 and 6).  
+        Autophagy is enriched in Basal-like samples also in the pattern of downregulation in cancer (Cluster 4, individual cluster is shown in Figure \ref{fig:mfuzzbasal}), but the pattern has extra downregulation at stage 4. Cluster 4 contains 177 autophagy genes, and enrichment is defined by odds-ratio score 1.25 and adjusted p-value 0.03. 
+        
+        
+        \begin{wrapfigure}{R}{0.28\textwidth}
+        \hfill
+        \captionsetup{justification=centering}
+        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_lumA_enriched_cluster.pdf}}
+        \vspace*{-8mm}
+        \caption{\label{fig:mfuzzluma}Luminal A \newline downregulation cluster}
+        \end{wrapfigure}
+        
+        
+        \textbf{Luminal A subtype}\\   
+        The expression in Luminal A samples is similar to the all-samples pattern. There are clusters with exclusive up- and downregulation in all cancer stages (Clusters 3 and 4). There are also clusters with the patterns observed in Basal-like -- relatively unchanged expression until stage 3, and then rapid raise/drop in stage 4. In Luminal A, however, downregulation cluster (Figure \ref{fig:mfuzzluma}) is not found to be enriched for autophagy at 'all autophagy genes' level, as it is with all and Basal-like samples, even though it is the most gene-abundant cluster like in the others; details in Appendix X3. Autophagy enrichment is detected only at TFs level: 36 genes, odds-ratio 2.92, adjusted p-value 1.1e-05.\vspace{-5mm} \break
+        
+        \begin{wrapfigure}{L}{0.28\textwidth}
+        \hfill
+        \captionsetup{justification=centering}
+        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_lumB_enriched_clusterNOT_1.pdf}}
+        \vspace*{-8mm}
+        \caption{\label{fig:mfuzzlumb}Luminal B\newline downregulation cluster}
+        \end{wrapfigure}
+        
+        
+        \textbf{Luminal B subtype}\\      
+        The samples of Luminal B subtype have expression pattern the most similar to full dataset than all other subtypes. Again, the downregulation cluster (Figure \ref{fig:mfuzzlumb}) contains the largest number of autophagy genes, but the enrichment is only significant in TFs gene set (23 genes, odds-ratio 2.15, adjusted p-value 0.01). 
+        \newline
+        \newline
+        \newline
+        \newline
+        \newline
+
+      
+        \begin{wrapfigure}{L}{0.28\textwidth}
+        \hfill
+        \captionsetup{justification=centering}
+        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_her2_enriched_clusterNOT.pdf}}
+        \vspace*{-8mm}
+        \caption{\label{fig:mfuzzher}HER2-enriched \newline downregulation cluster}
+        \end{wrapfigure}
+     
+     
+        \textbf{HER2-enriched subtype}\\   
+        Gene clustering based on HER2-enriched samples generated overall less stable clusters. In Appendix X3 it can be seen that their cores contain less samples with high membership score (i.e. appear less 'red'). Expression patterns are similar to the ones observed previously. Again, the downregulation cluster (Figure \ref{fig:mfuzzher}) contains the largest number of autophagy genes, but the enrichment is only significant in TFs gene set (21 genes, odds-ratio 2.13, adjusted p-value 0.02).
+        \newline
+        \newline
+        \newline        
+
+
+        
+        \begin{wrapfigure}{L}{0.28\textwidth}
+        \hfill
+        \captionsetup{justification=centering}
+        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_normlike_enriched_clusterNOT.pdf}}
+        \vspace*{-8mm}
+        \caption{\label{fig:mfuzznorm}Normal-like\newline downregulation cluster}
+        \end{wrapfigure}
+      
+        \textbf{Normal-like subtype}\\ 
+        Unlike other subtypes, for Normal-like subtype, there are only samples of stages 1-3 available. Clustering of these samples has produced a variety of plots not seen for other subtypes in addition to the reoccurring up- and downregulation trends. The number of genes in each cluster at $>0.6$ level is noticeably lower.  As a consequence, there is no autophagy enrichment in any of the clusters for any of the gene sets. Figure \ref{fig:mfuzznorm} shows the downregulation cluster based on Normal-like samples. 
+        \newline
+        \newline
+        \newline
+        
+
+    \subsubsection{Summary}
+    
+    Overall, it seems that the downregulation trend characterises the autophagy genes behaviour the most. Both in all samples and in individual subtypes it is the largest cluster with the highest number of autophagy-related genes, and it is seen enriched at several instances. 
+    
+    The downregulation pattern is enriched for 'all autophagy' gene set in all-samples group and in Basal-like subtype. For 'autophagy TFs' gene set downregulation cluster is enriched in all samples, Luminal A, Luminal B, and HER2-enriched subtypes. The exact pattern of downregulation cluster varies slightly between subtypes. In Luminal B the trend is ideally straight; in Luminal A and HER2-enriched it has a very slight dip at stage 4; and in Basal-like it is changes between stage 3 and 4 as much as between normal and stage 1. Normal-like subtype has the weakest clusters with the least number of genes being $>0.6$ members, which is perhaps a result of having less samples (this may also be affecting HER2-enriched group), and not having stage 4 samples. Having a different number of time points brought out other patterns. 
     
     
     
-    
+
     
     %identify distinct transcriptome clusters
     %classify genes into groups

@@ -310,14 +310,14 @@ objective function to minimize the variation of objects within clusters  \cite{B
 Fuzzy clustering differentiates how closely a gene follows the dominant cluster patterns and assigns it degrees of membership to a cluster. The membership value $\mu_{ij}$ can vary between zero and one, and is an indication of how well gene $i$ is represented by cluster $j$. This approach strongly contrasts hard-clustering where membership is binary (i.e. 0 or 1), and enables fuzzy clustering to provide more information about the structure of gene expression data \cite{Kumar2007Mfuzz:Data}. 
 The formed clusters are visualised by the mfuzz plotting function, an example shown in Figure \ref{fig:mfuzzmethod}. 
 
-            % mfuzz 
-            \begin{figure}[h]
-            \centering
-            \includegraphics[scale=0.3]{mfuzz_method.png}
-            \caption{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green colored lines correspond to genes with low membership value; red and purple colored lines -- high membership value.              
-            }
-            \label{fig:mfuzzmethod}
-            \end{figure}
+        % mfuzz 
+        \begin{figure}[!h]
+        %\centering
+        \includegraphics[width=0.75\linewidth]{mfuzzmethod.pdf}\hfill
+        \includegraphics[width=0.2\linewidth]{mfuzzcolorbar_pad.pdf}
+        \caption{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green colored lines correspond to genes with low membership value; red and purple colored lines -- high membership value.}
+        \label{fig:mfuzzmethod}
+        \end{figure}
             
  The genes in each cluster are represented as lines color-coded by their cluster membership value.  Each cluster describes a particular expression pattern, for instance Cluster 1 comprises genes that are upregulated at all stages of cancer compared to Normal, whereas Cluster 5 shows the opposite, i.e. downregulation trend. Other, more stage-specific patterns, such as in Clusters 2 and 6 with distinct expression is Stage 4, can also be identified with this method. 
  
@@ -327,8 +327,14 @@ The two parameters that are specified in fuzzy clustering are the number of clus
   
  
 The method was originally introduced for microarray data, but it is acceptable to apply it to RNA-seq data in FPKM/RPKM format \cite{Futschik2007MfuzzHomepage}.  The normalised and filtered data can be directly used in the mfuzz standardisation function prior to clustering, which scales the expression change to to zero mean and standard deviation of one (scale on y-axis).
-The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The cut-off membership score used to select genes representing a particular cluster throughout this project was 0.6. 
+The genes in the resulting clusters can be accessed and filtered by their membership score for inclusion in further analysis. The suggested membership score to use as a cut-off to select genes representing a particular cluster is 0.6. 
+
 \subsubsection{Application to the dataset}
+
+Mfuzz was used to perform soft-clustering on the gene expression data with the input set of genes being the same as for differential experssion analysis, i.e. 15874 genes. The count data was TMM-normalised and transformed to log-RPKM format. Then, \texttt{removeBatchEffect()} function from \texttt{limma} package \cite{Ritchie2015LimmaStudies} was used create expression matrix where two batch effect sources, year and sample source site, have been taken into account prior to clustering the data. 
+
+Clustering was performed on all samples together and on individual PAM50 subtypes. For consistency, all analysis runs were done for six clusters (\textit{c})  with fuzziness parameter (\textit{m}) estimated by \texttt{mestimate} function. In each cluster, only genes with membership value of 0.6 or higher were used in the subsequent enrichment analysis. 
+
 
 
 
