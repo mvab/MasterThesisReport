@@ -1,37 +1,18 @@
     
 \section{Exploratory Analysis}
 
-    %data was preprocessed as described in methods
-    
-    
-    % The outcome of the EDA will have a major impact on how you analyze the data:
-    %  – Sample outliers and noise: Should some samples be discarded?
-    % Can I perform a meaningful test for different expression between different groups?
-    % What factors (wanted/unwanted, observed/unobserved) should be included in the model?
-    
-    % • EDA is the first part of the analysis where you start drawing biological conclusions specific to a
-    % given experiment.
-    % – Does the data look like I expected/designed?
-    % – Do I have batch effects?
-    % – Subgroups?
-    % • In DE you formalize your observations in the EDA to extract statistically valid results.
-    % • The resulting DE analysis will serve as the foundation of biological interpretation of the data.
-
-    
-    
 
     \subsection{Main effect subgroups}
 
-    There are three main effects by which breast cancer samples can be stratified into groups: morphology, stage and PAM50 molecular profile. PCA is able separate samples into tumour/normal sample clusters fairly well (shown as an example in Methods, Figure \ref{fig:pcamethod}). However, it is more interesting to apply PCA to explore variation by grouping samples in different cancer classification groups.  
-    
-    PCA was applied to 969 samples (857T, 112N), which were divided into subgroups by three systematic effect groups (i.e. PAM50, tumour morphology, cancer stage), which subgroup sizes shown in Tables \ref{table:morphstage} and \ref{table:pam50counts}. \\
-    The PCA plot of data coloured by PAM50 molecular subtype groups is shown in Figure \ref{fig:pcapam50}. PC1 accounts for 11\% of the total variation in the data, and is driven by the differences between normal and cancer samples. PC2 accounts for 8.6\% of the variation, and characterises the variation among breast cancer subtypes. Firstly, Basal-like samples form a separate cluster (orange), which emphasises its complete dissimilarity at molecular level. Luminal A and Luminal B form a partially overlapping cluster (yellow and red), which is expected from the known similarities of these subtypes. HER2-enriched cluster (blue) is understandably located between Luminal B and Basal-like as it is known to share expression profiles with these two. And lastly, seeing Normal-like subtype (pink) overlapping with normal samples (green) as well as with Luminal A cancer subtype fits nicely with the fact that Normal-like subtype shares morphology with the former and IHC and molecular profile with the latter.    
+    There are three main effects by which breast cancer samples can be stratified into groups: morphology, stage and PAM50 molecular profile. PCA is able separate samples into tumour/normal sample clusters fairly well (shown as an example in Methods, Figure \ref{fig:pcamethod}). However, it is more interesting to apply PCA to explore variation between groups of samples captured by applying different classification methods.  
+    PCA was applied to 969 samples (857T, 112N), which were divided into subgroups by three systematic effect groups (i.e. PAM50, tumour morphology, cancer stage), the sizes of which are shown in Tables \ref{table:morphstage} and \ref{table:pam50counts}. \\
+    The PCA plot of data coloured by PAM50 molecular subtypes is shown in Figure \ref{fig:pcapam50}. PC1 accounts for 11\% of the total variation in the data, and is driven by the differences between normal and cancer samples. PC2 accounts for 8.6\% of the variation, and characterises the variation among breast cancer subtypes. Basal-like samples form a separate cluster (orange), which emphasises its complete dissimilarity at molecular level. Luminal A and Luminal B form a partially overlapping cluster (yellow and red), which is expected from the known similarities of these subtypes. HER2-enriched cluster (blue) is understandably located between Luminal B and Basal-like as it is known to share expression profiles and receptor statuses with these two. And lastly, seeing Normal-like subtype (pink) overlapping with normal samples (green) as well as with Luminal A subtype fits nicely with the fact that Normal-like subtype shares morphology with the former and IHC and molecular profile with the latter.    
     
     % PAM50 PCA plot 
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.37]{pcapam502.png} 
-            \caption{PCA plot showing the variance along PC1 and PC2 for PAM50 molecular subtypes of breast cancer and normal samples}
+            \includegraphics[scale=0.4]{pcapam502.png} 
+            \caption{PCA plot showing the variance along PC1 and PC2 for PAM50 molecular subtypes of breast cancer and normal samples.}
             \label{fig:pcapam50}
             \end{figure}
             
@@ -41,49 +22,61 @@
     % PAM50 1d PCA plot 
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.5]{1dpcapam50.png}
+            \includegraphics[scale=0.39]{1dpcapam50.png}
             \caption{One-dimensional PCA plots showing variance along PC1-PC9 for PAM50 molecular subtypes of breast cancer and normal samples. }
             \label{fig:1dpcapam50}
             \end{figure}
     
     
-    The PCA results for morphology and stages classifications are shown in Figure \ref{fig:1dpcamorphstage} as one-dimensional variation plots. It can be observed that PCA was not able to capture as much variation between morphology groups and stages as among PAM50 subtypes. From one-dimensional plots it is evident that PC1 captures cancer/normal differences in both classification types. However, the rest of PCs do not capture enough variation to be evident on 2D PCA plots, therefore, here only 1D plots are presented. Appendix \ref{} contains 2D PCA plots based on stages and morphology for results completion.    
+    The PCA results for stages and morphology classifications are shown in Figures \ref{fig:1dpcastage} and \ref{fig:1dpcamorph} (2D ad 1D). PCA was not able to capture as much variation between morphology groups and stages as between PAM50 subtypes. From one-dimensional plots for both stages and morphology it is evident that PC1 captures cancer/normal differences in both classification types. However, the rest of PCs do not capture enough variation to be evident on 2D PCA plots. The 2D scatter plots are displaying PCs with the most prominent variation.     
     
     % 1D PCA for stages and morphology
             
             \begin{figure}[!h]
-            \includegraphics[width=0.35\linewidth]{1dpcastages2.png}\hfill
-            \includegraphics[width=0.35\linewidth]{1dpcamorph2.png}
-            \caption{One-dimensional PCA plots showing variance along PC1-PC9 for morphology groups (right) and stages (left), with normal samples.}
-            \label{fig:1dpcamorphstage}
+            \hspace*{\fill}
+            \includegraphics[width=0.51\linewidth]{pcastages.png}\hfill
+            \includegraphics[width=0.44\linewidth]{1dpcastages2.png}
+            \hspace*{\fill}
+            \caption{2D and 1D (PCs 1-9) PCA plots showing variance captured between cancer stages and normal samples.}
+            \label{fig:1dpcastage}
             \end{figure}
             
+        Interestingly, PCA did not capture any noticeable differences even between distant stages (i.e. stage 1 and stage 4), where the differences in expression should be evident and therefore reflected in PCA results. This is also the case for two main distinct morphologies - Lobular and Ductal carcinomas, which overlap greatly.
+    
+            \begin{figure}[!h]
+            \centering
+            \hspace*{\fill}
+            \includegraphics[width=0.48\linewidth]{pcamorph.png}\hfill
+            \includegraphics[width=0.41\linewidth]{1dpcamorph2.png}
+            \hspace*{\fill}
+            \caption{2D and 1D (PCs 1-9) PCA plots showing variance captured between tumour morphologies and normal samples.}
+            \label{fig:1dpcamorph}
+            \end{figure}
+
     
     \newpage
-    Interestingly, PCA was not able to capture any significant differences between stages (e.g. stage 1 and stage 4), where the differences in expression should be evident and therefore reflected in PCA results. The same is the case for two main distinct morphologies - Lobular and Ductal carcinomas, which overlap greatly. A possible explanation for these results is the unbalanced sizes of subgroups in these two classification methods, as well as their composition in terms of PAM50 subtypes, which is evidently the main driving force in sample classifications. 
-    
-    To explore this idea, the sample count data was visualised as stacked barplots presented in Figure \ref{fig:barms}. Each bar shows the total count of samples of a chosen morphology (left plot) or stage (right plot). The differing group sizes are evident.         
-    
+    A possible explanation for the observed PCA results is the difference in sizes of morphology and stages subgroups, as well as their composition in terms of PAM50 subtypes, which is evidently the main driving force behind sample classifications. To explore this idea, the sample count per subgroup was visualised as stacked barplots presented in Figure \ref{fig:barms}. Each bar shows the total number of samples of a chosen morphology (left plot) or stage (right plot). The difference in groups sizes in apparent.
     % barsplots for stages and morphology 
        
         \begin{figure}[!h]
         \includegraphics[width=0.53\linewidth]{bar_morph.png}\hfill
         \includegraphics[width=0.4\linewidth]{bar_stages2.png}
-        \caption{Stacked barplots of sample number counts per subgroups in morphology groups and stages classification groups. The coloured proportions represent PAM50 subtypes samples within each subgroup.}
+        \caption{Stacked barplots of sample counts per subgroups in morphology types (left) and stages (right). The coloured proportions represent PAM50 subtypes samples within each subgroup.}
         \label{fig:barms}
         \end{figure}
         
-    Ductal carcinoma morphology samples make up over 70\% of all samples (?/857), but are well-proportionate in terms of PAM50 composition (i.e. similar proportions as the full dataset, with Luminal A dominating). Other subgroups, however, in addition to being smaller, are restricted to only a few PAM50 subtypes. For instance, Metaplastic carcinoma is made up completely of Basal-like samples, while Mucinous morphology is represented by only Luminal subtypes (the counts are shown in Table \ref{table:counts}). This observation explains why these two mophologies are separated in 1D PCA plot in PC2 (Figure \ref{fig:1dpcamorphstage}) - the difference between Luminal and Basal tissues is driving their variation. However, it is important to note, that there is a chance that these two morphologies, Metaplastic and Mucinous, actually only exists as Basal and Luminal subtype, respectively, but it is not possible to claim for or against this based on the current dataset.    
+    Ductal carcinoma samples make up 75\% of all samples (644/857), but are well-proportionate in terms of their PAM50 composition (i.e. similar proportions as the full dataset, with Luminal A dominating). Other morphologies, however, in addition to being smaller in sample count, are restricted to only a few PAM50 subtypes. For instance, Metaplastic carcinoma is made up completely of Basal-like samples, while Mucinous morphology is represented by only Luminal subtypes (the counts are shown in Table \ref{table:counts}). This explains why these two mophologies are separated in 2D PCA plot in PC2 (Figure \ref{fig:1dpcamorph}) - the difference between Luminal and Basal tissues is driving their variation. However, it is important to note, that there is some evidence in the literature, a study by Weigelt \textit{et al.} \cite{Weigelt2010a} that these two morphologies, Metaplastic and Mucinous, actually only exists as Basal and Luminal subtype, so the observed difference might be truly due to morphology.  
     
-    The sample count difference between stages are also noticeable, which stage 2 accounting for roughly 50\% of the samples. The proportions of PAM50 subtypes within stages 1-3 appear to be well-balanced. Stage 4 is, however, of major concern. It has an alarmingly low sample count and is not represented in Normal-like subtype. The counts are shown in Table \ref{table:counts}.
+    The sample count difference between stages is also noticeable, which stage 2 accounting for roughly 50\% of the samples. The proportions of PAM50 subtypes within stages 1-3 appear to be well-balanced. However, this is not the case for stage 4, where in addition to alarmingly low sample count, Normal-like subtype is not represented. The counts are shown in Table \ref{table:counts}.  \\
         
         
     %TABLE x3 counts   
                 \begin{table}[!h]
                 \centering
-                \caption{Samples number counts in pairwise comparisons of three main breast cancer samples classifications. Top table: PAM50 and stages, Middle table: PAM50 and morphology, Bottom table: stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
+                \tiny
+                \caption{Samples number counts in pairwise comparisons of three main breast cancer samples classifications. \textit{Top table:} PAM50 and stages,\textit{ Middle table:} PAM50 and morphology, \textit{Bottom table:} stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
                 \label{table:counts}      
-                \resizebox{\textwidth}{!}{%
+                %\resizebox{\textwidth}{!}{%
                 \begin{tabular}{ccccccc}
                 \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\textbf{Luminal A}} & \multicolumn{1}{c|}{\textbf{Luminal B}} & \multicolumn{1}{c|}{\textbf{Basal-like}} & \multicolumn{1}{c|}{\textbf{HER2-enriched}} & \multicolumn{1}{c|}{\textbf{Normal-like}} & {\color[HTML]{9B9B9B} \textit{rowsums}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{stage 1}} & \multicolumn{1}{c|}{94} & \multicolumn{1}{c|}{22} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{{\color[HTML]{656565} 148}} \\ \hline
@@ -111,79 +104,66 @@
                 \multicolumn{1}{c|}{\textbf{Other}} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{27} \\ \hline
                 \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} & \multicolumn{1}{c|}{148} & \multicolumn{1}{c|}{481} & \multicolumn{1}{c|}{195} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
                 \end{tabular}%
-                }
+                %}
                 \end{table}
+        
 
-        
-        
-   
-    
-    Another way of exploring the structure within a dataset and the relevance of different classification conventions is to perform sample clustering and visualise it as a heatmap. Figure \ref{fig:heatmap1k} shows the results of performing clustering on top 1000 highest variance genes. Variance was computed for each row (gene) in cancer samples only, and the top 1000 were selected to be used for clustering, as the genes with the most differences are of interest. The three main effect groups are shown above the heatmap as colour bars, which enables side-by-side comparisons.     
+    The alternative method of visualising dataset structure and exploring the relevance of different classification conventions is to perform sample clustering and represent it as a heatmap. Figure \ref{fig:heatmap1k} shows the clustering results based on top 1000 highest variance genes. Variance was computed for each row (gene) in cancer samples only, and the top 1000 genes were used in clustering to capture larges gene expression changes across the full dataset. The three main effect groups (PAM50, stages, morphology) are shown above the heatmap as colour bars, providing side-by-side comparisons.     
     
     % heatmap 1000
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.8]{heatmap_top1k.png}
-            \caption{Heatmap with clustering on top 1000 highest variance genes (calculated on cancer samples only). The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bars above the heatmap (PAM50, stages, morphology) show the subgroups to which each sample belongs, colour-coded according to the legend on the right. The colours of heatmap represent gene expression intensity according to the scale (high expression - dark blue, low expression - light yellow). The data was clustered with Euclidean distance and average linkage. }
+            \includegraphics[scale=0.71]{heatmap_top1k.png}
+            \caption{Heatmap representation of clustering top 1000 highest variance genes (calculated on cancer samples only). The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bars above the heatmap (PAM50, stages, morphology) show the subgroups to which each sample belongs, colour-coded according to the legend on the right. The colours of heatmap represent gene expression magnitude according to the scale (high expression - dark blue, low expression - light yellow). The data was clustered with Euclidean distance and average linkage. }
             \label{fig:heatmap1k}
             \end{figure}
-    
-    First and foremost, the unsupervised clustering was able to form two main clusters: Luminal and non-Luminal samples. Cluster on the right contains the majority of Luminal A and Luminal B samples according to the top colour bar (PAM50). The left hand side cluster contains Basal-like, HER2-enriched, and normal samples. Normal-like subtype is scattered across the entire dendogram, with more notable appearance inbetween Luminal A and normal samples, as expected. The Basal-like cluster is well-defined, which highlights this subtype difference from the rest. The Luminal types are mixed as anticipated. Overall, clustering is in agreement with the PCA results for PAM50 subtypes. \\    
-    With regards to stages and morphology colour bars, it can be observed that clustering, much like PCA, was not able to find any distinct major patterns among their subgroups. Again, the sizes of the subgroups may partially be responsible for that. It is a challenge to spot the minority-sized subgroups on the colour bar, and very clear to see how Ductal carcinoma dominates the dataset (light blue, bottom bar). The colour bar of stages also shows no distinct patterns. 
-    
     \newpage
-    However, another idea worth investigation is to test how data will cluster if sub-subgroups averages are taken. As stages of cancer progression are of high interest in this project, the averages of each PAM50 subtype at each stage were taken and clustered. Figure \ref{fig:dendogram} shows the resulting dendogram. 
+    First and foremost, the unsupervised clustering was able to form two main clusters: Luminal and non-Luminal samples. Cluster on the right contains the majority of Luminal A and Luminal B samples according to the top colour bar (PAM50). The left hand side cluster contains Basal-like, HER2-enriched, and normal samples. Normal samples have a distinct tanscriptomic profile which is seen from the heatmap. Normal-like subtype is scattered across the entire dendogram, with more pronounced appearance amongst Luminal A and normal samples, as expected. The Basal-like subtype cluster is well-defined, which highlights its uniqueness and distinction from the rest. The Luminal types are mixed as anticipated. Overall, clustering is in agreement with the PCA results for PAM50 subtypes. \\    
+    Regarding the stages and morphology colour bars, it can be observed that clustering, much like PCA, was not able to find any distinct patterns among their subgroups. Again, the sizes of the subgroups may partially be responsible for that. It is a challenge to spot the minority-sized subgroups on the colour bar, and very clear to see how Ductal carcinoma dominates the dataset (light blue, bottom bar). The colour bar of stages also shows no distinct patterns. \\
+    
+    An additional exploratory clustering analysis was done to investigate the relationship between cancer stages and the underlying PAM50 subtypes. As stages of cancer progression are of great interest in this project, the averages of each PAM50 subtype at each stage were taken and clustered. Figure \ref{fig:dendogram} shows the resulting dendogram. 
     
         % dendogram
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.45]{dendogram2.png}
-            \caption{Dendogram showing clustering of PAM50 subtypes within stages (averages per stage per subtypes)}
+            \caption{Dendogram showing clustering of PAM50 subtypes within stages (averages per stage per subtypes).}
             \label{fig:dendogram}
             \end{figure}
     
-    Remarkably, all subtypes form distinct branch clusters (expect HER2-enriched). Normal and Normal-like samples are the outgroup, understandably, and then Basal-like subtype is also an outgroup to the rest of samples. Luminal types and HER2-enriched are separated to well-defined branches. It is important to note that each subtype cluster has stage 4 branch as an outgroup, with the exception of HER2-enriched stage4, which is only made up of 2 samples perhaps leading to an unstable average. Seeing stage 4 as an outgroup is an important observation, as it is the most different and severe (due to metastasis) stage of cancer progression. \\
+    Remarkably, all subtypes form distinct branch clusters (expect HER2-enriched). Normal and Normal-like samples are the outgroup, understandably, and then Basal-like subtype is also an outgroup to the rest of samples. Luminal types and HER2-enriched are separated to well-defined branches. It is important to note that each subtype cluster has stage 4 branch as an outgroup, with the exception of HER2-enriched stage 4, which is only made up of 2 samples perhaps leading to an unstable average. Seeing stage 4 as an outgroup is an important observation, as it is the most different and severe stage of cancer progression. \\
     
-    Lastly, seeing the samples cluster primarily by PAM50 and only then by stage in Figure \ref{fig:dendogram}, is yet another evidence to what was observed with PCA and heatmap clustering. PAM50 is the main classification effect of breast cancer samples. When using other classification methods, PAM50 subtypes have to be taken into account. For example, comparing two morphologies might not produce truthful results if their PAM50 subtype sample composition is the main driving effect of differences. Therefore, the heterogeneity of groups has to be taken into account, and the downstream analysis has to be done on sub-subgroups.  
+    Lastly, seeing the samples cluster primarily by PAM50 and only then by stage in Figure \ref{fig:dendogram}, is yet another evidence to what was observed with PCA and heatmap clustering. PAM50 classification is the main driving force of breast cancer samples separation. When using other classification methods, PAM50 subtypes have to be taken into account. For example, comparing two morphologies might not produce truthful results if their PAM50 subtype sample composition is the main driving effect of differences. Therefore, the heterogeneity of groups has to be taken into account, and the downstream analysis has to be done on sub-subgroups.  
     
-     
 
-    % HCL implementing the Euclidean distance metric and the average linkage
-    % distance method to analyse the same data used to generate the PCA in figure determines that the data clusters into two predominant groups — one comprising
-    % all cancer samples and the other consisting of all control (healthy) samples. This
-    % indicates that the cancer transcriptomic profiles are more similar to each other
-    % than any of the control samples. These findings are reflected by those obtained
-    % from the PCA.
-
-
-
-    
- 
     
     \newpage
     \subsection{Cofactors and batch effects}
     
-    Morphology, cancer stages, and PAM50 molecular subtype are the expected main sources of variation in the dataset, namely biological variation. However, in a large and heterogeneous dataset such as TCGA-BRCA there are potentially several other sources of variation that may be contributing to the differences in gene expression between samples. Having sufficient clinical and meta annotation for the present samples allows us to explore potential sources of technical variation.
-    %AGE is a standard covariate
-    Among the available annotations, the most interesting ones are the patient age group, year sample was taken, and tissue source site. These were explored with PCA to visualise any outlying subgroups that may be creating an unwanted batch effect.
-    Exploring the samples by year may identify significant differences between years, as the lab protocols for sample processing would have changes in the given years (1988-2013). Such differences could also be observed between the source sites, i.e. clinical institutions and research centers where the original samples were handled. 
-
-    One-dimensional PCA plots were used to visualise variation over the years and across the sample sites. As there are many (>20) subgroups in both year ans site data, PCA scatter plots are not helpful for spotting outlying subgroups. 
+    Morphology, cancer stages, and PAM50 molecular subtype are the anticipated sources of variation in the dataset, and namely, biological variation. However, in a large and heterogeneous dataset such as TCGA-BRCA there are several other potential sources of variation, which may be contributing to the differences in gene expression between samples. The abundance clinical and meta annotation available for the present samples allows these potential sources of technical variation to be explored.
     
-    Figure \ref{fig:1dpcayear} shows the first 6 PCs of PCA of the year data. Each boxplot represents samples taken in a single year, with individual years shown as gitter-dots to visualise each year group approximate size and sample variation within it (according to y-axis). The boxplots are shown for years in sequential order (1988-2013). 
+    Among the available annotations, the ones of the most interest are the patient age group, year sample was taken, and tissue source site. They were explored with PCA to visualise any outlying subgroups and check for the presence of unwanted batch effects among samples, such as differences caused by being processed in different years and across a variety of research labs.
+    
+    One-dimensional PCA plots were used to visualise variation over the years and across the sample sites. As there are many ($>20$) subgroups in both year and site data, 2D PCA scatter plots are not helpful for spotting outlying subgroups. 
+    
+    Figure \ref{fig:1dpcayear} shows the first 6 PCs of from PCA results based on year data. Each box plot represents samples taken in a single year, with individual years shown as gitter-dots to visualise each year group approximate size and sample variation within it (according to y-axis). The box plots are shown for years in sequential order (1988-2013). \\
+  
         
             % 1D PCA YEAR
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.45]{1dpcayear.png}
-            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) taken in years 1988-2013. The points over each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
+            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) taken in years 1988-2013. The dots across each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
             \label{fig:1dpcayear}
             \end{figure}
     
+    %\vspace{10mm}
+    Overall, it is evident that there is a lot of variation between the years. This is especially the case for the earlier years, however, this is partially due to low number of samples taken in those years.  The variation stabilises after year 2005, which can be explained by the fact that this is when the pilot of TCGA project started and the universal protocols were introduced. Also it can be seen that the majority of samples were collected after that time point, at the density of points is higher. Another aspect worth noticing is that samples in years 1997-2000 appear to be quite different to previous and following years (PC1). This potentially confounding effect was explored further. \\
+    \newline
     
-    Overall, it is evident that there is a lot of variation between the years. This is especially the case for the earlier years, however, this is partially due to low number of samples taken in those years.  The variation stabilises after year 2005, which can be explained by the fact that this is when the pilot of TCGA project started and the universal protocols were introduced. Also it can be seen that the majority of samples were collected after that time point. Another aspect worth noticing is that samples in years 1997-2000 appear to be quite different to previous and following years (PC1). This could have had a very serious batch effect on the downstream analyses, and had to be explored further.\\
-    
-    As established in the previous section, we expect PAM50 subtypes to be the main point of interest for further investigation, therefore, it was crucial to check the sample composition of every year group in terms of PAM50 subtypes to make sure that, for example, a particular subtype was *not*  collected in only one year, which would be confounding the dataset exploration in that context. Figure \ref{fig:baryear} shows the stacked barplot of all samples organised by year.  Each bar shows the total count of samples in a year, and the proportion of samples of each PAM50 subtype are coloured according to the legend. 
+    \newpage
+    As previously established, PAM50 subtypes is expected to be the main point of interest for further investigation, therefore, it is important to check the PAM50 composition of every year group to make sure that, for example, a particular subtype was \textit{not} collected in only one year, which would be confounding the dataset for further exploration. Figure \ref{fig:baryear} shows the stacked barplot of all sample counts organised by year. Each bar shows the total count of samples per year, and the proportions of samples representing each PAM50 subtype are coloured according to the legend. \\
+    \newline
     
     
              % bar per year
@@ -194,26 +174,30 @@
             \label{fig:baryear}
             \end{figure}
     
-    As already noted from 1D PCA plot fro year data, the total number of samples in the earlier years is marginally smaller than in the last decade of given years. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, the dataset is not confounded by a particular year-subtype combination.  Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot. It can be seen in Figure \ref{fig:baryear} that these years have about 50\% composition of normal samples in them, which is not the case for all other years. Having such high proportion of normal samples in them, makes their mean seem different. Appendix \ref{} shows a 1D PCA plot for cancer samples only, confirming this possible explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
+    As already noted from 1D PCA plot for year data, the total number of samples in the earlier years is marginally smaller than in the last decade. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, it can be concluded that the dataset is not confounded by a particular year-subtype combination.  
     
-        %sites
-    \newpage
-    As with year data, the sample source data also had to be explored and variation among sources assessed. Figure \ref{fig:1dpcatss} shows a 1D PCA plot analogous to the one showing variation for samples grouped by year. This plot shows variation for all samples grouped by samples source site (24 sites in total).\\  
+    Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot (Figure \ref{fig:1dpcayear}, PC1). It can be seen in Figure \ref{fig:baryear} that these years are represented by $\approx50\%$ of normal samples, which is not the case for all other years. Having such high proportion of normal samples, makes their box plots to be shifted down compared to the rest, and hence appear different. Appendix \ref{} shows a 1D PCA plot for cancer samples only, confirming this explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
+    
+
+    As with year data, the sample source data was also explored with PCA and variation between different sources assessed. A 1D PCA plot (PC 1-6) showing variation for all samples grouped by samples source site (24 sites in total) is displayed in Figure \ref{fig:1dpcatss}. 
+    
             
             % 1D PCA YEAR
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.45]{1dpcatss.png}
-            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) from different source sites (two letter abbreviations; NA - site unknown). The points over each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
+            \caption{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) from different source sites (two-letter abbreviations in alphabetic order; NA - site unknown). The dots across each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it.}
             \label{fig:1dpcatss}
             \end{figure}
-
-    It is clear that the variation between source sites exists, as anticipated. As with year data, some source groups have very few samples, which makes the variation between them and large groups more prominent. One source site that really stands out (PC1) is BH (red). A possible explanation to this could have been that the sample handling protocol at this site is very different  from the rest, or, as it turned out, this differences has the same cause as the difference seen in year data.\\
+            
+            
+    \newpage
+    The existence of variation between source sites is unmistakably there. As with year data, some source site groups contain very few samples, which makes the variation between them and the large groups more prominent. One source site that really stands out is BH (red), PC1. A possible explanation to this observation, which would make the dataset unusable, could have been the unexpected difference in the handling protocol at this site. However, fortunately this was not the case.  \\
     
               % bar per tss
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.5]{bar_tss.png}
+            \includegraphics[scale=0.65]{bar_tss.png}
             \caption{Stacked barplots of sample counts per source site (alphabetic order). The coloured proportions represent PAM50 subtypes samples within each year group. }
             \label{fig:bartss}
             \end{figure}
@@ -222,14 +206,30 @@
     
   
     
+        %data was preprocessed as described in methods
     
+    
+    % The outcome of the EDA will have a major impact on how you analyze the data:
+    %  – Sample outliers and noise: Should some samples be discarded?
+    % Can I perform a meaningful test for different expression between different groups?
+    % What factors (wanted/unwanted, observed/unobserved) should be included in the model?
+    
+    % • EDA is the first part of the analysis where you start drawing biological conclusions specific to a
+    % given experiment.
+    % – Does the data look like I expected/designed?
+    % – Do I have batch effects?
+    % – Subgroups?
+    % • In DE you formalize your observations in the EDA to extract statistically valid results.
+    % • The resulting DE analysis will serve as the foundation of biological interpretation of the data.
+
 
     
     %age groups
     
     \subsection{Summary}
+    
 \newpage
-\section{Looking for Autophagy signatures}
+\section{Identifying Autophagy Signatures}
 
     \subsection{Differential Expression Analysis}
     

@@ -144,19 +144,18 @@
       \item Check assumptions 
     \end{enumerate}
     
-    After normalisation described in the previous section, the data is ready to be analysed.  Metadata available for samples is to be rigorously explored to maximise the insight into the dataset and extract important features.
+    After normalisation described in the previous section, the data is ready to be analysed. Rigorous exploration of the metadata available for samples will be used to maximise the insight into the dataset and extract important features.
     
-    Principal component analysis and clustering (as part of a heatmap and not) are the most commonly used exploratory tools. The underlying statistics and algorithms available for the calculations involved in PCA and clustering dendogram generation are fundamentally the same for the available packages in R/Bioconductor. 
-    This section will present a general introduction to PCA and clustering, and provide simple examples of use.
-
+    Principal component analysis and clustering (as part of a heatmap and not) are the most commonly used exploratory tools. The following sections will present a general introduction to PCA and clustering, and provide simple examples of use. The underlying statistics and algorithms available for the calculations involved in PCA and clustering dendogram generation are fundamentally the same for the available packages in R/Bioconductor. 
+    
     
     \subsection{Principal Component Analysis}
     
-    Principal component analysis (PCA) is a method that linearly transforms a multivariate dataset into a set of uncorrelated variables ordered in descending manner by the variance explained \cite{jolliffe2002principal}. In this way, the first few principal components (PCs) often explain the largest amount of the variation in the data. PCA results can be visualised in a 2D scatter plot, where $x$ and $y$ axes are the selected principal components. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}. 
+    Principal component analysis (PCA) is technique that is often used to emphasise variation and bring out strong patterns in a dataset. This method linearly transforms a multivariate dataset into a set of uncorrelated variables, principal components (PCs), ordered by the amount of variance explained \cite{jolliffe2002principal}. In this way, the first few PCs explain the largest amount of the variation in the data. PCA results can be visualised in a 2D scatter plot, where $x$ and $y$ axes are the selected PCs. The samples are projected onto the 2D plane such that they spread out in the two directions that capture the most of the variance across samples \cite{Love2016RNA-SeqApproved}. 
     In a PCA 2D scatter plot, each data point represents a sample, which allows visualisation of sample clustering and dataset structure.  The relationship between two samples is reflected by the distance between corresponding dots in the plot. Therefore, the more similar gene expression profiles are, the closer the data points are.    
    
-    Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the total variation in the data. 
-    Here, and throughout the project, PCA was performed using the R function \texttt{prcomp()}, the plots were generated with R package \texttt{ggplot2} \cite{ggplot2}.
+    Figure \ref{fig:pcamethod} shows an example of separation of transcriptional profiles of cancer (pink) and normal (blue) samples. The primary source of variation (PC1) accounts for 11\% of the total variation in the data. The second principal component (PC2) accounts for 8.6\% of the variation. 
+    Here, and throughout the project, PCA is performed using the R function \texttt{prcomp()}, the plots are generated with R package \texttt{ggplot2} \cite{ggplot2}.
     
         % PCA plot 
             \begin{figure}[!h]
@@ -167,9 +166,9 @@
             \end{figure}
         
     \newpage
-    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional (1D) box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown as a scatter plot of first two PCs in Figure \ref{fig:pcamethod}. 
-    In contrast to 2D scatter plots, 1D PCA plots are able to show variation along more than two PCs at a time. This method is useful for checking if any of the other PCs contain variation worth exploring. This is useful for checking for potential presence of batch effects or signatures left by other cofactors. 
-    For each PC, the variation of each condition group, here - cancer and normal, is represented by a box plot. The PCs where condition boxes have the smallest overlap (e.g. PC1) will shows the clearest separation when plotted in 2D. \\
+    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional (1D) box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown previously as a scatter plot of first two PCs (Figure \ref{fig:pcamethod}). 
+    In contrast to 2D scatter plots, 1D PCA plots are able to show variation along more than two PCs at a time. This method is useful for inspecting if any of the other PCs contain variation worth exploring, e.g. checking for presence of potential batch effects or signatures left by other cofactors. 
+    For each PC, the variation of each condition group, here - cancer and normal, is represented by a box plot. The PCs where condition boxes have the smallest overlap (e.g. PC1) will shows the clearest separation when plotted in 2D. The PCA results were handled with \texttt{dplyr} R package \cite{wickham2015dplyr} to create 1D box plots. \\
        
     
         % PCA 1d
@@ -183,23 +182,22 @@
   
     \subsection{Clustering and Heatmap representation}
     
-    In clustering, or unsupervised classification, the aim is to identify subsets (clusters) in the data based on the similarity between single objects. Similar objects should be assigned to the same cluster, while objects which are not similar to each other, should be assigned to different clusters.
-    Cluster analysis is applied to transcriptomics data to search for similar gene expression patterns between individual samples. This can help to reveal the data structure and give first insights into the data, which is especially useful if prior knowledge is little or non-existent. Clustering can, therefore, be seen as exploratory data analysis. 
+    In clustering, or unsupervised classification, the aim is to identify subsets (clusters) of data points based on the similarity between single objects. Similar objects should be assigned to the same cluster, while objects which are not similar to each other, should be assigned to different clusters. This can help to reveal the data structure and give first insights into the data, which is especially useful if prior knowledge is little or non-existent. Clustering can, therefore, be seen as an exploratory data analysis tool. 
         
-    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a datamatrix visualising values in the cells by the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.
+    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a data matrix visualising values in the cells by the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.
     
-    \newpage
+    
     One of the popular methods is Hierarchical Clustering, which involves re-ordering of samples based on their distance in high dimensional space. The cluster is constructed based on the determination of two parameters — the distance metric and the linkage criterion. Objects close to each other in the hierarchy, measured by tracing the branch heights, are also close by some measure of distance — for example, individuals with similar expression profiles will be close together in terms of branch lengths.
     
-    
+    \newpage
     The two most common distance measures used for clustering are Euclidean and Manhattan distances. Typically the results of the two are quite similar, and most studies default to using the Euclidean measure. 
     
-    The Euclidean distance involves computing the square root of square differences between two coordinates. In this way, the shortest path diagonally is calculated: $$ \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}}$$ where the first point is $(x1, y1)$ and the second point is $(x2, y2).$
+    The Euclidean distance involves computing the square root of square differences between two coordinates. In this way, the shortest path diagonally is calculated: $$ \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}}$$ where the first point is $(x_1, y_1)$ and the second point is $(x_2, y_2).$
     
     The Manhattan distance between two points is calculated by taking the sum of the lengths of the differences between the coordinates. Therefore, the distance is measure not in a straight line, but on horizontal (x) and vertical (y) axes: $$ (x_{1}-x_{2})+(y_{1}-y_{2})$$
     
 
-   An example of unsupervised clustering of samples with heatmap is shown in Figure \ref{fig:heatmapmethod}. The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bar above the heatmap shows cancer/normal samples as pink/blue lines, and clustering forms blocks of colour. The heatmap colours  represent gene expression intensity according to the scale (high expression - dark blue, low expression - light yellow). 
+   An example of unsupervised clustering of samples with heatmap is shown in Figure \ref{fig:heatmapmethod}. The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bar above the heatmap shows cancer/normal samples as pink/blue vertical lines, and clustering forms blocks of colour. The heatmap colours  represent gene expression intensity according to the scale (high expression - dark blue, low expression - light yellow). 
    This example shows how cancer and normal samples form two major clusters in the dendogram, which is noticeable in the heatmap colouring as well. Some of the samples are not within the expected clusters, i.e. are outliers, but that is in agreement with the observed  slight overlap between cancer and normal samples clusters on the PCA plot (Figure \ref{fig:pcamethod}).
 
      % heatmap method
@@ -210,7 +208,7 @@
         \label{fig:heatmapmethod}
         \end{figure}
     
-    Prior to clustering the data is normalised and filtered for low expression as described in  section \ref{}. The heatmaps were generated using Euclidean distance with average linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}. Clustering without heatmap representation was done with the R function \texttt{hclust()} with default parameters.
+    Prior to clustering the data is normalised and filtered for low expression as described in section 3.4.1. The heatmaps were generated using Euclidean distance with average linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}. Clustering without heatmap representation was done with the R function \texttt{hclust()} with default parameters.
 
 
    
@@ -236,7 +234,7 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
 
  
 
-
+\newpage
 \section{Hypothesis-driven analysis methods}    
 
 
@@ -267,6 +265,7 @@ In sum, the first step in the exploratory statistical analysis of batch effects 
         
         The hallmark of the \textit{limma} approach is the use of gene-wise linear models to analyse entire experiments as an integrated whole rather than simple comparisons between pairs of treatments  \cite{Ritchie2015LimmaStudies}, therefore allowing more flexible hypotheses. The effect of sharing information between samples allows one to model correlations that may exist between samples due to replication of samples or presence of covariates. This kind of information would not accessible if the data was partitioned into subsets and analysed as a series of pairwise comparisons \cite{Love2016RNA-SeqApproved}. In this way, linear models permit very general analyses, in which it is possible to adjust for the effects of multiple experimental factors or batch effects  \cite{Ritchie2015LimmaStudies}.
         
+        \newpage
         In the linear model approach,  two matrices have to be specified. The first is the \textit{design matrix} which provides a representation of the experimental design, i.e. each column corresponds to a coefficient that describes the sample source. The second is the \textit{contrast matrix} which specifies which comparisons have to be made between the samples. In this way, linear models describe how the treatment factors are assigned to the different samples, in matrix terms: $$ E(y_g) = X \beta_g$$ where $y_g$ is the vector of log-CPM values (expression data) for a gene $g$, and $X$ is the design matrix with the $x_i $ as rows, and $ \beta_g$ is a vector of coefficients. The contrasts of interest are given by $$\alpha_j = C^T \beta_g$$ where $C$ is the contrast matrix. The coefficients component of the fitted model produced by \textit{limma} function \texttt{lmFit()} contains estimated values for the $\beta_g$. After applying \texttt{contrasts.fit()}, the coefficients component now contains estimated values for the $\alpha_j$ \cite{Smyth2005}.
         
         \subsubsection{Significance Testing}
