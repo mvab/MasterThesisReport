@@ -60,7 +60,7 @@
         \hline
         \multicolumn{5}{l}{%
           \begin{minipage}{5cm}%
-            \tiny M0 includes cM0(i+). N1mi indicates cancer in the axillary lymph nodes  $>0.2mm$ but $<2mm$ (micro-metastasis). Table is adapted from \cite{Giuliano2017}. 
+            \tiny M0 includes cM0(i+). N1mi indicates cancer in the axillary lymph nodes  $>0.2mm$ but $<2mm$ (micro-metastasis). \textit{Table is adapted from \cite{Giuliano2017}.} 
           \end{minipage}%
         }\\
         \end{tabular}
@@ -132,12 +132,16 @@
             
     \subsubsection{PAM50 molecular profile}
     
-    
 
+With the wider adaptation of high-throughput gene expression profiling, it has been shown that tumour cell response to treatment is determined by ‘molecular profiles’ rather than physiological tumour characteristics and receptor status \cite{Weigelt2010}. 
+
+The original studies by Sørlie \textit{et al.} \cite{Srlie2001GeneImplications} classified breast cancer tumours into five intrinsic subtypes with distinct clinical outcomes based on their ‘molecular portrait’: Luminal A, Luminal B, Basal-like, HER2-overexpressed, and Normal-like. The classification was guided by the differences underlying the gene expression patterns that reflect the fundamental differences of the tumours at the molecular level \cite{Srlie2003RepeatedSets}. The observed five subtypes map quite well to the previously defined IHC receptor subtypes (Table  \ref{table:pam50summary}), and have been repeated by several other studies with varying number of genes included in the subtypes’ signature \cite{Dai2015}. 
+
+In 2009, Parker \textit{et al. }\cite{ParkerSupervisedSubtypes} reported a clinically applicable 50-gene classifier, PAM50, containing mostly hormone receptor and proliferation-related genes. By comparing global gene expression data from microarray and qRT-PCR, a minimized set of 50 genes was identified that could reliably classify each tumour into one of the intrinsic subtypes with 93\% accuracy. Over the past 7 years, the PAM50 intrinsic subtypes have shown to provide significant prognostic and predictive information beyond standard clinicopathological parameters \cite{Vidal2017} \cite{GnantPredictingAlone}. The PAM50 assay is now clinically implemented worldwide using the \textit{nCounter} platform \cite{Vidal2017}.
 
 \begin{table}[!h]
 \centering
-\caption{Summary of the breast cancer molecular subtypes by PAM50 and IHC status.}
+\caption{Summary of the breast cancer molecular subtypes. PAM50 subtypes map to IHC status subtypes. Ki67 proliferative marker is used as a distinction between Luminal A and B. Luminal A and Normal-like share the IHC subtype. \textit{Table adapted from \cite{Dai2015}.}}
 \label{table:pam50summary}
 \begin{tabular}{l|c|l}
 \multicolumn{1}{c|}{\textbf{PAM50  subtype}} & \textbf{IHC receptor status} & \multicolumn{1}{c}{\textbf{Prognosis}} \\ \hline
@@ -148,13 +152,79 @@
 \multicolumn{1}{|l|}{Basal-like} & {[}ER-PR-{]} HER2-, basal marker & \multicolumn{1}{l|}{\textit{Poor}} \\ \hline
 \multicolumn{1}{|l|}{Normal-like} & {[}ER+PR+{]} HER2- Ki67- & \multicolumn{1}{l|}{\textit{Intermediate}} \\ \hline
 \end{tabular}
-\end{table}
+\end{table}\\
     
-    % The original studies by Sørlie et al. (Sørlie et al. 2001) classified breast cancer tumours into five intrinsic subtypes with distinct clinical outcomes based on their ‘molecular portrait’: Luminal A, Luminal B, Basal-like, HER2-overexpressed, and Normal-like (Figure 1). The classification was guided by the differences underlying the gene expression patterns that reflect the fundamental differences of the tumours at the molecular level (Sørlie et al. 2003). The observed five subtypes almost perfectly mapped to the previously defined IHC subtypes (Dai et al. 2015), and have been repeated by several other studies with varying number of genes included in the subtypes’ signature. In 2009, Parker et al. (Parker et al. 2009) reported a clinically applicable 50-gene classifier, PAM50, containing mostly hormone receptor and proliferation-related genes. By comparing global gene expression data from microarray and qRT-PCR, a minimized set of 50 genes was identified that could reliably classify each tumour into one of the intrinsic subtypes with 93 accuracy. Over the past 7 years, the PAM50 intrinsic subtypes have shown to provide significant prognostic and predictive information beyond standard clinicopathological parameters (Vidal et al. 2017) (Gnant et al. n.d.). The PAM50 assay is now clinically implemented worldwide using the nCounter platform (Vidal et al. 2017). 
 
-    \subsubsection{Other classifications based on gene expression }
+\textbf{Luminal tumours}\\
+Luminal A and B subtypes are distinguished by the expression of two main biological processes: proliferation/cell cycle-related pathways and luminal/hormone-regulated pathways \cite{Vidal2017}, and have expression patterns reminiscent of the luminal component of the breast \cite{perou2000molecular}. Luminal tumours are the most common subtypes among breast cancer (~60\%) with Luminal A being the majority \cite{Dai2015}.  Luminal A is characterised by expression of ER-related genes and low expression of proliferative genes, which is conversely high in Luminal B \cite{eroles2012molecular}. The IHC profile for Luminal A includes positive expression of ER, PR, cytokeratin CK8/18, and absence of HER2 expression and low Ki67 (proliferation marker) \cite{Vidal2017}. Luminal B tumours have higher expression of proliferation related genes, and lower expression of luminal-related genes or proteins such as PR and FOXA1, but not ER \cite{prat2012prognostic}, which is found similarly expressed between two luminal subtypes and can only help distinguish luminal from non-luminal disease \cite{Vidal2017}.
 
-        
+In general, the luminal subtypes carry a good prognosis, with Luminal B tumours having a significantly worse scenario than the Luminal A \cite{Srlie2003RepeatedSets}. Treatment response differs between the two, but generally they respond well to hormone therapy and poorly to conventional chemotherapy \cite{brenton2005molecular}. Luminal A tumours could be adequately treated with endocrine therapy, while luminal B tumors which are more proliferative may benefit more from the combined therapeutic strategy of chemotherapy and hormonal treatment \cite{paik2004multigene}.\\
+
+
+\textbf{HER2-enriched tumours}\\
+The identification of HER2-enriched subtype among the molecular profiles found in breast cancer was reassuring because it confirmed the clinical impression that the tumours with HER2 overexpression are systematically different from other breast cancers \cite{brenton2005molecular}. 
+The HER2-enriched subtype is characterised by the high expression of HER2-related and proliferation-related genes, intermediate expression of luminal-related genes, and low expression of basal-related genes and proteins \cite{Vidal2017}. The best mapping IHC subtype to HER2-enriched tumours is HER2-overexpressed  (ER-/PR-/HER+), but it is not exclusive to them, i.e. it can be associated with other subtypes too \cite{Dai2015}. Additionally, although the majority (68\%) of HER2-enriched tumours have HER2 amplification, there are also cases of HER2-enriched subtype with HER2 negative receptor status \cite{Vidal2017}.
+
+HER2-enriched tumours carry poor prognosis that is derived from a higher risk of early relapse \cite{carey2007triple}, but they can benefit greatly targeted therapeutic agents, such as anti-HER2 monoclonal antibody trastuzumab. \\
+
+
+\textbf{Basal-like tumours}\\
+The Basal-like subtype name comes from the observation that the expression pattern of this subtype resembled that of the basal epithelial cells of other parts of the body and normal breast myoepithelial cells \cite{perou2000molecular, brenton2005molecular}. The characteristics include lack of expression of ER-related (luminal) genes, low expression of HER2, and strong expression of basal markers (such as cytokeratins 5, 6, 17) \cite{sotiriou2003breast}. Some of the important hallmarks of basal phenotype is low expression of BRCA genes \cite{callagy2003molecular} and aggressive features such as TP53 mutations \cite{Srlie2001GeneImplications}. 
+
+Among all the intrinsic subtypes, Basal-like is the most distinct \cite{TCGAComprehensiveTumors}. The unsupervised results in 2013 study by Prat \textit{et al.} \cite{prat2013genomic}  revealed that a subgroup of breast cancers, Basal-like by PAM50, should be considered a molecular entity by itself just like ovarian or colorectal cancer, and that $>70\%$ of basal-like breast cancers were more similar to squamous cell lung cancer than to Luminal A or B disease \cite{prat2013genomic}. 
+
+Basal-like tumours account for 60-90\% of triple negative breast cancers \cite{fan2006concordance}, and in the past the terms TNBC and Basal-like were used interchangeably \cite{Vidal2017}. However, within TNBC, all intrinsic molecular subtypes can be identified. 
+Triple negative Basal-like tumours are of particular interest because of their aggressive clinical course and currently lack any form of standard targeted systemic therapy. These tumors are associated with a lower disease-specific survival and a higher risk of local and regional relapse \cite{hudis2011triple}. 
+The size of basal tumors is, in general, larger than the other subtypes\cite{rakha2006morphological}, and they also tend to show rapid growth \cite{ho2012characterization}. The metastasis pattern also separates basal tumors from the other breast cancers, with a tendency towards internal organs (excluding bone) and less likely to involve lymph nodes \cite{ho2012characterization}. 
+.
+The poor prognosis of basal-like subtype  has been confirmed by multiple independent data \cite{brenton2005molecular}. However, it is not clear if this prognosis is due to poor therapy options or inherent aggressiveness. Given the triple negative receptor status,  basal tumors are not amenable to conventional targeted breast cancer therapies such as endocrine therapy or trastuzumab, leaving chemotherapy the only option \cite{brenton2005molecular, Dai2015}. \\
+
+
+\textbf{Normal-like tumours }\\
+Normal-like intrinsic subtype is the smallest breast cancer group that accounts for less than 10\% of the cases \cite{Dai2015}. Normal-like subtype shares its IHC receptor status with Luminal A ([ER+ PR+] HER2- Ki67-), but differs on expression pattern. Also, as suggested by the name, Normal-like cancers are characterised by a normal breast tissue profiling \cite{perou2000molecular}. Still, while normal-like breast cancer has a good prognosis, its prognosis is slightly worse than Luminal A cancer’s prognosis.\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     \newpage    
     \subsection{The Cancer Genome Atlas}
         \subsubsection{TCGA goal and setup}
