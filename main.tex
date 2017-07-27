@@ -53,8 +53,10 @@
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
-
-
+%%% makes list of fig to have only 1st sentence in caption
+%\let\oldcaption\caption
+%\def\splitter #1. #2@@{\oldcaption[#1]{#1. #2}}
+%\def\caption#1{\splitter #1@@}
 
 \begin{document}
 
@@ -109,21 +111,21 @@
 \chapter{Abstract}
 \input{chapters/abstract}
 
-%\listoffigures
-%\listoftables
+\listoffigures
+\listoftables
 %\printnomenclature[1in]
 %\hfill % add blank space
 %\nomenclature{TCGA}{The Cancer Genome Atlas}
  
 
 \chapter{Introduction}
-\input{chapters/introduction}
+%\input{chapters/introduction}
 
 \chapter{Methods and Materials}
 %\input{chapters/methods}
 
 \chapter{Results}
-%\input{chapters/results}
+\input{chapters/results}
 
 \chapter{Discussion}
 \input{chapters/discussion}

@@ -33,7 +33,7 @@
         \begin{table}[!h]
         \centering
         \tiny
-        \caption{AJCC/UICC TNM anatomic cancer staging and prognostic groups reference table.  The combination of T, N, and M is used to assign the  overall stage (substage).}
+        \caption[Cancer staging/ prognostic groups TNM system reference table (from AJCC/UICC)]{Cancer staging/ prognostic groups TNM system reference table (from AJCC/UICC). The combination of T, N, and M is used to assign the  overall stage (substage).}
         \label{table:tnmstage}
         \begin{tabular}{c|c|c|c|c}
         \multicolumn{2}{c|}{\textbf{\small Stage}} & \textbf{Tumour} & \textbf{Nodes} & \textbf{Metastasis} \\ \hline
@@ -77,7 +77,7 @@
     
     Historically, the TNM anatomic stage groups have been associated with outcome measures, including overall survival and disease-free survival \cite{Giuliano2017}.  For groups of patients it provides an accurate prediction of outcome, but within stage groups at individual patient level, outcome predictions are more problematic, as they have different biologic subtypes of cancers that express different biomarkers. In this way, while TNM classification remains the basis for cancer staging, but other factors, such as receptor status, histology, and molecular subtype are now incorporated into parallel prognostic stage groups. Despite the predictive power of intrinsic breast cancer subtypes (e.g. PAM50 classifier, discussed in section X),  the anatomic TNM classification provides a common language for communicating disease burden.
 
-   \subsubsection{Morphology type}
+   \subsubsection{Tumour Morphology}
    
    
    Breast cancers are heterogeneous tumours that show a wide variation not only with regard to their clinical presentation and behaviour, but also morphological spectrum. The majority (95\%) of breast tumours are adenocarcinomas -- cancers that arise from the epithelial lining of the breast components \cite{Makki2015DiversityRelevance}, such as ducts and lobules.
@@ -93,7 +93,7 @@
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.5]{morphology_labelled.png}
-            \caption{Breast carcinoma invasive morphologies/histologies. (A) Ductal, (B) Lobular, (C) Metaplastic, (D) Mucinous. Images taken from \cite{Ramnani2016Webpathology.com:Images, Abdelmessieh2016BreastOverview}}
+            \caption[Breast carcinoma invasive morphologies/histologies.]{Breast carcinoma invasive morphologies/histologies. (A) Ductal, (B) Lobular, (C) Metaplastic, (D) Mucinous. Images taken from \cite{Ramnani2016Webpathology.com:Images, Abdelmessieh2016BreastOverview}}
             \label{fig:histology}
             \end{figure} 
     
@@ -108,7 +108,7 @@
     
 
    
-    \subsubsection{Receptor status}
+    \subsubsection{Receptor Status}
     
     The identification of breast cancer receptor status is routinely used for prognostic and predictive  purposes \cite{Zaha2014}. A prognostic factor aims to give an indication of patient's overall clinical outcome (i.e. risk of recurrence and mortality), while a predictive factor is any measurement associated with response to a given therapy \cite{cianfrocca2004prognostic}. 
     
@@ -130,7 +130,7 @@
             
  
             
-    \subsubsection{PAM50 molecular profile}
+    \subsubsection{PAM50 Molecular Profile}
     
 
 With the wider adaptation of high-throughput gene expression profiling, it has been shown that tumour cell response to treatment is determined by ‘molecular profiles’ rather than physiological tumour characteristics and receptor status \cite{Weigelt2010}. 
@@ -141,7 +141,7 @@ In 2009, Parker \textit{et al. }\cite{ParkerSupervisedSubtypes} reported a clini
 
 \begin{table}[!h]
 \centering
-\caption{Summary of the breast cancer molecular subtypes. PAM50 subtypes map to IHC status subtypes. Ki67 proliferative marker is used as a distinction between Luminal A and B. Luminal A and Normal-like share the IHC subtype. \textit{Table adapted from \cite{Dai2015}.}}
+\caption[Summary of the breast cancer molecular subtypes.]{Summary of the breast cancer molecular subtypes. PAM50 subtypes map to IHC status subtypes. Ki67 proliferative marker is used as a distinction between Luminal A and B. Luminal A and Normal-like share the IHC subtype. \textit{Table adapted from \cite{Dai2015}.}}
 \label{table:pam50summary}
 \begin{tabular}{l|c|l}
 \multicolumn{1}{c|}{\textbf{PAM50  subtype}} & \textbf{IHC receptor status} & \multicolumn{1}{c}{\textbf{Prognosis}} \\ \hline
@@ -152,7 +152,7 @@ In 2009, Parker \textit{et al. }\cite{ParkerSupervisedSubtypes} reported a clini
 \multicolumn{1}{|l|}{Basal-like} & {[}ER-PR-{]} HER2-, basal marker & \multicolumn{1}{l|}{\textit{Poor}} \\ \hline
 \multicolumn{1}{|l|}{Normal-like} & {[}ER+PR+{]} HER2- Ki67- & \multicolumn{1}{l|}{\textit{Intermediate}} \\ \hline
 \end{tabular}
-\end{table}\\
+\end{table}
     
 
 \textbf{Luminal tumours}\\
@@ -187,19 +187,7 @@ Normal-like intrinsic subtype is the smallest breast cancer group that accounts 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\textbf{final words}
 
 
 
@@ -227,16 +215,60 @@ Normal-like intrinsic subtype is the smallest breast cancer group that accounts 
 
     \newpage    
     \subsection{The Cancer Genome Atlas}
-        \subsubsection{TCGA goal and setup}
-        % The Cancer Genome Atlas (TCGA) network (Anon n.d.), a part of Genomic Data Commons (GDC) from 2016, maintains a public database of clinical and molecular data over 38 different tumour types with hundreds of cases per type, making it the most comprehensive repository of human cancer data (Anon n.d.). Many important marker discovery papers were published with using TCGA data (Colaprico et al. 2016), but opportunities still exist to implement novel methods and test new hypotheses to characterise new biological pathways and diagnostic markers. 
-        \subsubsection{TCGA breast cancer dataset}
-        % The breast cancer samples available through the TCGA database, among other clinic- and histopathological annotations, are provided with the PAM50 label, allowing for rigorous analysis of the data and room for testing new hypotheses. 
+    
+    
+    
+    \subsubsection{Purpose and Organisation}
 
-        \subsubsection{TCGA breast cancer dataset previous work}
+    The Cancer Genome Atlas (TCGA) network \cite{TheTCGA}, a collaboration between the National Cancer Institute (NCI) and National Human Genome Research Institute (NHGRI), and a part of NCI Genomic Data Commons (GDC) portal from 2016 \cite{NCICommons}, maintains a public database of clinical and molecular data over 33 different tumour types with hundreds of cases per type, making it the most comprehensive repository of human cancer data \cite{OverviewTCGA}. Over the past decade TCGA research network has generated and maintained 2.5 petabytes of data describing tumour and matched normal tissues from more than 11,000 patients that is publicly available and has been used widely by the research community \cite{OverviewTCGA}. The data have contributed to more than a thousand studies of cancer by independent researchers and to the TCGA research network publications \cite{Editorial.2015TheGenomics}.
+
+    The structure of TCGA is well organised and involves several cooperating centres responsible for collection and sample processing, followed by high-throughput sequencing and bioinformatics data analyses \cite{Tomczak2015TheKnowledge, OverviewTCGA}. The generated data is made available to the research community through public free-access databases such as NCI GDC data portal, GDC Legacy Archive and the Broad Institute’s GDAC Firehose \cite{PapaleoTCGAPackages}. \\To provide comprehensive analysis of cancer genome profiles, the TCGA research network works with many centres utilising different platforms to provide global information of cancer genomics, including high-throughput technologies based on microarrays and next-generation sequencing methods. Some of the applied methods include: RNA-sequencing, miRNA-sequencing, exon sequencing, SNP genotyping, DNA methylation profiling, Reverse-phase protein array (RPPA) \cite{OverviewTCGA}. The multidimensional analyses performed on distinct platforms provide scientists with better understanding of cancer biology, leading to improved cancer classification, development of new diagnostic methods and therapeutic approaches.\\
+
+
+
+    \subsubsection{Data Access}
+
+    Two versions of TCGA data are available: harmonised and legacy. The harmonised data is accessible via the NCI GDC data portal \cite{NCICommons}, and it represents a subset of the full TGCA data that has been harmonised against GRCh38 (hg38) using GDC Bioinformatics Pipelines. The GDC Legacy Archive provides access to an unmodified copy of data that was previously stored in the TCGA Data Portal hosted by the TCGA Data Coordinating Center (DCC), and  which uses as references GRCh37 (hg19) and GRCh36 (hg18) \cite{PapaleoTCGAPackages}.
+
+    The legacy data is provided as different levels that are defined in terms of a specific combination of both processing level (raw, normalised, integrated) and access level (controlled or open access), while the GDC open access data does not require authorisation to access the high level genomic data that is not individually identifiable \cite{NCICommons, PapaleoTCGAPackages}.
+    
+    Finally, the data provided by GDC data portal and GDC Legacy Archive can be accessed using R/Bioconductor package TCGAbiolinks \cite{Colaprico2016}. The Bioconductor project ensures high-quality, well-documented and interoperable software and the possibility of integration with hundreds of available packages within R, and is a highly valuable bioinformatics resource \cite{gentleman2004bioconductor}. \\TCGAbiolinks aids in querying, downloading, pre-processing, and analysing TCGA within a single package, allowing user to have a better control over the data and making the results to be easily reproducible \cite{Colaprico2016}. The full clinical report and molecular data (quantified by a variety of methods mentioned above) are prepared to download into a ‘SummarizedExperiment’ object \cite{Huber2015OrchestratingBioconductor}, which allows easy integration with other data types and statistical methods that are common in the Bioconductor repository.  In line with that, the TCGAbiolinks package has a variety of incorporated methodologies for processing and filtering the data.  
+    
+    \newpage
+    \subsubsection{Breast Cancer Dataset}
+    
+    TGCA breast cancer dataset (TCGA-BRCA) is the largest by number of patients cancer type dataset available in TCGA. One of the most complete breast cancer characterisation studies that has ever been performed is the 2012 TCGA research network study \cite{TCGAComprehensiveTumors} that succeeded to identify comprehensive molecular portraits of human breast tumours. 
+    
+    In this study, around 500 primary breast cancers were extensively profiled at the DNA (i.e., methylation, chromosomal copy number changes, and somatic and germ line mutations), RNA (i.e., miRNA and mRNA expressions), and protein (i.e., protein and phosphorprotein expression) levels using the most recent technologies \cite{TCGAComprehensiveTumors, Vidal2017}.
+    
+    By classifying tumours using each individual platform and comparing results at different levels through combining the data together in a cluster of clusters, they concluded that diverse genetic and epigenetic alterations converge phenotypically into four major breast tumour subgroups \cite{TCGAComprehensiveTumors}. But also importantly, these four entities were found to be recapitulated very well by the four main intrinsic subtypes (Luminal A, Luminal B, HER2-enriched, and Basal-like) as previously defined by mRNA expression only in the Parker’s study \cite{ParkerSupervisedSubtypes}. The Normal-like subtype had limited amount of samples, and therefore was not rigorously explored. Overall, these results suggested that intrinsic subtyping captures a great amount of biological diversity that occurs in breast cancer. 
+    
+    Another large-scale TCGA-BRCA study was conducted by Ciriello \textit{et al.} in 2015 \cite{Ciriello2015ComprehensiveCancer} on profiling 817 breast cancer samples. The study had a much larger proportion of lobular carcinoma tumours than the original TCGA work, where those were underrepresented. The study shed new light on the genetic bases of lobular morphology and provided more insights into the intrinsic subtypes and their distribution across different morphologies. 
+    
+    
+    
+   
+    
+    
+    
+    
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
         
         
-        
+     \newpage   
     \subsection{Autophagy}
     % In 2016, a Nobel Prize in Physiology or Medicine was given to Prof Yoshinori Ohsumi (Anon n.d.), a renowned scientist in the autophagy research field, for his success in elucidating the sophisticated machinery of the autophagy pathway. Because of his pioneering work, autophagy is recognized as a fundamental process in cell physiology with major implications for human health and disease. 
     % Autophagy is an evolutionarily conserved lysosomal degradation process that is crucial for adaptation to stress and maintaining cellular homeostasis (Feng et al. 2015). Recent studies have demonstrated association between autophagy and cancer, which implies that autophagy plays an important role in the development, progression, and response of breast cancer cells to chemotherapy and other therapies (Debnath n.d.). 
