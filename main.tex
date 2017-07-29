@@ -53,11 +53,8 @@
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
-%%% makes list of fig to have only 1st sentence in caption
-%\let\oldcaption\caption
-%\def\splitter #1. #2@@{\oldcaption[#1]{#1. #2}}
-%\def\caption#1{\splitter #1@@}
-
+%\usepackage{refcount} %for making lists of fig appear in contents
+\usepackage[nottoc]{tocbibind}
 \begin{document}
 
 
@@ -104,31 +101,68 @@
 \pagestyle{plain}
 
 
-\tableofcontents
-
-\mainmatter
+\frontmatter
 
 \chapter{Abstract}
 \input{chapters/abstract}
 
+
+\tableofcontents
+
+
+
+
+\cleardoublepage
+\addcontentsline{toc}{part}{\small List of Abbreviations}
+\addtocontents{toc}{\protect\vspace{-0.2em}}
+%abbreveations
+\printnomenclature[5em]
+\hfill % add blank space
+\nomenclature{AJCC}{The American Joint Committee on Cancer }
+\nomenclature{CBL}{Computational Biology Lab}
+\nomenclature{CPM}{Counts per million}
+\nomenclature{DCRC}{Danish Cancer Research Centre}
+\nomenclature{DE}{Differential expression / differentially expressed }
+\nomenclature{DEA}{Differential expression analysis }
+\nomenclature{DEGs}{Differentially expressed genes }
+\nomenclature{EDA}{Exploratory data analysis}
+\nomenclature{ER}{Estrogen receptor}
+\nomenclature{GDC}{Genomic Data Commons }
+\nomenclature{HER2}{Human epidermal growth factor receptor 2 }
+\nomenclature{ICD-O-3}{International Classification of Diseases for Oncology, 3rd edition}
+\nomenclature{IDC}{Invasive ductal carcinoma }
+\nomenclature{IHC}{Immunohistochemistry}
+\nomenclature{ILC}{Invasive lobular carcinoma}
+\nomenclature{NCI}{National Cancer Institute }
+\nomenclature{NHGRI}{National Human Genome Research Institute}
+\nomenclature{PCA}{Principal component analysis }
+\nomenclature{PCs}{Principal components}
+\nomenclature{PR}{Progesterone receptor}
+\nomenclature{RPKM/FPKM}{Reads/fragments per kilobase of transcript per million}
+\nomenclature{TCGA}{The Cancer Genome Atlas}
+\nomenclature{TCGA-BRCA}{The Cancer Genome Atlas breast cancer data}
+\nomenclature{TNM}{Tumour, Nodes, Metastasis (system)}
+\nomenclature{UICC}{International Union Against Cancer }
+\nomenclature{WHO}{World Health Organisation }
+
+
 \listoffigures
 \listoftables
-%\printnomenclature[1in]
-%\hfill % add blank space
-%\nomenclature{TCGA}{The Cancer Genome Atlas}
- 
+
+\mainmatter
+
 
 \chapter{Introduction}
-%\input{chapters/introduction}
+\input{chapters/introduction}
 
 \chapter{Methods and Materials}
 %\input{chapters/methods}
 
 \chapter{Results}
-\input{chapters/results}
+%\input{chapters/results}
 
 \chapter{Discussion}
-\input{chapters/discussion}
+%\input{chapters/discussion}
 
 %%% more chapters!
 

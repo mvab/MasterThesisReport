@@ -7,7 +7,7 @@
      
             \begin{table}[!htbp]
             \centering
-            \caption{Overview of RNA-Seq samples in the TCGA-BRCA dataset. \textit{Top row:} all available samples, \textit{Bottom row:} samples used in the project.}
+            \caption[Overview of RNA-Seq samples in the TCGA-BRCA dataset]{Overview of RNA-Seq samples in the TCGA-BRCA dataset. \textit{Top row:} all available samples, \textit{Bottom row:} samples used in the project.}
             \label{table:full}          
             \begin{tabular}{cc|c|c|c}
             \multicolumn{1}{l}{} & \textbf{Samples} & \textbf{Tumour} & \textbf{Normal} & \textbf{Metastasis} \\ \cline{2-5} 
@@ -27,7 +27,7 @@
      %   TABLE 2.2
             \begin{table}[!htbp]
             \centering
-            \caption{The number of samples in each morphology type and stage in the final dataset. ‘Stage X' is unknown/unidentifiable stage. ‘Other morphologies' comprises types that are represented by only a few samples.}
+            \caption[Morphology and stage samples count in the dataset]{The number of samples in each morphology type and stage in the final dataset. ‘Stage X' is unknown/unidentifiable stage. ‘Other morphologies' comprises types that are represented by only a few samples.}
             \label{table:morphstage}
             \begin{tabular}{lccllclc}
             \multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\
@@ -58,7 +58,7 @@
      %   TABLE 2.3   
                 \begin{table}[!htbp]
                 \centering
-                \caption{The number of samples in each PAM50 molecular subtype in the final dataset.}
+                \caption[PAM50 samples count in the dataset]{The number of samples in each PAM50 molecular subtype in the final dataset.}
                 \label{table:pam50counts}
                 \begin{tabular}{ll}
                 \multicolumn{1}{c}{\textbf{PAM50}} &  \\ \hline
@@ -78,7 +78,7 @@
     
             \begin{table}[!htbp]
             \centering
-            \caption{Functional groups of autophagy-related genes. The numbers are reported for the dataset after pre-processing with TCGAbiolinks. Some genes are present in more that one group. }
+            \caption[Functional groups of autophagy-related genes]{Functional groups of autophagy-related genes. The numbers are reported for the dataset after pre-processing with TCGAbiolinks. Some genes are present in more that one group. }
             \label{table:autophagy}
             \begin{tabular}{l|c}
             \small
@@ -117,8 +117,8 @@
        % workflow
             \begin{figure}[h]
             \centering
-            \includegraphics[scale=0.8]{analysis_workflow_test.png}
-            \caption{Project workflow overview. Several pre-processing and filtering steps reduce the number of samples and genes in the original dataset prior to exploratory and hypothesis-driven data analyses. The data is normalised so that samples can be more appropriately compared. The results of exploratory analysis guide the hypothesis-driven analysis. The observations from both are used for biological interpretation. }
+            \includegraphics[scale=0.63]{analysis_workflow.pdf}
+            \caption[Project workflow overview]{Project workflow overview. Several pre-processing and filtering steps reduce the number of samples and genes in the original dataset prior to exploratory and hypothesis-driven data analyses. The data is normalised so that samples can be more appropriately compared. The results of exploratory analysis guide the hypothesis-driven analysis. The observations from both are used for biological interpretation. }
             \label{fig:workflow}
             \end{figure} 
     
@@ -168,24 +168,26 @@
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.51]{pca_method.png}
-            \caption{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples.}
+            \caption[PCA 2D plot example]{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples.}
             \label{fig:pcamethod}
             \end{figure}
         
     \newpage
-    Another way of exploring variation characterised by PCA is to visualise variation of each principal component in a series of one-dimensional (1D) box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset shown previously as a scatter plot of first two PCs (Figure \ref{fig:pcamethod}). 
-    In contrast to 2D scatter plots, 1D PCA plots are able to show variation along more than two PCs at a time. This method is useful for inspecting if any of the other PCs contain variation worth exploring, e.g. checking for presence of potential batch effects or signatures left by other cofactors. 
-    For each PC, the variation of each condition group, here - cancer and normal, is represented by a box plot. The PCs where condition boxes have the smallest overlap (e.g. PC1) will shows the clearest separation when plotted in 2D. The PCA results were handled with \texttt{dplyr} R package \cite{wickham2015dplyr} to create 1D box plots. \\
+    Another way of exploring dataset variation characterised by PCA is to visualise variation captured by each principal component in a series of one-dimensional (1D) box plots. Figure \ref{fig:1dpcamethod} shows the variation seen in each PC (1-9) for the cancer/normal dataset that was shown previously as a scatter plot of first two PCs (Figure \ref{fig:pcamethod}). \\ In contrast to 2D scatter plots, 1D PCA plots are able to show variation along more than two PCs at a time.  
+    For each PC, the variation of each condition group, here - cancer and normal, is represented by a box plot. The PCs where condition boxes have the smallest overlap (e.g. PC1) will shows the clearest separation when plotted in 2D. The PCA results were handled with \texttt{dplyr} R package \cite{wickham2015dplyr} to create 1D box plots. 
        
     
         % PCA 1d
             \begin{figure}[h]
             \centering
             \includegraphics[scale=0.6]{1dpcamethod.png}
-            \caption{An example of one-dimensional PCA plots for the cancer/normal dataset. }
+            \caption[PCA 1D plot example]{An example of one-dimensional PCA plots for the cancer/normal dataset. }
             \label{fig:1dpcamethod}
             \end{figure}
+            
+    The 1D PCA method is extremely useful for checking for presence of potential batch effects or signatures left by other cofactors in any of the PCs. Batch effects are a common and powerful source of variation in high-throughput biology. They are artifacts not related to the biological variation of scientific interests, and may substantially affect the downstream analysis results if not dealt with properly  \cite{Leek2010}. For example, batch effects may occur if an experiment was run on two different days, or two different lots of reagents or instruments were used. Principal components can capture both biological and technical variability and therefore can be used to quantify the effects of such artifacts on the data \cite{LeekCapturingAnalysis}.
    
+ 
   
     \subsection{Clustering and Heatmap representation}
     
@@ -193,15 +195,15 @@
         
     The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a data matrix visualising values in the cells by the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.
     
-    
+    \newpage
     One of the popular methods is Hierarchical Clustering, which involves re-ordering of samples based on their distance in high dimensional space. The cluster is constructed based on the determination of two parameters — the distance metric and the linkage criterion. Objects close to each other in the hierarchy, measured by tracing the branch heights, are also close by some measure of distance — for example, individuals with similar expression profiles will be close together in terms of branch lengths.
     
-    \newpage
+    
     The two most common distance measures used for clustering are Euclidean and Manhattan distances. Typically the results of the two are quite similar, and most studies default to using the Euclidean measure. 
     
     The Euclidean distance involves computing the square root of square differences between two coordinates. In this way, the shortest path diagonally is calculated: $$ \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}}$$ where the first point is $(x_1, y_1)$ and the second point is $(x_2, y_2).$
     
-    The Manhattan distance between two points is calculated by taking the sum of the lengths of the differences between the coordinates. Therefore, the distance is measure not in a straight line, but on horizontal (x) and vertical (y) axes: $$ (x_{1}-x_{2})+(y_{1}-y_{2})$$
+    % The Manhattan distance between two points is calculated by taking the sum of the lengths of the differences between the coordinates. Therefore, the distance is measure not in a straight line, but on horizontal (x) and vertical (y) axes: $$ (x_{1}-x_{2})+(y_{1}-y_{2})$$
     
 
    An example of unsupervised clustering of samples with heatmap is shown in Figure \ref{fig:heatmapmethod}. The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bar above the heatmap shows cancer/normal samples as pink/blue vertical lines, and clustering forms blocks of colour. The heatmap colours  represent gene expression intensity according to the scale (high expression - dark blue, low expression - light yellow). 
@@ -210,8 +212,8 @@
      % heatmap method
         \begin{figure}[h]
         \centering
-        \includegraphics[scale=0.4]{heatmapmethod2.png}
-        \caption{An example of clustering of the cancer/normal samples with heatmap representation. The data was clustered with Euclidean distance and average linkage. }
+        \includegraphics[scale=0.5]{heatmapmethod2.png}
+        \caption[Clustering with heatmap example]{An example of clustering of the cancer/normal samples with heatmap representation. The data was clustered with Euclidean distance and average linkage. }
         \label{fig:heatmapmethod}
         \end{figure}
     
@@ -220,24 +222,22 @@
 
    
 
-\newpage
 
+% \subsection{Batch effects}
 
-\subsection{Batch effects}
-
-Batch effects are a common and powerful source of variation in high-throughput biology.  They are artifacts not related to the biological variation of scientific interests, and may substantially affect the downstream analysis results if not dealt with properly. 
-To identify the existence of batch effects, exploratory analyses must be carried out to help quantify their effect, so that downstream statistical analyses can then be adjusted to account for these unwanted effects. 
+% Batch effects are a common and powerful source of variation in high-throughput biology.  They are artifacts not related to the biological variation of scientific interests, and may substantially affect the downstream analysis results if not dealt with properly. 
+% To identify the existence of batch effects, exploratory analyses must be carried out to help quantify their effect, so that downstream statistical analyses can then be adjusted to account for these unwanted effects. 
  
-Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological variables in a study \cite{Leek2010}. For example, batch effects may occur if a subset of experiments was run on two different week days, if two technicians were responsible for different subsets of the experiments or if two different lots of reagents or instruments were used. This becomes a major problem when batch effects are correlated with an outcome of interest and lead to incorrect conclusions.
+% Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological variables in a study \cite{Leek2010}. For example, batch effects may occur if a subset of experiments was run on two different week days, if two technicians were responsible for different subsets of the experiments or if two different lots of reagents or instruments were used. This becomes a major problem when batch effects are correlated with an outcome of interest and lead to incorrect conclusions.
  
-Although batch effects are difficult or impossible to detect in low-dimensional assays, high-throughput technologies provide enough data to detect and even remove them \cite{Leek2010}. 
+% Although batch effects are difficult or impossible to detect in low-dimensional assays, high-throughput technologies provide enough data to detect and even remove them \cite{Leek2010}. 
  
-One way to quantify the affect of non-biological variables is to examine the principal components of the data. Principal components are estimates of the most common patterns that exist across features, as discussed in the previous section. Principal components can capture both biological and technical variability and therefore can be used to quantify the effects of artifacts on the high-throughput data \cite{LeekCapturingAnalysis}. Principal components can be compared to known variables, such as sample source and time. 
+% One way to quantify the affect of non-biological variables is to examine the principal components of the data. Principal components are estimates of the most common patterns that exist across features, as discussed in the previous section. Principal components can capture both biological and technical variability and therefore can be used to quantify the effects of artifacts on the high-throughput data \cite{LeekCapturingAnalysis}. Principal components can be compared to known variables, such as sample source and time. 
  
-Of more concern are cases in which batch effects are confounded with an outcome of interest and result in misleading biological or clinical conclusions \cite{Leek2010}. An example of confounding is when all of the cases are processed on one day and all of the controls are processed on another. In this project, it will be crucial to check if any of the cancer sample subgroups are linear with sample processing site or time (year sample taken). In an ideal experimental design comparing a molecular profile in tumour and healthy samples, the samples should be equally distributed between multiple laboratories and across different processing times. These steps can help to minimize the probability of confounding between biological and batch effects.
+% Of more concern are cases in which batch effects are confounded with an outcome of interest and result in misleading biological or clinical conclusions \cite{Leek2010}. An example of confounding is when all of the cases are processed on one day and all of the controls are processed on another. In this project, it will be crucial to check if any of the cancer sample subgroups are linear with sample processing site or time (year sample taken). In an ideal experimental design comparing a molecular profile in tumour and healthy samples, the samples should be equally distributed between multiple laboratories and across different processing times. These steps can help to minimize the probability of confounding between biological and batch effects.
  
-%this part is a bit weird
-In sum, the first step in the exploratory statistical analysis of batch effects is to identify and quantify batch effects using principal components analysis or other visualization techniques. If strong batch effects exist, they must be accounted for in downstream statistical analyses. 
+% %this part is a bit weird
+% In sum, the first step in the exploratory statistical analysis of batch effects is to identify and quantify batch effects using principal components analysis or other visualization techniques. If strong batch effects exist, they must be accounted for in downstream statistical analyses. 
 
  
 
@@ -321,7 +321,7 @@ The formed clusters are visualised by the mfuzz plotting function, an example sh
         %\centering
         \includegraphics[width=0.75\linewidth]{mfuzzmethod.pdf}\hfill
         \includegraphics[width=0.2\linewidth]{mfuzzcolorbar_pad.pdf}
-        \caption{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green coloured lines correspond to genes with low membership value; red and purple coloured lines -- high membership value.}
+        \caption[Soft-clustering plots example]{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green coloured lines correspond to genes with low membership value; red and purple coloured lines -- high membership value.}
         \label{fig:mfuzzmethod}
         \end{figure}
             
@@ -369,7 +369,7 @@ Clustering was performed on all samples together and on individual PAM50 subtype
                 \begin{figure}[!h]
                 \centering
                \includegraphics[scale=0.2]{fisher_venn2.png}
-                \caption{The relationship between gene groups defined in Enrichment Analysis.}
+                \caption[Enrichment analysis test setup diagram]{The relationship between gene groups defined in Enrichment Analysis.}
                 \label{fig:fishervenn}
                 \end{figure}
                 
@@ -381,7 +381,7 @@ Clustering was performed on all samples together and on individual PAM50 subtype
         
        \begin{table}[!h]
         \centering
-        \caption{The set up for enrichment analysis \textit{2-by-2} contingency table. The gene set in this project is the autophagy-related genes, and the ‘interesting’ genes can be differentially expressed genes or genes represented by a cluster.  }
+        \caption[Enrichment analysis test setup contingency table]{The set up for enrichment analysis \textit{2-by-2} contingency table. The gene set in this project is the autophagy-related genes, and the ‘interesting’ genes can be differentially expressed genes or genes represented by a cluster.  }
         \label{table:constable}
         \begin{tabular}{c|c|c}
              & \textbf{Not interesting genes} & \textbf{Interesting genes} \\ \hline
