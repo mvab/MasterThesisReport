@@ -45,7 +45,7 @@
 \graphicspath{ {images/} }
 \usepackage{wallpaper}
 
-\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{mendeley.bib}
 \addbibresource{nonmenrefs.bib}
 
@@ -67,7 +67,7 @@
     %\begin{adjustwidth}{-1cm}{-0.5cm}
     
     \vspace*{4.5cm} 
-    \noindent \textbf{\huge Identification of autophagy signatures in breast cancer using The Cancer Genome Atlas data} \\
+    \noindent \textbf{\huge Identification of autophagy signatures\\ in breast cancer using\\ The Cancer Genome Atlas data} \\
     \\[0.5cm]
     \textit{\Large Master's Thesis} \\
     [0.5cm]
@@ -109,14 +109,11 @@
 
 \tableofcontents
 
-
-
-
 \cleardoublepage
 \addcontentsline{toc}{part}{\small List of Abbreviations}
 \addtocontents{toc}{\protect\vspace{-0.2em}}
 %abbreveations
-\printnomenclature[5em]
+\printnomenclature[3em]
 \hfill % add blank space
 \nomenclature{AJCC}{The American Joint Committee on Cancer }
 \nomenclature{CBL}{Computational Biology Lab}
@@ -138,13 +135,17 @@
 \nomenclature{PCA}{Principal component analysis }
 \nomenclature{PCs}{Principal components}
 \nomenclature{PR}{Progesterone receptor}
-\nomenclature{RPKM/FPKM}{Reads/fragments per kilobase of transcript per million}
+\nomenclature{RPKM}{Reads per kilobase of transcript per million}
+\nomenclature{FPKM}{Fragments per kilobase of transcript per million}
 \nomenclature{TCGA}{The Cancer Genome Atlas}
 \nomenclature{TCGA-BRCA}{The Cancer Genome Atlas breast cancer data}
 \nomenclature{TNM}{Tumour, Nodes, Metastasis (system)}
 \nomenclature{UICC}{International Union Against Cancer }
 \nomenclature{WHO}{World Health Organisation }
-
+\nomenclature{TNBC}{Triple Negative Breast Cancer }
+\nomenclature{qRT-PCR}{Quantitative reverse transcriptase polymerase chain reaction }
+\nomenclature{PAM50}{Prediction Analysis of Microarray, based on 50 gene set}
+\nomenclature{DCC}{Data Coordinating Centre}
 
 \listoffigures
 \listoftables
@@ -153,13 +154,13 @@
 
 
 \chapter{Introduction}
-\input{chapters/introduction}
+%\input{chapters/introduction}
 
 \chapter{Methods and Materials}
 %\input{chapters/methods}
 
 \chapter{Results}
-%\input{chapters/results}
+\input{chapters/results}
 
 \chapter{Discussion}
 %\input{chapters/discussion}

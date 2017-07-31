@@ -4,77 +4,86 @@
 
     \subsection{Main effect subgroups}
 
-    There are three main effects by which breast cancer samples can be stratified into groups: morphology, stage and PAM50 molecular profile. PCA is able separate samples into tumour/normal sample clusters fairly well (shown as an example in Methods, Figure \ref{fig:pcamethod}). However, it is more interesting to apply PCA to explore variation between groups of samples captured by applying different classification methods.  
+    There are three main effects by which breast cancer samples can be stratified into groups: morphology, stage and PAM50 molecular profile. PCA separates samples into tumour/normal sample clusters fairly well (shown as an example in Methods, Figure \ref{fig:pcamethod}). However, it is more interesting to apply PCA to explore variation between groups of samples classified by different methods.  
     PCA was applied to 969 samples (857T, 112N), which were divided into subgroups by three systematic effect groups (i.e. PAM50, tumour morphology, cancer stage), the sizes of which are shown in Tables \ref{table:morphstage} and \ref{table:pam50counts}. \\
-    The PCA plot of data coloured by PAM50 molecular subtypes is shown in Figure \ref{fig:pcapam50}. PC1 accounts for 11\% of the total variation in the data, and is driven by the differences between normal and cancer samples. PC2 accounts for 8.6\% of the variation, and characterises the variation among breast cancer subtypes. Basal-like samples form a separate cluster (orange), which emphasises its complete dissimilarity at molecular level. Luminal A and Luminal B form a partially overlapping cluster (yellow and red), which is expected from the known similarities of these subtypes. HER2-enriched cluster (blue) is understandably located between Luminal B and Basal-like as it is known to share expression profiles and receptor statuses with these two. And lastly, seeing Normal-like subtype (pink) overlapping with normal samples (green) as well as with Luminal A subtype fits nicely with the fact that Normal-like subtype shares morphology with the former and IHC and molecular profile with the latter.    
+    The PCA plot of data coloured by PAM50 molecular subtypes is shown in Figure \ref{fig:pcapam50}. PC1 accounts for 11\% of the total variation in the data, and is driven by the differences between normal and cancer samples. PC2 accounts for 8.6\% of the variation, and characterises the variation among breast cancer subtypes. Basal-like samples form a separate cluster (orange), which emphasises its complete dissimilarity at molecular level. Luminal A and Luminal B form a partially overlapping cluster (yellow and red), which is expected from the known similarities of these subtypes. HER2-enriched cluster (blue) is understandably located between Luminal B and Basal-like as it partially shares receptor status subtype with the two. And lastly, seeing Normal-like subtype (pink) overlapping with normal samples (green) as well as with Luminal A subtype fits nicely with the fact that Normal-like subtype shares morphology with the former and IHC subtype with the latter.    
     
     % PAM50 PCA plot 
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.4]{pcapam502.png} 
+            %\includegraphics[scale=0.4]{pcapam502.png} 
+            \includegraphics[scale=0.58]{pam50pca.pdf} 
             \caption[PCA plot showing separation by PAM50 subtypes(2D)]{PCA plot showing the variance along PC1 and PC2 for PAM50 molecular subtypes of breast cancer and normal samples.}
             \label{fig:pcapam50}
             \end{figure}
             
     \newpage
-    One dimensional PCA plot based on PAM50 subtypes is shown in Figure \ref{fig:1dpcapam50}, where the variation along the first nine PCs is displayed as explained in the Methods section 2.2.1. Looking at the results in this way highlights again that PC1 is driven by tumour/normal variation. Together with PC2 they also capture the differences among PAM50 subtypes. As the PCs numbers increase, variation captured by them decreases. 
+    One dimensional PCA plot based on PAM50 subtypes is shown in Figure \ref{fig:1dpcapam50}, where the variation along the first nine PCs is displayed as explained in Section 2.2.1. Looking at the results in this way highlights again that PC1 is driven by tumour/normal variation. Together with PC2 they also capture the differences among PAM50 subtypes. As the PCs numbers increase, variation captured by them decreases. 
     
     % PAM50 1d PCA plot 
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.39]{1dpcapam50.png}
+            %\includegraphics[scale=0.39]{1dpcapam50.png}
+            \includegraphics[scale=0.45]{1dpcapam50.pdf}
             \caption[PCA plot showing separation by PAM50 subtypes (1D)]{One-dimensional PCA plots showing variance along PC1-PC9 for PAM50 molecular subtypes of breast cancer and normal samples. }
             \label{fig:1dpcapam50}
             \end{figure}
     
     
-    The PCA results for stages and morphology classifications are shown in Figures \ref{fig:1dpcastage} and \ref{fig:1dpcamorph} (2D ad 1D). PCA was not able to capture as much variation between morphology groups and stages as between PAM50 subtypes. From one-dimensional plots for both stages and morphology it is evident that PC1 captures cancer/normal differences in both classification types. However, the rest of PCs do not capture enough variation to be evident on 2D PCA plots. The 2D scatter plots are displaying PCs with the most prominent variation.     
+    The PCA results for stages and morphology classifications are shown in Figures \ref{fig:1dpcastage} and \ref{fig:1dpcamorph} (2D ad 1D). PCA was not able to capture as much variation between stages and morphology groups as between PAM50 subtypes. From one-dimensional plots for both stages and morphology it is evident that PC1 captures cancer/normal differences in both classification types. However, the rest of PCs do not capture enough variation for the groups to be clearly separated on 2D PCA plots. 
     
     % 1D PCA for stages and morphology
             
             \begin{figure}[!h]
             \hspace*{\fill}
-            \includegraphics[width=0.51\linewidth]{pcastages.png}\hfill
-            \includegraphics[width=0.44\linewidth]{1dpcastages2.png}
+            %\includegraphics[width=0.51\linewidth]{pcastages.png}\hfill
+            %\includegraphics[width=0.44\linewidth]{1dpcastages2.png}
+            \includegraphics[width=0.51\linewidth]{pcastages.pdf}\hfill
+            \includegraphics[width=0.44\linewidth]{1dpcastages.pdf}
             \hspace*{\fill}
-            \caption[PCA plots (2D and 1D) showing separation by cancer stages]{2D and 1D (PCs 1-9) PCA plots showing variance captured between cancer stages and normal samples.}
+            \caption[PCA plots (2D and 1D) showing separation by cancer stages]{PCA results showing variance captured between cancer stages and normal samples; left - 2D, right 1D (PCs 1-9). Unknown stage samples are excluded.}
             \label{fig:1dpcastage}
             \end{figure}
             
-        Interestingly, PCA did not capture any noticeable differences even between distant stages (i.e. stage 1 and stage 4), where the differences in expression should be evident and therefore reflected in PCA results. This is also the case for two main distinct morphologies - Lobular and Ductal carcinomas, which overlap greatly.
+        Interestingly, PCA did not capture any noticeable differences even between distant stages (i.e. stage 1 and stage 4), where the differences in expression should be substantial and therefore reflected in the PCA results. This is also the case for two main distinct morphologies - Lobular and Ductal carcinomas, which overlap greatly in the plots.
     
             \begin{figure}[!h]
-            \centering
+            %\centering
             \hspace*{\fill}
-            \includegraphics[width=0.48\linewidth]{pcamorph.png}\hfill
-            \includegraphics[width=0.41\linewidth]{1dpcamorph2.png}
+            %\includegraphics[width=0.48\linewidth]{pcamorph.png}\hfill
+           %\includegraphics[width=0.41\linewidth]{1dpcamorph2.png}
+            %\includegraphics[width=0.50\linewidth]{pcamorph.pdf}\hfill
+            \includegraphics[width=0.50\linewidth]{pcamorph_circle.pdf}\hfill
+            \includegraphics[width=0.43\linewidth]{1dpcamorph.pdf}
             \hspace*{\fill}
-            \caption[PCA plots (2D and 1D) showing separation by tumour morphologies]{2D and 1D (PCs 1-9) PCA plots showing variance captured between tumour morphologies and normal samples.}
+            \caption[PCA plots (2D and 1D) showing separation by tumour morphologies]{PCA results showing variance captured between morphology types and normal samples; left - 2D, right 1D (PCs 1-9). }
             \label{fig:1dpcamorph}
             \end{figure}
 
     
     \newpage
-    A possible explanation for the observed PCA results is the difference in sizes of morphology and stages subgroups, as well as their composition in terms of PAM50 subtypes, which is evidently the main driving force behind sample classifications. To explore this idea, the sample count per subgroup was visualised as stacked barplots presented in Figure \ref{fig:barms}. Each bar shows the total number of samples of a chosen morphology (left plot) or stage (right plot). The difference in groups sizes in apparent.
+    A possible explanation for the observed PCA results is the difference in sizes of morphology and stages subgroups, as well as their composition in terms of PAM50 subtypes, which evidently characterises the main driving force behind differences between samples. To explore this idea, the sample count per subgroup was visualised as stacked barplots presented in Figure \ref{fig:barms}. Each bar shows the total number of samples of a chosen morphology (left plot) or stage (right plot). The difference in subgroups sizes in apparent.
     % barsplots for stages and morphology 
        
         \begin{figure}[!h]
+        %\includegraphics[width=0.53\linewidth]{bar_morph.png}\hfill
+        %\includegraphics[width=0.4\linewidth]{bar_stages2.png}
         \includegraphics[width=0.53\linewidth]{bar_morph.png}\hfill
         \includegraphics[width=0.4\linewidth]{bar_stages2.png}
         \caption[Stacked barplots of samples count per stage and morphology type]{Stacked barplots of sample counts per subgroups in morphology types (left) and stages (right). The coloured proportions represent PAM50 subtypes samples within each subgroup.}
         \label{fig:barms}
         \end{figure}
         
-    Ductal carcinoma samples make up 75\% of all samples (644/857), but are well-proportionate in terms of their PAM50 composition (i.e. similar proportions as the full dataset, with Luminal A dominating). Other morphologies, however, in addition to being smaller in sample count, are restricted to only a few PAM50 subtypes. For instance, Metaplastic carcinoma is made up completely of Basal-like samples, while Mucinous morphology is represented by only Luminal subtypes (the counts are shown in Table \ref{table:counts}). This explains why these two mophologies are separated in 2D PCA plot in PC2 (Figure \ref{fig:1dpcamorph}) - the difference between Luminal and Basal tissues is driving their variation. However, it is important to note, that there is some evidence in the literature, a study by Weigelt \textit{et al.} \cite{Weigelt2010a} that these two morphologies, Metaplastic and Mucinous, actually only exists as Basal and Luminal subtype, so the observed difference might be truly due to morphology.  
+    Ductal carcinoma samples make up 75\% of all samples (644/857), but are well-proportionate in terms of their PAM50 composition (i.e. similar proportions as the full dataset, with Luminal A dominating). The other morphologies, however, in addition to being smaller in sample count, are restricted to only a few PAM50 subtypes. For instance, Metaplastic carcinoma is made up completely of Basal-like samples, while Mucinous morphology is represented by only Luminal subtypes (the counts are shown in Table \ref{table:counts}). This explains why these two mophologies are well-separated in PCA plot on PC2 (Figure \ref{fig:1dpcamorph}, circled) -- the difference between Luminal and Basal tissues is driving their variation. However, it is important to note, that there is some evidence in the literature, e.g. a study by Weigelt \textit{et al.} \cite{Weigelt2010a}, that Metaplastic and Mucinous morphologies actually do only exists as Basal and Luminal subtypes, respectively.  
     
-    The sample count difference between stages is also noticeable, which stage 2 accounting for roughly 50\% of the samples. The proportions of PAM50 subtypes within stages 1-3 appear to be well-balanced. However, this is not the case for stage 4, where in addition to alarmingly low sample count, Normal-like subtype is not represented. The counts are shown in Table \ref{table:counts}.  \\
+    The sample count difference between stages is also noticeable, with stage 2 accounting for roughly 50\% of the samples. The proportions of PAM50 subtypes within stages 1-3 appear to be well-balanced. However, this is not the case for stage 4, where in addition to alarmingly low sample count, Normal-like subtype is not represented. The counts are shown in Table \ref{table:counts}.  
         
         
     %TABLE x3 counts   
                 \begin{table}[!h]
                 \centering
-                \tiny
-                \caption[Sample counts per each pairwise subgroup in the dataset]{Samples number counts in pairwise comparisons of three main breast cancer samples classifications. \textit{Top table:} PAM50 and stages,\textit{ Middle table:} PAM50 and morphology, \textit{Bottom table:} stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
+               \scriptsize
+                \caption[Sample counts per each pairwise subgroup in the dataset]{Sample counts in pairwise comparisons of three main breast cancer samples classifications. \textit{Top table:} PAM50 and stages,\textit{ Middle table:} PAM50 and morphology, \textit{Bottom table:} stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
                 \label{table:counts}      
                 %\resizebox{\textwidth}{!}{%
                 \begin{tabular}{ccccccc}
@@ -82,58 +91,65 @@
                 \multicolumn{1}{c|}{\textbf{stage 1}} & \multicolumn{1}{c|}{94} & \multicolumn{1}{c|}{22} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{{\color[HTML]{656565} 148}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{stage 2}} & \multicolumn{1}{c|}{217} & \multicolumn{1}{c|}{99} & \multicolumn{1}{c|}{105} & \multicolumn{1}{c|}{47} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{{\color[HTML]{656565} 481}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{stage 3}} & \multicolumn{1}{c|}{93} & \multicolumn{1}{c|}{55} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{18} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{{\color[HTML]{656565} 195}} \\ \hline
-                \multicolumn{1}{c|}{\textbf{stage 4}} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} \\ \hline
-                \multicolumn{1}{c|}{\textbf{unknown}} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 21}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{stage 4}} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{unknown}} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 21}} \\ \hline
                 \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 420}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 183}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 153}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 75}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 26}} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
                 \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
                 \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{Luminal A}} & \multicolumn{1}{c|}{\textbf{Luminal B}} & \multicolumn{1}{c|}{\textbf{Basal-like}} & \multicolumn{1}{c|}{\textbf{HER2-enriched}} & \multicolumn{1}{c|}{\textbf{Normal-like}} & {\color[HTML]{9B9B9B} \textit{rowsums}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Lobular}} & \multicolumn{1}{c|}{114} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{{\color[HTML]{656565} 143}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Ductal}} & \multicolumn{1}{c|}{270} & \multicolumn{1}{c|}{158} & \multicolumn{1}{c|}{135} & \multicolumn{1}{c|}{68} & \multicolumn{1}{c|}{13} & \multicolumn{1}{c|}{{\color[HTML]{656565} 644}} \\ \hline
-                \multicolumn{1}{c|}{{\color[HTML]{000000} \textbf{LobDuctal}}} & \multicolumn{1}{c|}{17} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 24}} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 7}} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} \\ \hline
+                \multicolumn{1}{c|}{{\color[HTML]{000000} \textbf{LobDuctal}}} & \multicolumn{1}{c|}{17} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 24}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 7}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{8} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} \\ \hline
                 \multicolumn{1}{c|}{\textbf{Other}} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{656565} 27}} \\ \hline
                 \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 420}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 183}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 153}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 75}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 26}} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
                 \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
                 \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{stage 1}} & \multicolumn{1}{c|}{\textbf{stage 2}} & \multicolumn{1}{c|}{\textbf{stage 3}} & \multicolumn{1}{c|}{\textbf{stage 4}} & \multicolumn{1}{c|}{\textbf{unknown}} & {\color[HTML]{9B9B9B} \textit{rowsums}} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Lobular}} & \multicolumn{1}{c|}{14} & \multicolumn{1}{c|}{78} & \multicolumn{1}{c|}{49} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{143} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Ductal}} & \multicolumn{1}{c|}{118} & \multicolumn{1}{c|}{368} & \multicolumn{1}{c|}{129} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{18} & \multicolumn{1}{c|}{644} \\ \hline
-                \multicolumn{1}{c|}{\textbf{LobDuctal}} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{24} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{7} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{12} \\ \hline
-                \multicolumn{1}{c|}{\textbf{Other}} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} x}} & \multicolumn{1}{c|}{27} \\ \hline
-                \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} & \multicolumn{1}{c|}{148} & \multicolumn{1}{c|}{481} & \multicolumn{1}{c|}{195} & \multicolumn{1}{c|}{12} & \multicolumn{1}{c|}{21} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
+                \multicolumn{1}{c|}{\textbf{Lobular}} & \multicolumn{1}{c|}{14} & \multicolumn{1}{c|}{78} & \multicolumn{1}{c|}{49} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{{\color[HTML]{656565} 143}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Ductal}} & \multicolumn{1}{c|}{118} & \multicolumn{1}{c|}{368} & \multicolumn{1}{c|}{129} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{18} & \multicolumn{1}{c|}{{\color[HTML]{656565} 644}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{LobDuctal}} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{11} & \multicolumn{1}{c|}{7} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{656565} 24}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Metaplastic}} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 7}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Mucinous}} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} \\ \hline
+                \multicolumn{1}{c|}{\textbf{Other}} & \multicolumn{1}{c|}{6} & \multicolumn{1}{c|}{15} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{{\color[HTML]{656565} x}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 27}} \\ \hline
+                \multicolumn{1}{c|}{{\color[HTML]{9B9B9B} \textit{colsums}}} &
+                \multicolumn{1}{c|}{{\color[HTML]{656565} 148}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 481}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 195}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 12}} & \multicolumn{1}{c|}{{\color[HTML]{656565} 21}} & \multicolumn{1}{c|}{\textit{857}} \\ \cline{2-7} 
+                
                 \end{tabular}%
                 %}
                 \end{table}
         
 
-    The alternative method of visualising dataset structure and exploring the relevance of different classification conventions is to perform sample clustering and represent it as a heatmap. Figure \ref{fig:heatmap1k} shows the clustering results based on top 1000 highest variance genes. Variance was computed for each row (gene) in cancer samples only, and the top 1000 genes were used in clustering to capture larges gene expression changes across the full dataset. The three main effect groups (PAM50, stages, morphology) are shown above the heatmap as colour bars, providing side-by-side comparisons.     
+    The alternative method of visualising dataset structure and exploring the relevance of different classifications is to perform sample clustering and represent it as a heatmap. Figure \ref{fig:heatmap1k} shows the
     
     % heatmap 1000
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.71]{heatmap_top1k.png}
+            \includegraphics[scale=0.74]{heatmap_top1k.png}
             \caption[Heatmap clustering of top genes with highest variance]{Heatmap representation of clustering top 1000 highest variance genes (calculated on cancer samples only). The data is clustered by columns (samples) and rows (genes), with dendograms showing how clusters are formed. The colour bars above the heatmap (PAM50, stages, morphology) show the subgroups to which each sample belongs, colour-coded according to the legend on the right. The colours of heatmap represent gene expression magnitude according to the scale (high expression - dark blue, low expression - light yellow). The data was clustered with Euclidean distance and average linkage. }
             \label{fig:heatmap1k}
             \end{figure}
-    \newpage
+            
+   clustering results based on top 1000 highest variance genes. Variance was computed for each row (gene) in cancer samples only, and the top 1000 genes were used in clustering to capture largest gene expression changes across the full dataset. The three main effect groups (PAM50, stages, morphology) are shown above the heatmap as colour bars, providing side-by-side comparisons.     
+   
     First and foremost, the unsupervised clustering was able to form two main clusters: Luminal and non-Luminal samples. Cluster on the right contains the majority of Luminal A and Luminal B samples according to the top colour bar (PAM50). The left hand side cluster contains Basal-like, HER2-enriched, and normal samples. Normal samples have a distinct tanscriptomic profile which is seen from the heatmap. Normal-like subtype is scattered across the entire dendogram, with more pronounced appearance amongst Luminal A and normal samples, as expected. The Basal-like subtype cluster is well-defined, which highlights its uniqueness and distinction from the rest. The Luminal types are mixed as anticipated. Overall, clustering is in agreement with the PCA results for PAM50 subtypes. \\    
-    Regarding the stages and morphology colour bars, it can be observed that clustering, much like PCA, was not able to find any distinct patterns among their subgroups. Again, the sizes of the subgroups may partially be responsible for that. It is a challenge to spot the minority-sized subgroups on the colour bar, and very clear to see how Ductal carcinoma dominates the dataset (light blue, bottom bar). The colour bar of stages also shows no distinct patterns. \\
+    Regarding the stages and morphology colour bars, it can be observed that clustering, much like PCA, was not able to find any distinct patterns among their subgroups. Again, the sizes of the subgroups may partially be responsible for that. It is a challenge to spot the minority-sized subgroups on the colour bar, and very clear to see how Ductal carcinoma dominates the dataset (light blue, bottom bar). The colour bar of stages also shows no distinct patterns. \\ 
+    \newline
     
-    An additional exploratory clustering analysis was done to investigate the relationship between cancer stages and the underlying PAM50 subtypes. As stages of cancer progression are of great interest in this project, the averages of each PAM50 subtype at each stage were taken and clustered. Figure \ref{fig:dendogram} shows the resulting dendogram. 
+    
+    An additional exploratory clustering analysis was done to investigate the relationship between cancer stages and the underlying PAM50 subtypes. As stages of cancer progression are of great interest in this project, the expression averages of each PAM50 subtype at each stage were taken and clustered. Figure \ref{fig:dendogram} shows the resulting dendogram. 
     
         % dendogram
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.45]{dendogram2.png}
+            %\includegraphics[scale=0.45]{dendogram2.png}
+            \includegraphics[scale=0.65]{dendogram2.pdf}
             \caption[Dendogram of PAM50 and stage subgroups clustering]{Dendogram showing clustering of PAM50 subtypes within stages (averages per stage per subtypes).}
             \label{fig:dendogram}
             \end{figure}
     
-    Remarkably, all subtypes form distinct branch clusters (expect HER2-enriched). Normal and Normal-like samples are the outgroup, understandably, and then Basal-like subtype is also an outgroup to the rest of samples. Luminal types and HER2-enriched are separated to well-defined branches. It is important to note that each subtype cluster has stage 4 branch as an outgroup, with the exception of HER2-enriched stage 4, which is only made up of 2 samples perhaps leading to an unstable average. Seeing stage 4 as an outgroup is an important observation, as it is the most different and severe stage of cancer progression. \\
+    Remarkably, all subtypes form distinct branch clusters (expect HER2-enriched). Normal and Normal-like samples form one outgroup, and Basal-like subtype the other. Luminal A and B types and HER2-enriched are separated to well-defined branches. Importantly, each subtype cluster has stage 4 as an outgroup, with the exception of HER2-enriched, in which stage 4 is only made up of 2 samples, perhaps leading to an unstable average. Seeing stage 4 as an outgroup is an important observation, as it is the most different and severe stage of cancer progression. 
     
-    Lastly, seeing the samples cluster primarily by PAM50 and only then by stage in Figure \ref{fig:dendogram}, is yet another evidence to what was observed with PCA and heatmap clustering. PAM50 classification is the main driving force of breast cancer samples separation. When using other classification methods, PAM50 subtypes have to be taken into account. For example, comparing two morphologies might not produce truthful results if their PAM50 subtype sample composition is the main driving effect of differences. Therefore, the heterogeneity of groups has to be taken into account, and the downstream analysis has to be done on sub-subgroups.  
+    Lastly, seeing the samples cluster primarily by PAM50 and only then by stage in Figure \ref{fig:dendogram}, is yet another evidence to what was observed with PCA and heatmap clustering. PAM50 classification describes the main driving force behind breast cancer samples differentiation the best.  
     
 
     
@@ -146,67 +162,74 @@
     
     One-dimensional PCA plots were used to visualise variation over the years and across the sample processing sites. As there are many ($>20$) subgroups in both year and site data, 2D PCA scatter plots are not helpful for spotting outlying subgroups. 
     
-    Figure \ref{fig:1dpcayear} shows the first 6 PCs of from PCA results based on year data. Each box plot represents samples taken in a single year, with individual years shown as gitter-dots to visualise each year group approximate size and sample variation within it (according to y-axis). The box plots are shown for years in sequential order (1988-2013). \\
+    Figure \ref{fig:1dpcayear} shows the first 6 PCs of from PCA results based on year data. Each box plot represents samples taken in a single year, with individual years shown as gitter-dots to visualise each year group approximate size and sample variation within it (according to y-axis). The box plots are shown for years in the sequential order (1988-2013). \\
   
         
             % 1D PCA YEAR
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.45]{1dpcayear.png}
-            \caption[1D PCA plot based on year data]{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) taken in years 1988-2013. The dots across each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it}
+            %includegraphics[scale=0.45]{1dpcayear.png}
+            \includegraphics[scale=0.6]{1dpcayear.pdf}
+            \caption[1D PCA plot based on year data]{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) taken in years 1988-2013. The dots across each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it.}
             \label{fig:1dpcayear}
             \end{figure}
     
     %\vspace{10mm}
-    Overall, it is evident that there is a lot of variation between the years. This is especially the case for the earlier years, however, this is partially due to low number of samples taken in those years.  The variation stabilises after year 2005, which can be explained by the fact that this is when the pilot of TCGA \cite{OverviewTCGA} project started and the universal protocols were introduced. Also it can be seen that the majority of samples were collected after that time point, at the density of points is higher. Another aspect worth noticing is that samples in years 1997-2000 appear to be quite different to previous and following years (PC1). This potentially confounding effect was explored further. \\
+    Overall, it is evident that there is a lot of variation between the years. This is especially the case for the earlier years, however, this is partially due to the low number of samples taken in those years.  The variation stabilises after year 2005, which can be explained by the fact that this is when the pilot of TCGA project started and the universal protocols were introduced \cite{OverviewTCGA}. Also from the large number of jitter dots over those years it can be seen that the majority of samples were collected after that time point. Another aspect worth noting is that samples in years 1997-2000 appear to be quite different to previous and following years (PC1). This potentially confounding effect was explored further. \\
     \newline
     
     \newpage
-    As previously established, PAM50 subtypes is expected to be the main point of interest for further investigation, therefore, it is important to check the PAM50 composition of every year group to make sure that, for example, a particular subtype was \textit{not} collected in only one year, which would be confounding the dataset for further exploration. Figure \ref{fig:baryear} shows the stacked barplot of all sample counts organised by year. Each bar shows the total count of samples per year, and the proportions of samples representing each PAM50 subtype are coloured according to the legend. \\
+    As previously established, PAM50 subtypes is expected to be the main point of interest for further investigation, therefore, it is important to check the PAM50 composition of every year group to make sure that, for example, a particular subtype has \textit{not} been collected in only one year, which would have confounded the dataset for further exploration. Figure \ref{fig:baryear} shows the stacked barplot of all sample counts organised by year. Each bar shows the total count of samples per year, and the proportions of samples representing each PAM50 subtype are coloured according to the legend. \\
     \newline
     
     
              % bar per year
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.7]{bar_year.png}
+            %\includegraphics[scale=0.7]{bar_year.png}
+            \includegraphics[scale=0.6]{bar_year.pdf}
             \caption[Stacked barplots of sample counts per year]{Stacked barplots of sample counts per year (1988-2013). The coloured proportions represent PAM50 subtypes samples within each year group. }
             \label{fig:baryear}
             \end{figure}
     
-    As already noted from 1D PCA plot for year data, the total number of samples in the earlier years is marginally smaller than in the last decade. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, it can be concluded that the dataset is not confounded by a particular year-subtype combination.  
+    As already noted from 1D PCA plot for the year data, the total number of samples taken in the last decade is marginally higher than in the earlier years. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, it can be concluded that the dataset is not confounded by a particular year-subtype combination.  
     
-    Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot (Figure \ref{fig:1dpcayear}, PC1). It can be seen in Figure \ref{fig:baryear} that these years are represented by $\approx50\%$ of normal samples, which is not the case for all other years. Having such high proportion of normal samples, makes their box plots to be shifted down compared to the rest, and hence appear different. Appendix \ref{} shows a 1D PCA plot for cancer samples only, confirming this explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
+    Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot (Figure \ref{fig:1dpcayear}, PC1). It can be seen in Figure \ref{fig:baryear} that these years are represented by $\approx50\%$ of normal samples, which is not the case for all other years. Having such high proportion of normal samples, makes their box plots to be shifted down compared to the rest, and hence appear different. Appendix Y shows a 1D PCA plot for cancer samples only, confirming this explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
     
-
-    As with year data, the sample source data was also explored with PCA and variation between different sources assessed. A 1D PCA plot (PC 1-6) showing variation for all samples grouped by samples source site (24 sites in total) is displayed in Figure \ref{fig:1dpcatss}. 
+    \newpage
+    Similarly to year data, the sample source data was also explored with PCA and variation between different source sites assessed. A corresponding 1D PCA plot (PC 1-6) showing variation for samples grouped by sample source site (24 sites in total) is displayed in Figure \ref{fig:1dpcatss}. \\
+    \newline
     
             
             % 1D PCA YEAR
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.45]{1dpcatss.png}
+            %\includegraphics[scale=0.45]{1dpcatss.png}
+            \includegraphics[scale=0.6]{1dpcatss.pdf}
             \caption[1D PCA plot based on sample source site data]{One-dimensional PCA plots showing variance along PC1-PC6 for all samples (cancer and normal) from different source sites (two-letter abbreviations in alphabetic order; NA - site unknown). The dots across each box plot represent samples and their variation on the y-axis scale, to give a better indication of year group size and sample variation within it.}
             \label{fig:1dpcatss}
             \end{figure}
             
             
-    \newpage
-    The existence of variation between source sites is unmistakably there. As with year data, some source site groups contain very few samples, which makes the variation between them and the large groups more prominent. One source site that really stands out is BH (red), PC1. A possible explanation to this observation, which would make the dataset unusable, could have been the unexpected difference in the handling protocol at this site. However, fortunately this was not the case.  \\
+  
+    The existence of variation between source sites can be seen unmistakably. As with year data, some source site groups contain very few samples, which makes the variation between them and the large groups more prominent. One source site that really stands out is BH (red), on PC1. A possible explanation to this observation, which would have made the dataset unusable, is the unexpected difference in the handling protocol at this site. Fortunately, this was not the case.  \\
     
-              % bar per tss
+
+    The source site data was visualised as stacked bar plots to inspect sample subtype variety coming from each site, Figure \ref{fig:bartss}. As previously noted, some source sites have produced very few samples. The larger sample groups are relatively well-balanced in terms of their PAM50 subtype composition, with the exception of Normal-like, which comes only from 7 sites. This is, however, expected, as there are only 26 Normal-like samples in total. \\
+    
+    Another important observation is that the majority of normal samples come from one site, BH. This should not affect the analysis, as the main interest lies in the difference between cancer subgroups. However, seeing this explains the abnormal variation seen in 1D PCA plot for this site. As with year data, this one site is ~50\% composed of normal samples, making it appear very different from the rest as a group, as cancer/normal distinction is driving PC1. Appendix Y contains the plot resulting from using only cancer samples. 
+  
+    \newpage
+    
+               % bar per tss
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.65]{bar_tss.png}
-            \caption[Stacked barplots of sample counts per year]{Stacked barplots of sample counts per source site (alphabetic order). The coloured proportions represent PAM50 subtypes samples within each year group. }
+            %\includegraphics[scale=0.65]{bar_tss.png}
+            \includegraphics[scale=0.6]{bar_tss.pdf}
+            \caption[Stacked barplots of sample counts per year]{Stacked barplots showing count of each PAM50 subtype collected at each sample source site (shown in alphabetic order). The coloured proportions represent PAM50 subtypes samples within each year group. }
             \label{fig:bartss}
             \end{figure}
     
-    The source site data was visualised as stacked bar plots to inspect sample subtype variety coming from each site, Figure \ref{fig:bartss}. As observed on the 1D PCA plot, some sites have very few samples coming from them. The larger groups are relatively well-balanced in terms of their PAM50 subtype composition, with the exception of Normal-like, which comes only from 7 sites. This is, however, expected, as there are only 26 Normal-like samples in total. Another observation, which may be of bigger concern, is that the majority of normal samples come from one site, BH. This should not affect downstream analyses, as we are interested in differences between cancer subgroups. But seeing this explains the abnormal variation seen in 1D PCA plot for this site. As with year data, this one site is ~50\% composed of normal samples, making it appear very different from the rest as a group. If analysis is done only on cancer samples, this is no longer the case (Appendix \ref{}). 
-    
-  
-    
-        %data was preprocessed as described in methods
     
     
     % The outcome of the EDA will have a major impact on how you analyze the data:
@@ -223,10 +246,11 @@
     % • The resulting DE analysis will serve as the foundation of biological interpretation of the data.
 
 
-    
-    %age groups
+   
     
     \subsection{Summary}
+    
+    When using other classification methods, PAM50 subtypes have to be taken into account. For example, comparing two morphologies might not produce truthful results if their PAM50 subtype sample composition is the main driving effect of differences. Therefore, the heterogeneity of groups has to be taken into account, and the downstream analysis has to be done on sub-subgroups. 
     
 \newpage
 \section{Identifying Autophagy Signatures}
@@ -348,7 +372,7 @@
             %TABLE
              \begin{table}[!h]
             \centering
-            \small
+            \footnotesize
             \caption[Enrichment analysis results based on soft-clustering data]{Autophagy enrichment results on soft-clustering results based on all samples. Three autophagy gene sets were tested: all genes, core autophagy genes, and autophagy TFs. The cluster that is significantly enriched is cluster 4. }
             \label{table:mfuzzall}
             \begin{tabular}{lcccc}
@@ -388,7 +412,7 @@
         \begin{wrapfigure}{R}{0.28\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_basal_enriched_cluster.pdf}}
+        \centerline{ \includegraphics[width=0.26\textwidth]{mfuzz_basal_enriched_cluster.pdf}}
         \vspace*{-8mm}
         \caption[Basal-like subtype downregulation cluster]{\label{fig:mfuzzbasal}Basal-like\newline downregulation cluster}
         \end{wrapfigure}
@@ -402,19 +426,19 @@
         \begin{wrapfigure}{R}{0.28\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_lumA_enriched_cluster.pdf}}
+        \centerline{ \includegraphics[width=0.26\textwidth]{mfuzz_lumA_enriched_cluster.pdf}}
         \vspace*{-8mm}
         \caption[Luminal A subtype downregulation cluster]{\label{fig:mfuzzluma}Luminal A \newline downregulation cluster}
         \end{wrapfigure}
         
         
         \textbf{Luminal A subtype}\\   
-        The expression in Luminal A samples is similar to the all-samples pattern. There are clusters with exclusive up- and downregulation in all cancer stages (Appendix X3; Clusters 3 and 4). There are also clusters with the patterns observed in Basal-like -- relatively unchanged expression until stage 3, and then rapid raise/drop in stage 4. In Luminal A, however, downregulation cluster (Figure \ref{fig:mfuzzluma}) is not found to be enriched for autophagy at ‘all autophagy genes' level, as it is with all and Basal-like samples, even though it is the most gene-abundant cluster like in the other subtypes (Appendix X3). Here, autophagy enrichment is detected only at TFs level: 36 genes, odds-ratio 2.92, adjusted p-value 1.1e-05.\vspace{-5mm} \break
+        The expression in Luminal A samples is similar to the all-samples pattern. There are clusters with exclusive up- and downregulation in all cancer stages (Appendix X3; Clusters 3 and 4). There are also clusters with the patterns observed in Basal-like -- relatively unchanged expression until stage 3, and then rapid raise/drop in stage 4. In Luminal A, however, downregulation cluster (Figure \ref{fig:mfuzzluma}) is not found to be enriched for autophagy at ‘all autophagy genes' level, as it is with all and Basal-like samples, even though it is the most gene-abundant cluster like in the other subtypes (Appendix X3). Here, autophagy enrichment is detected only at TFs level: 36 genes, odds-ratio 2.92, adjusted p-value 1.1e-05.\vspace{5mm} \break
         
         \begin{wrapfigure}{L}{0.28\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_lumB_enriched_clusterNOT_1.pdf}}
+        \centerline{ \includegraphics[width=0.26\textwidth]{mfuzz_lumB_enriched_clusterNOT_1.pdf}}
         \vspace*{-8mm}
         \caption[Luminal B subtype downregulation cluster]{\label{fig:mfuzzlumb}Luminal B\newline downregulation cluster}
         \end{wrapfigure}
@@ -432,7 +456,7 @@
         \begin{wrapfigure}{L}{0.28\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_her2_enriched_clusterNOT.pdf}}
+        \centerline{ \includegraphics[width=0.26\textwidth]{mfuzz_her2_enriched_clusterNOT.pdf}}
         \vspace*{-8mm}
         \caption[HER2-enriched subtype downregulation cluster]{\label{fig:mfuzzher}HER2-enriched \newline downregulation cluster}
         \end{wrapfigure}
@@ -449,7 +473,7 @@
         \begin{wrapfigure}{L}{0.28\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.24\textwidth]{mfuzz_normlike_enriched_clusterNOT.pdf}}
+        \centerline{ \includegraphics[width=0.26\textwidth]{mfuzz_normlike_enriched_clusterNOT.pdf}}
         \vspace*{-8mm}
         \caption[Normal-like subtype downregulation cluster]{\label{fig:mfuzznorm}Normal-like\newline downregulation cluster}
         \end{wrapfigure}
@@ -497,8 +521,8 @@ Gene expression clustering of individual PAM50 subtype samples has produced six 
 
             \begin{figure}[!h]
             \centering
-            \includegraphics[scale=0.5]{overlap_clusters.pdf} 
-            \caption[Overlap between PAM50 subtype-specific downregulation cluster autophagy genes]{Venn diagram showing overlap between PAM50 subtype-specific autophagy genes assigned to downregulation clusters in clustering of individual subtypes.}
+            \includegraphics[scale=0.6]{overlap_clusters.pdf} 
+            \caption[Overlap between PAM50 subtype-specific downregulation cluster autophagy genes]{Venn diagram showing overlap between PAM50 subtype-specific autophagy genes assigned to downregulation clusters in clustering of individual subtypes. The diagram was made with \texttt{VennDiagram} R package \cite{venndiagram}. }
             \label{fig:overlapclusters}
             \end{figure}
             
@@ -508,16 +532,16 @@ Remarkably, each subtype has a fairly large number of  genes unique to its downr
 
             
 
-In differential expression analysis, one of the tested models (Group1: PAM50+stage) allowed the comparison of each individual stage of every subtype to normal samples. In this way, downregulated autophagy genes at each stage in every subtype were identified. Table \ref{table:autodown} show the numbers of differentially expressed genes autophagy in each subgroup combination (vs normal). 
+In differential expression analysis, one of the tested models (Group1: PAM50+stage) allowed the comparison of each individual stage of every subtype to normal samples. In this way, downregulated autophagy genes at each stage in every subtype were identified. Table \ref{table:autodown} shows the numbers of differentially expressed autophagy genes in each subgroup combination (subtype+stage) vs normal. 
 
     %TABLE autophagy downreg
 \begin{table}[!h]
 \centering
-\tiny
-\caption[Count of differentially expressed autophagy genes in contrasts with normal samples]{Count of differentially expressed autophagy genes detected in contrast of Group1 model. Gene counts for each stage of each PAM50 subtype when compared to normal are shown.  }
+\scriptsize	
+\caption[Count of differentially expressed autophagy genes in contrasts with normal samples]{Count of differentially expressed autophagy genes detected in contrasts of Group1 model. Gene counts for each stage of every PAM50 subtype in contrast to normal are shown.  }
 \label{table:autodown}
 \begin{tabular}{l|c|c}
-\multicolumn{1}{c|}{\textit{DE contrast (vs normal)}} & \begin{tabular}[c]{@{}c@{}}upregulated\\  genes\end{tabular} & \begin{tabular}[c]{@{}c@{}}downregulated\\  genes\end{tabular} \\ \hline
+\multicolumn{1}{c|}{\textit{DE contrast (vs normal)}} & \begin{tabular}[c]{@{}c@{}}upregulated genes\end{tabular} & \begin{tabular}[c]{@{}c@{}}downregulated  genes\end{tabular} \\ \hline
 \multicolumn{1}{|l|}{Luminal A, stage 1} & 65 & \multicolumn{1}{c|}{122} \\ \hline
 \multicolumn{1}{|l|}{Luminal A, stage 2} & 64 & \multicolumn{1}{c|}{127} \\ \hline
 \multicolumn{1}{|l|}{Luminal A, stage 3} & 56 & \multicolumn{1}{c|}{116} \\ \hline
@@ -543,35 +567,52 @@ In differential expression analysis, one of the tested models (Group1: PAM50+sta
 \newpage
 
 
-\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.46\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.38\textwidth]{venn_basal.pdf}}
-        \label{fig:vennbasal}
-        \vspace*{-8mm}
-        \caption[Overlap between downregulated autophagy genes in stages of Basal-like subtype]{Overlap between downregulated autophagy genes \\in stages of Basal-like subtype}
+        \centerline{ \includegraphics[width=0.45\textwidth]{venn_basal.pdf}}
+        
+        \vspace*{-4mm}
+        \caption[Overlap between downregulated autophagy genes in stages of Basal-like subtype]{\label{fig:vennbasal}Overlap between downregulated autophagy genes in stages of Basal-like subtype}
         \end{wrapfigure}
  
 
-By overlapping the these genes, it is possible to get an insight into which genes are downregulated at in all stages of one subtype, and also which and how many genes are specific to a particular stage. 
+By overlapping the these genes, it is possible to get an insight into how many genes are downregulated in all stages of one subtype (i.e. complete downregulation), and also how many are specific to a particular stage and how that compares across different subtypes.
 
-Figure \ref{fig:vennbasal} shows such overlap for Basal-like subtype. There are 83 autophagy genes that are downregulated in all stages. 54 genes are downregulated in stages 1-3 but not in stage 4. Also, stage 4 has quite a lot of genes (38) downregulated specifically in it.\\
-Figure \ref{fig:vennluma} shows the stages overlap for Luminal A. Again, as for Basal-like, the two largest overlap group are between all stages (54 genes) and between stages 1-3 only (57 genes). Interestingly, in stage 4 of Luminal A there are not that many unique genes as in Basal-like.\\
+Figure \ref{fig:vennbasal} shows such overlap for Basal-like subtype. There are 83 autophagy genes that are downregulated in all stages. 54 genes are downregulated in stages 1-3 but not in stage 4. In stage 4 there is quite a lot of genes (38) downregulated specifically in it.\\
+Figure \ref{fig:vennluma} shows the stages overlap for Luminal A. Again, as for Basal-like, the two largest overlap group are between all stages (54 genes) and between stages 1-3 only (57 genes). Interestingly, in stage 4 of Luminal A there are not as many uniquely downregulated genes as in Basal-like.\\
 
-\begin{wrapfigure}{L}{0.45\textwidth}
+
+\begin{wrapfigure}{L}{0.46\textwidth}
         \hfill
         \captionsetup{justification=centering}
-        \centerline{ \includegraphics[width=0.38\textwidth]{venn_lumA.pdf}}
-        \label{fig:vennluma}
-        \vspace*{-8mm}
-        \caption[Overlap between downregulated autophagy genes in stages of Luminal A subtype]{Overlap between downregulated autophagy genes \\in stages of Luminal A subtype}
+        \centerline{ \includegraphics[width=0.45\textwidth]{venn_lumA.pdf}}
+        
+        \vspace*{-4mm}
+        \caption[Overlap between downregulated autophagy genes in stages of Luminal A subtype]{\label{fig:vennluma}Overlap between downregulated autophagy genes in stages of Luminal A subtype}
         \end{wrapfigure}
        
 
 %\vspace{5mm} 
 The analogous Venn diagrams for Luminal B, HER2-enriched and Normal-like subtypes are available from Appendix X4.
 
-In Luminal B there are 87 genes shared by all stages, 40 genes shared by stages 1-3, and 31 genes unique to stage 4, showing a similar scenario to Basal-like. In HER2-enriched, the largest overlap group is stages 1-3 (79 genes), whereas all stages share only 32 genes. Normal-like subtype is a slightly different case, as there are not stage 4 samples, and in addition to it inherent similarity to normal samples, which resulted in fewer DEGs in total. In normal like, there are only 12 samples shared by the available stages (1-3). 
+In Luminal B there are 87 genes shared by all stages, 40 genes shared by stages 1-3, and 31 genes unique to stage 4, showing a similar scenario to Basal-like subtype.\\In HER2-enriched, the largest overlap group is stages 1-3 (79 genes), whereas all stages share only 32 genes.\\Normal-like subtype is a slightly different case, as in addition to its inherent similarity to normal samples, there are no stage 4 samples, which cumulatively resulted in fewer DEGs in total. In Normal-like subtype, there are only 12 genes shared by the available stages (1-3). \\
 
+\newpage
+Following the above comparisons, it can be seen that a large proportion of downregulated genes are shared by all stages.\\ This is the expression pattern that is found to be most enriched in clustering analysis too. Hence, the next step is to make a comparison between autophagy genes that  \begin{itemize}
+     \item[-] are downregulated at all stages according to differentially expression analysis (‘\textit{DEA}’),  and 
+     \item[-] are found in the most autophagy-enriched downregulation cluster  (‘\textit{cluster}’)
+\end{itemize}
+for individual subtypes. 
 
+The subtypes are considered individually, as Figure \ref{fig:overlapclusters} has shown that there is not a solid set of genes that makes up a core of downregulated genes across all subtypes.\\The comparison results are shown in Figure \ref{fig:overlapdown}. The two sets of genes that are being compared for each subtype are labelled as ‘DEA’ and ‘cluster’ for simplicity. The overlap between two sets represents autophagy genes that are downregulated at all stages according to both differential expression testing and soft-clustering analysis. It can be seen that the two methods overall agree, i.e. the majority of ‘DEA’ set genes are present within the larger ‘cluster’ gene set. 
 
+        %euler
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.6]{euler.pdf} 
+            \caption[dfd]{Subtype-specific overlaps between two autophagy gene sets: \textbf{DEA} - downregulated at all stages according to differentially expression analysis, \textbf{cluster} - genes found in the most autophagy-enriched downregulation cluster, both for a specific subtype. The diagram was made with \texttt{euler} R package \cite{euler}. }
+            \label{fig:overlapdown}
+            \end{figure}
+            
+In this way, five subtype-specific lists of autophagy genes were obtained. The following step is a closer look at the gene functional groups and biological interpretation. 
