@@ -111,9 +111,9 @@
 
 \cleardoublepage
 \addcontentsline{toc}{part}{\small List of Abbreviations}
-\addtocontents{toc}{\protect\vspace{-0.2em}}
+\addtocontents{toc}{\protect\vspace{-0.1em}}
 %abbreveations
-\printnomenclature[3em]
+\printnomenclature[6em]
 \hfill % add blank space
 \nomenclature{AJCC}{The American Joint Committee on Cancer }
 \nomenclature{CBL}{Computational Biology Lab}
@@ -160,23 +160,23 @@
 %\input{chapters/methods}
 
 \chapter{Results}
-%\input{chapters/results}
+\input{chapters/results}
 
 \chapter{Discussion}
 %\input{chapters/discussion}
 
-%%% more chapters!
-
-%\chapter{Acknowledgements}
-%I want to thank...
-
-%\chapter*{Appendix}
-%\appendix
-%\input{chapters/appendix}
 
 
-\backmatter
+\cleardoublepage
+\addcontentsline{toc}{part}{\small Acknowledgements}
+\addtocontents{toc}{\protect\vspace{-1.5em}}
+\chapter*{Acknowledgements}
+\blindtext
 
+\cleardoublepage
+\addcontentsline{toc}{part}{\small Bibliography}
+\addtocontents{toc}{\protect\vspace{-0.2em}}
 \printbibliography
 
+\backmatter
 \end{document}
