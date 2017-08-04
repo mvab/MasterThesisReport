@@ -34,6 +34,7 @@
 %abbreviations management 
 \usepackage{nomencl}
 \makenomenclature
+\renewcommand*{\nompreamble}{\small}
 \renewcommand{\nomname}{List of Abbreviations}
 
 % for adding pretty headings
@@ -115,6 +116,7 @@
 %abbreveations
 \printnomenclature[6em]
 \hfill % add blank space
+
 \nomenclature{AJCC}{The American Joint Committee on Cancer }
 \nomenclature{CBL}{Computational Biology Lab}
 \nomenclature{CPM}{Counts per million}
@@ -146,6 +148,12 @@
 \nomenclature{qRT-PCR}{Quantitative reverse transcriptase polymerase chain reaction }
 \nomenclature{PAM50}{Prediction Analysis of Microarray, based on 50 gene set}
 \nomenclature{DCC}{Data Coordinating Centre}
+\nomenclature{PAS}{Phagophore assembly site}
+\nomenclature{PE}{Phosphatidylethanolamine}
+\nomenclature{ATG}{Autophagy-related gene}
+\nomenclature{PI3P}{Phosphatidylinositol 3-phosphate}
+\nomenclature{LIR}{LC3-interacting region}
+\nomenclature{ROS}{Reactive oxygen species}
 
 \listoffigures
 \listoftables
@@ -160,7 +168,7 @@
 %\input{chapters/methods}
 
 \chapter{Results}
-\input{chapters/results}
+%\input{chapters/results}
 
 \chapter{Discussion}
 %\input{chapters/discussion}
@@ -172,6 +180,14 @@
 \addtocontents{toc}{\protect\vspace{-1.5em}}
 \chapter*{Acknowledgements}
 \blindtext
+% I would like to thank the Computational Biology Laboratory at the Danish Cancer Research Centre for
+% allowing me to join their group to conduct a university research project.
+% I am especially thankful to Dr Elena Papaleo for her professional guidance and valuable support throughout
+% the project. Her ability to explain difficult bioinformatics concepts and show how to correctly use the software
+% to answer structural biology questions has been greatly appreciated and has enabled me to complete high
+% quality work.
+% I would also like to thank the other members of the group, including Matteo Tiberti, Matteo Lambrughi and
+% Thilde Terkelsen for advice throughout the project.
 
 \cleardoublepage
 \addcontentsline{toc}{part}{\small Bibliography}
