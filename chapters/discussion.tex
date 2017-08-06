@@ -1,11 +1,59 @@
+Understanding of autophagy role in cancer is becoming an increasingly intriguing area of research as the two constituting fields -- breast cancer and autophagy -- have seen a lot of progress individually in the recent decade. This project aimed to identify the expression signatures of autophagy-related genes in the breast cancer transcriptomics data available from TCGA. 
 
-\section{Combining DEA and clustering}
+Through rigorous exploratory analysis the dataset was extensively investigated and the main patterns characterising the available samples established. The three main classification methods  used to stratify the samples were: cancer stage, tumour morphology, and PAM50 intrinsic molecular subtype. Thus, the hypothesis-driven analysis aimed to identify a subset of samples described by one of the classification methods, whose expression has a notable autophagy enrichment. To identify autophagy expression signatures, two complementary analysis methods were used -- differential expression testing and soft-clustering. 
+
+In DE analysis, a multitude of DE tests were performed to explore all possible combinations of samples defined by different classification methods, and the identified sets of differentially expressed genes were tested for autophagy enrichment. Soft-clustering aimed to detect clusters of genes that have similar collective expression behavior that is strongly correlated with that of other members of the cluster with respect to their changes across cancer progression stages. Soft-clustering was performed on separate cancer subtypes, then, enrichment analysis was used to identify expression patterns where autophagy genes are overrepresented. Following that, a comparative analysis of the results produced by the two methods helped to identify a set of autophagy genes that could be used as a starting point for further exploration of autophagy role in cancer.
+
+Exploratory analysis of TCGA-BRCA dataset was a crucial part of this project. Firstly, it has confirmed the view that is now widely accepted in the breast cancer research community on the extreme heterogeneity of this disease, and the fact that the cancer patients can most accurately be classified into prognostic groups by their intrinsic molecular profile rather than by tumour morphology and stage. The major differences between PAM50 subtypes were highlighted by PCA, hierarchical clustering, as well as differential expression testing, where individuals subtypes had considerably more DEGs among each other than tumour morphologies or stages. 
+
+In fact, neither exploratory analysis nor differential expression testing have found any strong differences between morphological groups or stages. The PCA plots for both did not reveal any PCs that describe the proposed sample subgroups sufficiently well. DE analysis found exceptionally low number of DEGs between cancer stages (even stage 1 and stage 4), and also not a great amount of DEGs between two major established morphologies, Lobular and Ductal carcinomas. This result was surprising, but the explanation was proposed to be in the underlying imbalanced composition of the subgroups being compared.
+
+In the exploratory analysis it was shown how disproportionate the comparison subgroups are both in terms of their sample size and PAM50 composition. PAM50 composition of subgroups is important as it explains the main driving force that defines variation between samples. This has got two implications. First, if the groups are too mixed/heterogeneous (i.e. made up of various PAM50 subtypes), then it is difficult to capture differences between them, as the variation signal is too mixed and thereby weak. Second, if two groups that are being compared are exclusively made up of two different PAM50 subtypes, then the difference between them is likely to be driven by PAM50. A clear example of this was found when comparing Mucinous and Metaplastic morphologies, which are exclusively made up of Luminal and Basal samples, respectively. These two morphologies were found to have the largest number of DEGs between them compared to morphologies, in addition to being very clearly separated by PCA. However,  the true source of their variation is difficult to define. 
+
+To tackle the problem of heterogeneity created by the strong influence of PAM50 profiles on other classifications, DEA with combined models was performed. It allowed to characterise differential expression between individual stages or morphologies within each PAM50 subtype. In this way, for instance, differentially expressed genes between Lobular and Ductal carcinomas within each PAM50 subtype were identified. 
+
+However, enrichment analysis results were ambiguous and largely unsuccessful in identifying autophagy signatures in any specific subgroups of samples. The main reocurring observed trend was that autophagy-related genes are enriched among groups of downregulated genes in various cancer subgroups (including individual morphologies and stages). Interestingly, there was no enriched autophagy signature between different stages of cancer, which is something that is often brought up in the literature describing the behaviour of autophagy processes in cancer. Moreover, the PAM50 subtypes, between  which  large numbers of DEGs were identified, had no significant autophagy signatures in any of the tested contrasts. Therefore, it was concluded that the main observed and quantified autophagy signature in this breast cancer dataset is the overall downregulation of autophagy-related genes in cancer versus normal, regardless of stage or subgroup.
+
+In line with that, soft-clustering analsyis results have shown that the marority of autophagy genes are assigned to the cluster representing downregulation at all stages expression pattern, and which was consistently found to be significantly enriched for autophagy in different subtypes, either at  all genes or transcription factors-only level. 
+
+Considering the agreement between the results of the two methods on the putative signature of autophagy genes in the downregulation trend, comparative analysis was performed. For each PAM50 subtype, a list of candidate genes that exhibit complete downregulation in cancer (i.e. downregulated at all stages vs normal) was produced. Hence, the direction from here is to seek collaboration with the experts in the autophagy fields to guide a more informed biological interpretation of the potential role and the impact of downregulation of the identified genes. 
+
+Overall, it is important to highight the significance of finding the downregulation in cancer trend to be the autophagy signature in this dataset. In broad sense, it makes sense to see a subset of  autophagy-related genes to be downregulated in cancer. Deregulated autophagy means that the basal turnover of damaged molecules is impaired, which has an oncogenic impact. Furthermore, seeing autophagy genes downregulated consistently at all stages but compaed to normal, gives an indication of the part of the mechnism twhse inactivation is cancer-related in general. So here we have ‘natural’ autophagy inhibition signature.
+
+However, the literature on autophagy role in cancer often brings up the ‘dual role’, which involves upregulation of  autophagy at different stages of cancer progression with opposite consequnces. The results of this project did not show any statistically significant indication of autophagy genes being upregulated at any specific stages or cancer in general. Although among the soft-clustering results there were several clusters of genes with potentially interesting expression patterns in relation to stage-specific upregulation,  the enrichment analysis did not indicate hat those clusters have signisicant autophagy signature.
 
 
-\section{Conclusion}
-%4. State the major conclusions from your study and present the theoretical and practical implications of your study.
+The inability to identify any autophagy signatures being upregulated at significant (or significant at non-adjusted p-value level, as p-value cut-off are arbitrary) level, also bring the discussion of the potential limitations of this study. Firstly, it has to be reiterated that imbalanced subgroups sized are very likely to be contribution to results both of EDA and analyses looking for groups of genes to test for enrichment. As brought up previously, the number of samples in stage 4 in this analysis setup makes all the compatisons involving it questionable. It also is impossible to make stage wise comparison of morphological groups as all samples belong to morphology. Also the comparisons within individual PAM5 subtypes, both in DEA and clustering is a bit unreliable, as for example, expression of Basal-like and HER2-enriched samples of stage 4 is characterised by only two samples each (see Table 3.1). Hence, … Perhaps, expectig to see a change in expression at the later stages of cancer progression with the available data was too ambitons, due to the fact that the most prominent literature-acknowledged   However, seeing that pattern in the results is interesting indeed as this is the stage where some crazy changes start happening and this is is where upregulatin of autophagy may have an oncogenic role. However, it is still a primary tumour samples, and for true assessment of autophagy genes expression pattern in metastasis we need metastasis samples.  
+
+Furthermore, one important aspect that was not taken into account in this project is the information on treatments each patient has received. This information was not readily available at the times where it could have been utilised to benefit this project , but now we think that perhaps we see autophagy downregulated as a consequence of treatment that were supposed to inhibit autophagy. 
+
+
 
 
 \section{Future directions}
 
 %5. Discuss the implications of your study for future research and be specific about the next logical steps for future researchers.
+
+
+The first main direction of this project is to start an active collaboration with the autophagy experts at DCRC by making the identified list of candidate genes available to them. Then it will have to discussed and decided which hits could sent for experimental validation in MCF7 breast cancer cell lines. 
+Then also the observed other trends such as interesting cluster patterns in specific subtypes should also be analysed with more autophagy knowledge. 
+
+As the main constraint that is thought to have the negative effect on identifying signature in a specific breast cancer subtype or stage is the lack of samples in the groups, it is perhaps a good idea to explore other cohort of samples with the same analysis setu to see if the results are reproducible  TCGA is of course the  a rich source of data., but 
+
+Smaller groups but better balanced could give more answers 
+
+
+it is not a difference that we can see just using data at the transcriptional levels (it could be regulation of protein levels, ptms, cancer mutations etc) stimulating directions for people that will arrive after you.
+
+
+It could be that in this specific case breast cancer we do not observe it but in other cancer studies or cohort we might find it considering the tremedous heterogeneity of cancer mechanisms even within the same subtype. It can be that there is no enrichment with the methods that we are using but that some of the autophagy genes are in any case playing a role because they get up and down regulated  and cross-talk with other pathways or that our list unfortunately still doesn't cover the complicate spectrum of autophagy-related genes
+
+I will discuss how the hypothesis has been demonstrated by the new research and then show how the field's knowledge has been changed by the addition of this new data
+
+-- discussion starts with the interpretation of the results, then moves outwards to contextualize these findings in the general field.
+
+
+
+
+\section{Conclusion}
+%4. State the major conclusions from your study and present the theoretical and practical implications of your study.

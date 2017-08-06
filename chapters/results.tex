@@ -500,9 +500,9 @@
 
 The results of differential expression analysis and soft-clustering overall agree on the fact that autophagy signature in the given dataset is observed among the genes downregulated in various breast cancer subtypes when compared to normal. Therefore, it is important to investigate the extent of this agreement both between the two methods, and also among subtypes and stages in separate results. 
 
-\subsection{Inspecting results of two methods}
 
-\subsubsection{Identifying subset of interest}
+
+\subsection{Identifying candidate genes}
 
 Gene expression clustering of individual PAM50 subtype samples has produced six clusters for each subtype, among which the downregulation trend clusters were the most autophagy genes-abundant (Figures \ref{fig:mfuzzbasal}-\ref{fig:mfuzznorm}). Therefore, it was interesting to investigate whether the autophagy genes with this expression pattern are the same across different subtypes. Thus, the downregulation cluster autophagy genes with $>0.6$ membership score were extracted and overlapped. The resulting overlap is shown in Figure \ref{fig:overlapclusters}. \\
 
@@ -605,21 +605,113 @@ The comparison results are shown in Figure \ref{fig:overlapdown}. The two sets o
             \label{fig:overlapdown}
             \end{figure}
             
-In this way, five subtype-specific lists of autophagy genes were obtained. The following step is a closer look at the gene functional groups and biological interpretation. 
-
-The functional groups of autophagy genes are presented in Table \ref{table:autophagy}. Figure \ref{} provides an overview of what groups the final gene belong to. In total, there are 108 genes that occur in at least one subtypes. The most abundant groups are transcription factors, recenpors/ligands, mTOR incustior- related genes etc.
+In this way, five subtype-specific lists of candidate autophagy genes were obtained (intersections in Figure \ref{fig:overlapdown}). The following section focuses on exploring functional groups of these genes, while making comparisons between the subtypes, and evaluating the findings with a perspective on biological interpretation. 
 
 
-%%% figure
+\subsection{Exploring candidate genes}
+
+The full list of functional groups of autophagy genes used in the analysis is presented in Table \ref{table:autophagy} in the methods section.\\
+The diagram in Figure \ref{fig:candidategenes} below provides an overview of the functions of the final sets of subtype-specific candidate genes, i.e. autophagy-related genes downregulated in cancer according to the agreement between two methods. 
+
+In the diagram, the genes belonging to each PAM50 subtype are shown as columns of connected boxes. For each subtype, the genes are grouped and coloured-coded by their functional category (shown on the left) into boxes, which are also aligned horizontally to guide visual perception. In total, there are 108 genes that occur in at least one subtype. Many genes are found in several subtypes, and also may appear in several functional categories within one subtype. 
+
+        %candidate genes
+            \begin{figure}[!h]
+            \centering
+            \includegraphics[scale=0.67]{CandidateGenes.pdf} 
+            \caption[Candidate genes lists]{Diagram of autophagy genes downregulated in each PAM50 subtype grouped by functional categories indicating their role in the autophagy mechanism. Functional groups are colour-coded (group names are shown on the left). }
+            \label{fig:candidategenes}
+            \end{figure}
+            
+\newpage
+The most gene-abundant groups are transcription factors, receptors/ligands, transport, and mTOR induction-related genes. However, among the smaller groups there are several potentially interesting candidate genes. Below are some examples: 
+
+\begin{itemize}
+
+    \item \textbf{MAP1LC3C (LC3)}. This gene is found downregulated at all stages of Luminal A and Basal-like subtypes. LC3 is an integral gene in the autophagy core pathway. LC3 protein is a part of the autophagosome membrane, and it is often used as marker of autophagy induction (described in Section \ref{section:automech}). Here, MAP1LC3C is one of the three human homologues of rat LC3 \cite{he2003post}. The three homologues were isolated and studied and were found to exhibit distinct expression patterns in different human tissues \cite{he2003post}.
+    
+
+    
+
+\item \textbf{NBR1} also belongs to the autophagy core functional group and is found downregulated in Basal-like subtype. NBR1 is one of the adapter proteins that LC3 recruits to the autophagosomes to mediate selective autophagy of different cellular cargos through its contains the LC3-interacting region (LIR). Misfolded and aggregated proteins are marked by ubiquitin, which is recognized by ubiquitin-binding domains of NBR1, which later targets the recognised substrates for autophagy \cite{DebnathTheCancer}. Therefore, disruption of NBR1 function may contribute to defective protein/organelle turnover.
 
 
 
-Many of these genes can be intering eg LC3 , NBR - involved in the same part of the autophagy pathway, but for more solid interpretation we need somethe very cancer related, so
-
-A list of known tumour suppressor genes in breast cancer was exprected from the TSGene database \ref{}. There the list was specfically based on TCGA data and the genes come both from lit and xxx.
-
-%down-regulated tumor suppressor genes in tumor versus normal samples
-%BRCA : 589 human TSGs that have lower expression in breast invasive carcinoma samples compared to the normal tissue samples in TCGA.
+\item \textbf{PIK3R1}. The PIK3R1 gene product is one on the subunits of the class I PIK3 complex that has a major role in mTOR-dependent autophagy regulation. This gene has been characterised by 2012 TCGA study \cite{TCGAResearchNetwork2012} as one of newly discovered contributors to breast cancer development. It is downregulated in Luminal A, Luminal B, and Basal-like subtypes.
 
 
-The final list of my genes was overlaped and fround the X genes. Of them, those had a well chartarised role in the autophagy literature. 
+% \textbf{\huge { below is work in progress}}
+
+
+% \item The transcription factor X-box-binding protein 1 (XBP1) is another crucial regulator of FOXO1 activation and degradation. In addition, spliced XBP1 can directly bind to the promoter region of BECN1 thus acting as an autophagy activator or inhibitor depending on the splice isoform (Margariti et al., 2013).
+
+% \item MITF is a tf for MAP1LC3B,SQSTM1, Bcl-2, ATg16
+
+% \item CEBPB is a tf for BNIP3, LC3, and ULK1
+
+
+% \item During TLR4-induced autophagy, tumour necrosis factor receptor (TNFR)-associated factor 6, TRAF6, interacts with Beclin 1 and mediates K63-linked ubiquitination of Beclin 1, which enhances Class III PI3K activity.
+
+% \item Among TFs there is also JUN - related to Jnk
+
+% \item IRS in basal
+\end{itemize}
+
+
+\newline
+
+Although the current list of genes is quite focused on the expression behaviour of interest, it is still quite extensive and, therefore, has to be narrowed down to find hits for further investigation.  One approach is to check if any of these genes are known tumour suppressor genes in breast cancer. Their downregulation of such genes would be an interesting direction to experimentally explore. 
+
+A list of known tumour suppressor genes in breast cancer was extracted from the \hyperlink{https://bioinfo.uth.edu/TSGene/}{\textit{TSGene database}} \cite{Zhao2016TSGeneGenes}. The database provides a manually curated list of 589 human tumour suppressor genes downregulated in tumour versus normal in breast invasive carcinoma samples from TCGA. This list was compared to the current set of candidate genes and 18 matches were found. These genes are: CDH13, YAP1, EGR1, EPAS1, ESR2, FOXO1, BIN1, IGF1, ATF3, NGFR, PARK2, PLD1, ERRFI1, PPARA, PPARG, TGFBR2, TGFBR3, INPP4B. 
+
+The roles of identified genes were explored with a variety of published and online resources, and a number of them were found to have a specific role in the signalling pathways related to autophagy, hence giving a solid direction for further investigation. Below are the most interesting examples:
+
+\begin{itemize}
+
+
+
+
+\item  \textbf{FOXO1.} The FOXO family proteins are involved in control of cell growth and differentiation and were one of the first transcriptional regulators to be linked to autophagy \cite{zhao2007foxo3}. FOXOs are regulated by phosphorylation and, when activated, they translocate to the nucleus to induce the expression of a number of autophagy-related genes, including  ATG12, BECN1, BNIP3, MAP1LC3, ULK1, and PIK3C3 \cite{Feng2015}. Phosphorylation of FOXO1 and FOXO3 by Akt/PKB prevents them from translocating to the nucleus and activating genes that promote cell death, so mTOR promotes cell survival through Akt-mediated inhibition of FOXO1 and FOXO3 \cite{Fullgrabe2016}. In summary, members of the FOXO family can act as autophagy inducers and repressors depending on their cellular localisation \cite{zhao2010cytosolic}.
+
+
+
+\item  \textbf{PARK2/parkin} is an E3 ligase that is important for mitochondrial homeostasis \cite{Kroemer2010}.  As described in Section \ref{section:automech}, once PARK2 is activated by PINK1 it ubiquitinates proteins on the surface of damaged mitochondria, thereby targeting them for mitophagy \cite{Feng2015}.  Conversely, PARK2 has a negative role in non-selective autophagy. PARK2 stabilizes BCL2 via mono-ubiquitination, which strengthens the interaction between BCL2 and BECN1, thus suppressing autophagy \cite{chen2010parkin}. 
+
+
+
+\item \textbf{IGF1}, insulin-like growth factor 1, is responsible for the activation of IRS1/2 (insulin receptor substrates 1/2), which mediate the signalling cascades through class I PIK3 that activate PKB,  best-characterized positive modifier of mTOR activity, resulting in negative regulation of autophagy induction, depicted in Figure \ref{fig:autosignal}. Therefore, autophagy may be activated by IGF-1 inhibition. This aspect was explored and reviewed in \cite{renna2013igf}.
+Of note, the IRS1/2 are also downregulated in Basal-like subtype along with IGF1. 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+% \item EGR1 (her2) -- binds LC3B promote  - paper by HE
+
+
+% \item PPARG - PPARγ Activation Induces Autophagy in Breast Cancer Cells
+
+
+% Akt activation by mTORC2 leads to the induction of PPARγ as a result of its ability to activate mTORC1 (REF. 105) and to directly inhibit FOXO1, which usually antagonizes PPARγ activity1
+
+
+
+
+
+% \item FOXO and PPaRg are consistently seen across differnt subtypes. so overall cancer and not specific subtype. 
+
+
+\end{itemize}

@@ -46,7 +46,7 @@
 \graphicspath{ {images/} }
 \usepackage{wallpaper}
 
-\usepackage[backend=biber,style=ieee]{biblatex}
+\usepackage[backend=biber,style=ieee, doi=false,isbn=false]{biblatex}
 \addbibresource{mendeley.bib}
 \addbibresource{nonmenrefs.bib}
 
@@ -103,7 +103,7 @@
 
 
 \frontmatter
-
+\newpage
 \chapter{Abstract}
 \input{chapters/abstract}
 
@@ -165,13 +165,13 @@
 \input{chapters/introduction}
 
 \chapter{Methods}
-%\input{chapters/methods}
+\input{chapters/methods}
 
 \chapter{Results}
-%\input{chapters/results}
+\input{chapters/results}
 
 \chapter{Discussion}
-%\input{chapters/discussion}
+\input{chapters/discussion}
 
 
 
@@ -179,7 +179,7 @@
 \addcontentsline{toc}{part}{\small Acknowledgements}
 \addtocontents{toc}{\protect\vspace{-1.5em}}
 \chapter*{Acknowledgements}
-\blindtext
+
 % I would like to thank the Computational Biology Laboratory at the Danish Cancer Research Centre for
 % allowing me to join their group to conduct a university research project.
 % I am especially thankful to Dr Elena Papaleo for her professional guidance and valuable support throughout
@@ -188,11 +188,33 @@
 % quality work.
 % I would also like to thank the other members of the group, including Matteo Tiberti, Matteo Lambrughi and
 % Thilde Terkelsen for advice throughout the project.
-
+%autophafy people who curated data
 \cleardoublepage
 \addcontentsline{toc}{part}{\small Bibliography}
 \addtocontents{toc}{\protect\vspace{-0.2em}}
 \printbibliography
+
+
+
+\cleardoublepage
+\addcontentsline{toc}{part}{\small Appendices}
+\addtocontents{toc}{\protect\vspace{-0.2em}}
+
+\chapter*{Appendices}
+
+\begin{itemize}
+   \textbf{A}\\
+   \textbf{B}\\
+   \textbf{C}\\
+   \textbf{D}\\
+   \textbf{E}\\
+   \textbf{F}\\
+    
+\end{itemize}
+
+
+
+
 
 \backmatter
 \end{document}

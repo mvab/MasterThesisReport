@@ -51,8 +51,8 @@
     
  
 
-    All samples in the final dataset were annotated with clinical data, which included PAM50 molecular subtype, patient age subgroup, race/ethnicity, menopause status, tumour size/grade, nodal involvement, metastasis status, year sample was taken, and tissue source site. The annotations extracted with TCGAbiolinks were integrated with further information from the work by Rahman \textit{et al. }\cite{RahmanAlternativeResults} on reprocessing TCGA data. 
-    The original set of PAM50 subtype annotations available with TCGA data that was obtained by a large TCGA-BRCA study in 2012 \cite{CancerGenomeAtlasNetwork2012ComprehensiveTumours}, was further complemented with the additional subtype labels for the previously unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} in 2015 \cite{Ciriello2015ComprehensiveCancer}. A small minority of samples that had discrepancies in labels between the two studies were omitted in this project.  Table \ref{table:pam50counts} shows the sample counts for each PAM50 subtype. 
+    All samples in the final dataset were annotated with clinical data, which included PAM50 molecular subtype, patient age subgroup, race/ethnicity, menopause status, tumour size/grade, nodal involvement, metastasis status, year sample was taken, and tissue source site. The annotations extracted with TCGAbiolinks were integrated with further information from the work by Rahman \textit{et al. }\cite{Rahman2015AlternativeResults} on reprocessing TCGA data. 
+    The original set of PAM50 subtype annotations available with TCGA data that was obtained by a large TCGA-BRCA study in 2012 \cite{TCGAResearchNetwork2012}, was further complemented with the additional subtype labels for the previously unclassified samples from a recent TCGA-BRCA study by Ciriello \textit{et al.} in 2015 \cite{Ciriello2015ComprehensiveCancer}. A small minority of samples that had discrepancies in labels between the two studies were omitted in this project.  Table \ref{table:pam50counts} shows the sample counts for each PAM50 subtype. 
     
     
      %   TABLE 2.3   
@@ -107,7 +107,7 @@
     
     The TCGA-BRCA RNA-seq data was generated using \textit{Illumina HiSeq 2000 RNA Sequencing Version 2 analysis} platform and quantified at University of North Carolina (UNC) Center for Bioinformatics for the TCGA project \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. The quantification pipeline included  using Mapsplice v12.07 \cite{wang2010mapsplice} for mapping the data to reference genome (GRCh37/hg19), RSEM v1.1.13 \cite{li2011rsem} for transcript quantification \cite{UniversityofNorthCarolinaUNCCenterforBioinfromatics2013TCGAData}. 
 
-    Legacy TCGA-BRCA gene expression dataset was downloaded from the GDC portal and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation \cite{Colaprico2016, PapaleoTCGAPackages}. 
+    Legacy TCGA-BRCA gene expression dataset was downloaded from the GDC portal and prepared using the TCGAbiolinks preprocessing pipeline. The pipeline contains integrated functions from the EDASeq package \cite{risso2011gc} for within-lane normalisation procedures to adjust for GC-content and gene length effects on read counts, as well as between-lane normalisation method to adjust for distributional differences between lanes (e.g. sequencing depth), such as quantile normalisation \cite{Colaprico2016, Silva2016TCGAPackages}. 
     In this project, the dataset was normalised for GC-content and filtered with with quantile cut-off of 0.10. The pipeline transforms the data into a ‘\textit{SummarizedExperiment}' \cite{Huber2015OrchestratingBioconductor} object (counts table), with genes and samples as rows and columns, respectively. 
     
         
@@ -195,7 +195,7 @@
     
     In clustering, or unsupervised classification, the aim is to identify subsets (clusters) of data points based on the similarity between single objects. Similar objects should be assigned to the same cluster, while objects which are not similar to each other, should be assigned to different clusters. This can help to reveal the data structure and give first insights into the data, which is especially useful if prior knowledge is little or non-existent. Clustering can, therefore, be seen as an exploratory data analysis tool. 
         
-    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a data matrix visualising values in the cells by the use of a color gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.
+    The purpose of clustering transcriptomics data is to statistically group samples according to their gene expression, in order to reduce complexity and dimensionality of the data, predict function or identify shared regulatory mechanisms \cite{Metsalu2015ClustVis:Heatmap}. Clustering can be performed as a part of heatmap. Heatmap is a data matrix visualising values in the cells by the use of a colour gradient. This gives a good overview of the largest and smallest values in the matrix. Rows (genes) and/or columns (samples) of the matrix are clustered to facilitate interpretation of sets of rows or columns rather than individual ones \cite{Metsalu2015ClustVis:Heatmap}.
     
     \newpage
     One of the popular methods is hierarchical clustering, which involves re-ordering of samples based on their distance in high dimensional space. The cluster is constructed based on the determination of two parameters — the distance metric and the linkage criterion. Objects close to each other in the hierarchy, measured by tracing the branch heights, are also close by some measure of distance — for example, individuals with similar expression profiles will be close together in terms of branch lengths.
@@ -222,7 +222,7 @@
     Prior to clustering the data is normalised and filtered for low expression as described in Section \ref{section:norm}. The heatmaps were generated using Euclidean distance with average linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}. Clustering without heatmap representation was done with the R function \texttt{hclust()} with default parameters.
 
 
-   
+   \cite{}
 
 
 % \subsection{Batch effects}
@@ -266,7 +266,7 @@
         \subsubsection{Limma-voom} \label{section:voom}
         \textit{limma} is an R/Bioconductor package \cite{Ritchie2015LimmaStudies, smyth2004linear}  that provides an integrated set of tools for differential expression analysis. The \textit{limma} pipeline includes linear modeling with extensive features for handling complex experimental designs with multiple treatment factors, and empirical Bayes statistical methods to borrow strength between genes to overcome the problem of small sample sizes \cite{Ritchie2015LimmaStudies}.
 
-        The \textit{limma} approach estimates the mean-variance relationship of gene expression data in log-CPM  (log-counts normalized for sequence depth) \cite{Law2014}. The \texttt{voom()} method (an acronym for ‘variance modeling at the observational level’) incorporates the mean-variance trend into a precision weight for each individual normalised observation. The normalised log-counts and associated precision weights are then passed on to the \textit{limma} empirical Bayes analysis pipeline \cite{Law2014}.
+        The \textit{limma} approach estimates the mean-variance relationship of gene expression data in log-CPM  (log-counts normalised for sequence depth) \cite{Law2014}. The \texttt{voom()} method (an acronym for ‘variance modeling at the observational level’) incorporates the mean-variance trend into a precision weight for each individual normalised observation. The normalised log-counts and associated precision weights are then passed on to the \textit{limma} empirical Bayes analysis pipeline \cite{Law2014}.
         
         Simulation studies show that the \textit{limma-voom} performs as well or better than other count-based methods even when the data are generated according to the assumptions of the earlier methods  \cite{Law2014}. A key advantage of the \textit{limma} pipeline is that it provides accurate type I error rate control even when the number of samples in the analysis is small \cite{SmythLimma:Guide}, which is a problem for other methods. Additionally, \textit{voom} can robustly handle heterogeneous data with outliers and hypervariable genes \cite{phipson2013empirical}, and also the analysis run-time is fast, which makes it the most suitable tool for differential expression testing in this project. 
         
