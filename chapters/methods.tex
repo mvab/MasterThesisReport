@@ -27,7 +27,7 @@
      %   TABLE 2.2
             \begin{table}[!htbp]
             \centering
-            \caption[Morphology and stage samples count in the dataset]{The number of samples in each morphology type and stage in the final dataset. ‘Stage X' is unknown/unidentifiable stage. ‘Other morphologies' comprises types that are represented by only a few samples.}
+            \caption[Count of samples in morphology and stage subgroups in the dataset]{The number of samples in each morphology type and stage in the final dataset. ‘Stage X' is unknown/unidentifiable stage. ‘Other morphologies' comprises types that are represented by only a few samples.}
             \label{table:morphstage}
             \begin{tabular}{lccllclc}
             \multicolumn{1}{c}{\textbf{Morphology}} & \textit{\begin{tabular}[c]{@{}c@{}}ICD-O-3 \\
@@ -58,7 +58,7 @@
      %   TABLE 2.3   
                 \begin{table}[!htbp]
                 \centering
-                \caption[PAM50 samples count in the dataset]{The number of samples in each PAM50 molecular subtype in the final dataset.}
+                \caption[Count of samples in PAM50 subtypes in the dataset]{The number of samples in each PAM50 molecular subtype in the final dataset.}
                 \label{table:pam50counts}
                 \begin{tabular}{ll}
                 \multicolumn{1}{c}{\textbf{PAM50}} &  \\ \hline
@@ -169,7 +169,7 @@
             \centering
             %\includegraphics[scale=0.51]{pca_method.png}
             \includegraphics[scale=0.53]{pca_method.pdf}
-            \caption[PCA 2D plot example]{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples.}
+            \caption[Example of PCA 2D scatter plot]{An example of PCA 2D scatter plot, showing the variance along PC1 and PC2 for cancer and normal samples.}
             \label{fig:pcamethod}
             \end{figure}
         
@@ -183,7 +183,7 @@
             \centering
             %\includegraphics[scale=0.6]{1dpcamethod.png}
             \includegraphics[scale=0.62]{1dpcamethod.pdf}
-            \caption[PCA 1D plot example]{An example of one-dimensional PCA plots for the cancer/normal dataset. }
+            \caption[Example of PCA 1D plot]{An example of one-dimensional PCA plots for the cancer/normal dataset. }
             \label{fig:1dpcamethod}
             \end{figure}
             
@@ -215,14 +215,12 @@
         \begin{figure}[h]
         \centering
         \includegraphics[scale=0.6]{heatmapmethod2.png}
-        \caption[Clustering with heatmap example]{An example of clustering of the cancer/normal samples with heatmap representation. The data was clustered with Euclidean distance and average linkage. }
+        \caption[Example of clustering expression data with heatmap representation]{An example of clustering of the cancer/normal samples with heatmap representation. The data was clustered with Euclidean distance and average linkage. }
         \label{fig:heatmapmethod}
         \end{figure}
     
     Prior to clustering the data is normalised and filtered for low expression as described in Section \ref{section:norm}. The heatmaps were generated using Euclidean distance with average linkage (default) using the R package  \texttt{pheatmap} \cite{kolde2012pheatmap}. Clustering without heatmap representation was done with the R function \texttt{hclust()} with default parameters.
 
-
-   \cite{}
 
 
 % \subsection{Batch effects}
@@ -243,7 +241,6 @@
 
  
 
-\newpage
 \section{Hypothesis-driven analysis methods}    
 
 
@@ -323,7 +320,7 @@ The formed clusters are visualised by the mfuzz plotting function, an example sh
         %\centering
         \includegraphics[width=0.75\linewidth]{mfuzzmethod.pdf}\hfill
         \includegraphics[width=0.2\linewidth]{mfuzzcolorbar_pad.pdf}
-        \caption[Soft-clustering plots example]{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green coloured lines correspond to genes with low membership value; red and purple coloured lines -- high membership value.}
+        \caption[Example of soft-clustering analysis plots]{An example of soft-clustering results from gene expression data. Each cluster describes an expression pattern in the dataset (y-axis), made up by genes that follow its dominant pattern across the stages (x-axis).  Green coloured lines correspond to genes with low membership value; red and purple coloured lines -- high membership value.}
         \label{fig:mfuzzmethod}
         \end{figure}
             
@@ -372,7 +369,7 @@ Clustering was performed on all samples together and on individual PAM50 subtype
                 \centering
                 \small
                \includegraphics[scale=0.2]{fisher_venn2.png}
-                \caption[Enrichment analysis test setup diagram]{The relationship between gene groups defined in Enrichment Analysis.}
+                \caption[Graphic representation of enrichment analysis setup ]{The relationship between gene groups defined in Enrichment Analysis.}
                 \label{fig:fishervenn}
                 \end{figure}
                 
@@ -384,7 +381,7 @@ Clustering was performed on all samples together and on individual PAM50 subtype
         
        \begin{table}[!h]
         \centering
-        \caption[Enrichment analysis test setup contingency table]{The set up for enrichment analysis \textit{2-by-2} contingency table. The gene set in this project is the autophagy-related genes, and the ‘interesting’ genes can be differentially expressed genes or genes represented by a cluster.  }
+        \caption[Contingency table setup for enrichment analysis]{The set up for enrichment analysis \textit{2-by-2} contingency table. The gene set in this project is the autophagy-related genes, and the ‘interesting’ genes can be differentially expressed genes or genes represented by a cluster.  }
         \label{table:constable}
         \begin{tabular}{c|c|c}
              & \textbf{Not interesting genes} & \textbf{Interesting genes} \\ \hline

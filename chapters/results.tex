@@ -2,7 +2,7 @@
 \section{Exploratory Analysis}
 
 
-    \subsection{Main effect subgroups}
+    \subsection{Sample Classifications}
 
     There are three main effects by which breast cancer samples can be stratified into groups: morphology, stage and PAM50 molecular profile. PCA separates samples into tumour/normal sample clusters fairly well (shown as an example in Methods, Figure \ref{fig:pcamethod}). However, it is more interesting to apply PCA to explore variation between groups of samples classified by different methods.  
     PCA was applied to 969 samples (857T, 112N), which were divided into subgroups by three systematic effect groups (i.e. PAM50, tumour morphology, cancer stage), the sizes of which are shown in Tables \ref{table:morphstage} and \ref{table:pam50counts}. \\
@@ -13,7 +13,7 @@
             \centering
             %\includegraphics[scale=0.4]{pcapam502.png} 
             \includegraphics[scale=0.58]{pam50pca.pdf} 
-            \caption[PCA plot showing separation by PAM50 subtypes(2D)]{PCA plot showing the variance along PC1 and PC2 for PAM50 molecular subtypes of breast cancer and normal samples.}
+            \caption[PCA plot showing separation by PAM50 subtypes (2D)]{PCA plot showing the variance along PC1 and PC2 for PAM50 molecular subtypes of breast cancer and normal samples.}
             \label{fig:pcapam50}
             \end{figure}
             
@@ -41,7 +41,7 @@
             \includegraphics[width=0.51\linewidth]{pcastages.pdf}\hfill
             \includegraphics[width=0.44\linewidth]{1dpcastages.pdf}
             \hspace*{\fill}
-            \caption[PCA plots (2D and 1D) showing separation by cancer stages]{PCA results showing variance captured between cancer stages and normal samples; left - 2D, right 1D (PCs 1-9). Unknown stage samples are excluded.}
+            \caption[PCA plots showing separation by cancer stages (2D and 1D) ]{PCA results showing variance captured between cancer stages and normal samples; left - 2D, right 1D (PCs 1-9). Unknown stage samples are excluded.}
             \label{fig:1dpcastage}
             \end{figure}
             
@@ -56,7 +56,7 @@
             \includegraphics[width=0.50\linewidth]{pcamorph_circle.pdf}\hfill
             \includegraphics[width=0.43\linewidth]{1dpcamorph.pdf}
             \hspace*{\fill}
-            \caption[PCA plots (2D and 1D) showing separation by tumour morphologies]{PCA results showing variance captured between morphology types and normal samples; left - 2D, right 1D (PCs 1-9). }
+            \caption[PCA plots showing separation by tumour morphologies (2D and 1D)]{PCA results showing variance captured between morphology types and normal samples; left - 2D, right 1D (PCs 1-9). }
             \label{fig:1dpcamorph}
             \end{figure}
 
@@ -84,7 +84,7 @@
                 \begin{table}[!h]
                 \centering
                \scriptsize
-                \caption[Sample counts per each pairwise subgroup in the dataset]{Sample counts in pairwise comparisons of three main breast cancer samples classifications. \textit{Top table:} PAM50 and stages,\textit{ Middle table:} PAM50 and morphology, \textit{Bottom table:} stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
+                \caption[Count of samples in pairwise combinations of classification subgroup in the dataset]{Sample counts in pairwise comparisons of three main breast cancer samples classifications. \textit{Top table:} PAM50 and stages,\textit{ Middle table:} PAM50 and morphology, \textit{Bottom table:} stages and morphology. Each table shows row and column sums for each subgroup. The total count of samples in the project is in the lower right corner: 857.}
                 \label{table:counts}      
                 %\resizebox{\textwidth}{!}{%
                 \begin{tabular}{ccccccc}
@@ -144,7 +144,7 @@
             \centering
             %\includegraphics[scale=0.45]{dendogram2.png}
             \includegraphics[scale=0.65]{dendogram2.pdf}
-            \caption[Dendogram of PAM50 and stage subgroups clustering]{Dendogram showing clustering of PAM50 subtypes within stages (averages per stage per subtypes).}
+            \caption[Dendogram of samples clustered by PAM50 and stage]{Dendogram showing clustering of PAM50 subtypes within stages (averages per stage per subtypes).}
             \label{fig:dendogram}
             \end{figure}
     
@@ -195,7 +195,7 @@
     
     As already noted from 1D PCA plot for the year data, the total number of samples taken in the last decade is marginally higher than in the earlier years. Overall, the distribution of PAM50 subtypes in each year is well-balanced,  although some years inevitably have no normal samples and/or samples of a specific subtype. On the whole, it can be concluded that the dataset is not confounded by a particular year-subtype combination.  
     
-    Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot (Figure \ref{fig:1dpcayear}, PC1). It can be seen in Figure \ref{fig:baryear} that these years are represented by $\approx50\%$ of normal samples, which is not the case for all other years. Having such high proportion of normal samples, makes their box plots to be shifted down compared to the rest, and hence appear different. Appendix Y shows a 1D PCA plot for cancer samples only, confirming this explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
+    Moreover, visualising data in this way has shed light on the abnormality in years 1997-2000 seen in 1D PCA plot (Figure \ref{fig:1dpcayear}, PC1). It can be seen in Figure \ref{fig:baryear} that these years are represented by $\approx50\%$ of normal samples, which is not the case for all other years. Having such high proportion of normal samples, makes their box plots to be shifted down compared to the rest, and hence appear different. Appendix A shows a 1D PCA plot for cancer samples only, confirming this explanation, i.e. years 1997-2000 do not stand out from the rest if only cancer samples are included in the analysis. \\
     
     \newpage
     Similarly to year data, the sample source data was also explored with PCA and variation between different source sites assessed. A corresponding 1D PCA plot (PC 1-6) showing variation for samples grouped by sample source site (24 sites in total) is displayed in Figure \ref{fig:1dpcatss}. \\
@@ -218,7 +218,7 @@
 
     The source site data was visualised as stacked bar plots to inspect sample subtype variety coming from each site, Figure \ref{fig:bartss}. As previously noted, some source sites have produced very few samples. The larger sample groups are relatively well-balanced in terms of their PAM50 subtype composition, with the exception of Normal-like, which comes only from 11 sites. This is, however, expected, as there are only 26 Normal-like samples in total. \\
     
-    Another important observation is that the majority of normal samples come from one site, BH. This should not affect the analysis, as the main interest lies in the difference between cancer subgroups. However, seeing this explains the abnormal variation seen in 1D PCA plot for this site. As with year data, this one site is $\approx50\%$ composed of normal samples, making it appear very different from the rest, because PC1 is driven by cancer/normal distinction. Appendix Y contains the plot resulting from using only cancer samples. 
+    Another important observation is that the majority of normal samples come from one site, BH. This should not affect the analysis, as the main interest lies in the difference between cancer subgroups. However, seeing this explains the abnormal variation seen in 1D PCA plot for this site. As with year data, this one site is $\approx50\%$ composed of normal samples, making it appear very different from the rest, because PC1 is driven by cancer/normal distinction. Appendix A contains the plot resulting from using only cancer samples. 
   
     \newpage
     
@@ -262,9 +262,9 @@
 
         \subsubsection{Main Effect Models}
         
-        Each of the main sample classifications (PAM50, stages, morphology) were used as the main effect in individual models for DE testing. For each main effect, all combinations of subgroups and normal samples were included in the contrast matrix. In this way, for each PAM50 subtype (or each stage and morphology) differentially expressed genes were identified compared to the rest of subtypes and the normal samples. All models included the age group covariate as well as the two sources of batch effect: year and site. The raw numbers of differentially expressed genes in each contrast are available from Appendix X and are described below.
+        Each of the main sample classifications (PAM50, stages, morphology) were used as the main effect in individual models for DE testing. For each main effect, all combinations of subgroups and normal samples were included in the contrast matrix. In this way, for each PAM50 subtype (or each stage and morphology) differentially expressed genes were identified compared to the rest of subtypes and the normal samples. All models included the age group covariate as well as the two sources of batch effect: year and site. The raw numbers of differentially expressed genes in each contrast are available from Appendix B and are described below.
 
-        Differential expression testing based on \textbf{PAM50 subtypes} has detected a fairly large number of differentially expressed genes (DEGs) in each comparison (min: 5\% - Luminal A vs Luminal B, max: 31\% - Basal-like vs Normal). Understandably, contrasts of normal samples vs a subtype detected much more DEGs, a large number of which are downregulated in cancer. The proportions of differentially expressed genes between PAM50 subtypes ranged between 5\% and 22\% (Luminal A vs Luminal B and Luminal A vs Basal-like), whereas a subtype vs normal 12\% (Normal-like) to 31\% (Basal-like); details in Appendix X. 
+        Differential expression testing based on \textbf{PAM50 subtypes} has detected a fairly large number of differentially expressed genes (DEGs) in each comparison (min: 5\% - Luminal A vs Luminal B, max: 31\% - Basal-like vs Normal). Understandably, contrasts of normal samples vs a subtype detected much more DEGs, a large number of which are downregulated in cancer. The proportions of differentially expressed genes between PAM50 subtypes ranged between 5\% and 22\% (Luminal A vs Luminal B and Luminal A vs Basal-like), whereas a subtype vs normal 12\% (Normal-like) to 31\% (Basal-like); details in Appendix B. 
         
         Differential expression testing based on \textbf{cancer stages} showed a considerable number of differentially expressed genes between stages and normal samples, $\approx 23\%$ at each stage. Interestingly, the analysis has found only very few genes to be differentially expressed between individual stages.
         
@@ -303,9 +303,9 @@
         \vspace{5mm}
         When using Group models, i.e. combining two effects, some contrasts were found enriched at acceptable levels.
         
-        In \textbf{Group1}, ‘all autophagy’ genes were enriched in the downregulated genes at stage 4 of Basal-like subtype compared to stage 4 of Luminal A and Luminal B, and also to normal samples. At non-adjusted p-value level, there were 13 contrasts enriched for TFs downregulated in a cancer type vs normal. Among these, there was stage 1 of every PAM50 subtype, all stages of Basal-like subtype (details in Appendix X2). 
+        In \textbf{Group1}, ‘all autophagy’ genes were enriched in the downregulated genes at stage 4 of Basal-like subtype compared to stage 4 of Luminal A and Luminal B, and also to normal samples. At non-adjusted p-value level, there were 13 contrasts enriched for TFs downregulated in a cancer type vs normal. Among these, there was stage 1 of every PAM50 subtype, all stages of Basal-like subtype (details in Appendix C). 
          
-        In \textbf{Group2}, autophagy TFs were enriched in the downregulated genes in every morphology compared to normal, at varying stages. There was also a strong enrichment in TFs that are differentially expressed between Lobular and Ductal carcinomas at stage 1. At non-adjusted p-value level, there was a large number of contrasts enriched for autophagy TFs, mainly in the downregulated in cancer vs normal fashion. Among these, there are all stages of Ductal and Mucinous types, as well as stages 1 and 3 of Metaplastic. Interestingly, Lobular carcinoma did not appear in this context at all. Conversely, groups of upregulated genes in Lobular compared to Metaplastic (stage 3) and Mucinous (stage 2) were enriched for autophagy (Appendix X2). 
+        In \textbf{Group2}, autophagy TFs were enriched in the downregulated genes in every morphology compared to normal, at varying stages. There was also a strong enrichment in TFs that are differentially expressed between Lobular and Ductal carcinomas at stage 1. At non-adjusted p-value level, there was a large number of contrasts enriched for autophagy TFs, mainly in the downregulated in cancer vs normal fashion. Among these, there are all stages of Ductal and Mucinous types, as well as stages 1 and 3 of Metaplastic. Interestingly, Lobular carcinoma did not appear in this context at all. Conversely, groups of upregulated genes in Lobular compared to Metaplastic (stage 3) and Mucinous (stage 2) were enriched for autophagy (Appendix C). 
         
         In \textbf{Group3}, ‘all autophagy’ genes were enriched in the downregulated genes in Basal-like samples compared to Luminal A and Normal-like samples (all of Lobular morphology) and normal samples. When looking at non-adjusted p-value, Luminal B can also be added to this pattern. As for non-adjusted p-value enrichment for TFs, there were multiple enriched contrasts, again including several instances of downregulation in cancer vs normal (particularly Basal-like and Luminal B), DE between morphologies within Basal-like subtype, and again similar observations for Lobular carcinoma as for ‘all autophagy’.
         
@@ -365,7 +365,7 @@
              \begin{table}[!h]
             \centering
             \footnotesize
-            \caption[Enrichment analysis results based on soft-clustering data]{Enrichment for autophagy analysis results based on soft-clustering patterns of all samples. Three autophagy gene sets were tested: all genes, core autophagy genes, and autophagy TFs. The cluster that is significantly enriched is Cluster 4 (at all genes and TFs-only levels). }
+            \caption[Enrichment analysis results based on soft-clustering of all samples ]{Enrichment for autophagy analysis results based on soft-clustering patterns of all samples. Three autophagy gene sets were tested: all genes, core autophagy genes, and autophagy TFs. The cluster that is significantly enriched is Cluster 4 (at all genes and TFs-only levels). }
             \label{table:mfuzzall}
             \begin{tabular}{lcccc}
             \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\textbf{n genes}} & \multicolumn{1}{l|}{\textbf{odds-ratio}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l}{\textbf{adj. p-value}} \\ \hline
@@ -398,7 +398,7 @@
         \subsubsection{Subtype-specific Clustering}
         
         Clustering was performed on individual PAM50 subtypes samples to evaluate the presence of any characteristic expression patterns and test for subtype-specific autophagy enrichment. 
-        For individual subtypes, figures with the complete set of clusters and enrichment results tables can be found in Appendix X3. Here, only selected cluster details are presented. 
+        For individual subtypes, figures with the complete set of clusters and enrichment results tables can be found in Appendix D. Here, only selected cluster details are presented. 
         
         
         \begin{wrapfigure}{R}{0.28\textwidth}
@@ -411,7 +411,7 @@
 
         
         \textbf{Basal-like subtype}\\
-        The expression patterns of Basal-like samples are different from the full dataset patterns. There are no clusters with strict up- or downregulation trend in cancer, instead, there are patterns with additional up- or downregulation in stage 4 (Appendix X3; Clusters 1 and 4). Additionally, there are two new patterns, in which the expression is the same in normal and stages 1-3, but drastically up- or downregulated in stage 4 (Appendix X3; Clusters 2 and 6).  
+        The expression patterns of Basal-like samples are different from the full dataset patterns. There are no clusters with strict up- or downregulation trend in cancer, instead, there are patterns with additional up- or downregulation in stage 4 (Appendix D; Clusters 1 and 4). Additionally, there are two new patterns, in which the expression is the same in normal and stages 1-3, but drastically up- or downregulated in stage 4 (Appendix D; Clusters 2 and 6).  
         Autophagy is enriched in Basal-like samples also in the pattern of downregulation in cancer (Cluster 4, individual cluster is shown in Figure \ref{fig:mfuzzbasal}), but the pattern has extra downregulation at stage 4. Cluster 4 contains 177 autophagy genes, and enrichment is defined by odds-ratio score 1.25 and adjusted p-value 0.03. 
         
         
@@ -425,7 +425,7 @@
         
         
         \textbf{Luminal A subtype}\\   
-        The expression in Luminal A samples is similar to the all-samples pattern. There are clusters with exclusive up- and downregulation in all cancer stages (Appendix X3; Clusters 3 and 4). There are also clusters with the patterns observed in Basal-like -- relatively unchanged expression until stage 3, and then rapid raise/drop in stage 4. In Luminal A, however, downregulation cluster (Figure \ref{fig:mfuzzluma}) is not found to be enriched for autophagy at ‘all autophagy genes' level, as it is for all and Basal-like-only samples, even though it is still the most gene-abundant cluster like in the other subtypes (Appendix X3). Here, autophagy enrichment is detected only at TFs level: 36 genes, odds-ratio 2.92, adjusted p-value 1.1e-05.\vspace{5mm} \break
+        The expression in Luminal A samples is similar to the all-samples pattern. There are clusters with exclusive up- and downregulation in all cancer stages (Appendix D; Clusters 3 and 4). There are also clusters with the patterns observed in Basal-like -- relatively unchanged expression until stage 3, and then rapid raise/drop in stage 4. In Luminal A, however, downregulation cluster (Figure \ref{fig:mfuzzluma}) is not found to be enriched for autophagy at ‘all autophagy genes' level, as it is for all and Basal-like-only samples, even though it is still the most gene-abundant cluster like in the other subtypes (Appendix D). Here, autophagy enrichment is detected only at TFs level: 36 genes, odds-ratio 2.92, adjusted p-value 1.1e-05.\vspace{5mm} \break
         
         \begin{wrapfigure}{L}{0.28\textwidth}
         \hfill
@@ -455,7 +455,7 @@
      
      
         \textbf{HER2-enriched subtype}\\   
-        Gene clustering based on HER2-enriched samples generated overall less stable clusters. In Appendix X3 it can be seen that the cluster cores contain less samples with high membership score (i.e. appear less ‘red'). Expression patterns are similar to the ones observed previously. Again, the downregulation cluster (Figure \ref{fig:mfuzzher}) contains the largest number of autophagy genes, but the enrichment is only significant in TFs gene set (21 genes, odds-ratio 2.13, adjusted p-value 0.02).
+        Gene clustering based on HER2-enriched samples generated overall less stable clusters. In Appendix D it can be seen that the cluster cores contain less samples with high membership score (i.e. appear less ‘red'). Expression patterns are similar to the ones observed previously. Again, the downregulation cluster (Figure \ref{fig:mfuzzher}) contains the largest number of autophagy genes, but the enrichment is only significant in TFs gene set (21 genes, odds-ratio 2.13, adjusted p-value 0.02).
         \newline
         \newline
         \newline        
@@ -502,14 +502,14 @@ The results of differential expression analysis and soft-clustering overall agre
 
 
 
-\subsection{Identifying candidate genes}
+\subsection{Identifying Candidate Genes}
 
 Gene expression clustering of individual PAM50 subtype samples has produced six clusters for each subtype, among which the downregulation trend clusters were the most autophagy genes-abundant (Figures \ref{fig:mfuzzbasal}-\ref{fig:mfuzznorm}). Therefore, it was interesting to investigate whether the autophagy genes with this expression pattern are the same across different subtypes. Thus, the downregulation cluster autophagy genes with $>0.6$ membership score were extracted and overlapped. The resulting overlap is shown in Figure \ref{fig:overlapclusters}. \\
 
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.6]{overlap_clusters.pdf} 
-            \caption[Overlap between PAM50 subtype-specific downregulation cluster autophagy genes]{Venn diagram showing overlap between PAM50 subtype-specific autophagy genes assigned to downregulation clusters in soft-jclustering of individual subtypes. The diagram was made with \texttt{VennDiagram} R package \cite{venndiagram}. }
+            \caption[Overlap between PAM50 subtype-specific downregulated autophagy genes]{Venn diagram showing overlap between PAM50 subtype-specific autophagy genes assigned to downregulation clusters in soft-jclustering of individual subtypes. The diagram was made with \texttt{VennDiagram} R package \cite{venndiagram}. }
             \label{fig:overlapclusters}
             \end{figure}
             
@@ -581,7 +581,7 @@ Figure \ref{fig:vennluma} shows the stages overlap for Luminal A. Again, as for 
        
 
 %\vspace{5mm} 
-The analogous Venn diagrams for Luminal B, HER2-enriched, and Normal-like subtypes are available from Appendix X4.
+The analogous Venn diagrams for Luminal B, HER2-enriched, and Normal-like subtypes are available from Appendix E.
 
 In Luminal B there are 87 genes shared by all stages, 40 genes shared by stages 1-3, and 31 genes unique to stage 4, showing a similar scenario to Basal-like subtype.\\In HER2-enriched, the largest overlap group is stages 1-3 (79 genes), whereas all stages share only 32 genes.\\Normal-like subtype is a slightly different case, as in addition to its inherent similarity to normal samples, there are no stage 4 samples, which cumulatively resulted in fewer DEGs in total. In Normal-like subtype, there are only 12 genes shared by the available stages (1-3). \\
 \newline
@@ -601,14 +601,14 @@ The comparison results are shown in Figure \ref{fig:overlapdown}. The two sets o
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.6]{euler.pdf} 
-            \caption[Subtype-specific overlaps between downregulated autophagy genes identified by two methods]{Subtype-specific overlaps between two autophagy gene sets: \textbf{DEA} -- genes that are downregulated at all stages according to differentially expression analysis, \textbf{cluster} -- genes found in the downregulation cluster, both for a specific subtype. The diagram was made with \texttt{eulerr} R package \cite{euler}. }
+            \caption[Overlaps between downregulated autophagy genes identified by two methods]{Subtype-specific overlaps between two autophagy gene sets: \textbf{DEA} -- genes that are downregulated at all stages according to differentially expression analysis, \textbf{cluster} -- genes found in the downregulation cluster, both for a specific subtype. The diagram was made with \texttt{eulerr} R package \cite{euler}. }
             \label{fig:overlapdown}
             \end{figure}
             
 In this way, five subtype-specific lists of candidate autophagy genes were obtained (intersections in Figure \ref{fig:overlapdown}). The following section focuses on exploring functional groups of these genes, while making comparisons between the subtypes, and evaluating the findings with a perspective on biological interpretation. 
 
 
-\subsection{Exploring candidate genes}
+\subsection{Exploring Candidate Genes}
 
 The full list of functional groups of autophagy genes used in the analysis is presented in Table \ref{table:autophagy} in the methods section.\\
 The diagram in Figure \ref{fig:candidategenes} below provides an overview of the functions of the final sets of subtype-specific candidate genes, i.e. autophagy-related genes downregulated in cancer according to the agreement between two methods. 
@@ -619,12 +619,12 @@ In the diagram, the genes belonging to each PAM50 subtype are shown as columns o
             \begin{figure}[!h]
             \centering
             \includegraphics[scale=0.67]{CandidateGenes.pdf} 
-            \caption[Candidate genes lists]{Diagram of autophagy genes downregulated in each PAM50 subtype grouped by functional categories indicating their role in the autophagy mechanism. Functional groups are colour-coded (group names are shown on the left). }
+            \caption[Diagram of candidate autophagy genes in subtypes, grouped by function]{Diagram of autophagy genes downregulated in each PAM50 subtype grouped by functional categories indicating their role in the autophagy mechanism. Functional groups are colour-coded (group names are shown on the left). }
             \label{fig:candidategenes}
             \end{figure}
             
 \newpage
-The most gene-abundant groups are transcription factors, receptors/ligands, transport, and mTOR induction-related genes. However, among the smaller groups there are several potentially interesting candidate genes. Below are some examples: 
+The most gene-abundant groups are transcription factors, receptors/ligands, transport, and mTOR induction-related genes. However, among the smaller groups there are also several potentially interesting candidate genes. Below are some examples: 
 
 \begin{itemize}
 
@@ -633,7 +633,7 @@ The most gene-abundant groups are transcription factors, receptors/ligands, tran
 
     
 
-\item \textbf{NBR1} also belongs to the autophagy core functional group and is found downregulated in Basal-like subtype. NBR1 is one of the adapter proteins that LC3 recruits to the autophagosomes to mediate selective autophagy of different cellular cargos through its contains the LC3-interacting region (LIR). Misfolded and aggregated proteins are marked by ubiquitin, which is recognized by ubiquitin-binding domains of NBR1, which later targets the recognised substrates for autophagy \cite{DebnathTheCancer}. Therefore, disruption of NBR1 function may contribute to defective protein/organelle turnover.
+\item \textbf{NBR1} also belongs to the autophagy core functional group and is found downregulated in Basal-like subtype. NBR1 is one of the adapter proteins that LC3 recruits to the autophagosomes to mediate selective autophagy of different cellular cargos through its LC3-interacting region (LIR). Misfolded and aggregated proteins are marked by ubiquitin, which is recognized by ubiquitin-binding domains of NBR1, which later targets the recognised substrates for autophagy \cite{DebnathTheCancer}. Therefore, disruption of NBR1 function may contribute to defective protein/organelle turnover.
 
 
 
@@ -660,7 +660,7 @@ The most gene-abundant groups are transcription factors, receptors/ligands, tran
 
 \newline
 
-Although the current list of genes is quite focused on the expression behaviour of interest, it is still quite extensive and, therefore, has to be narrowed down to find hits for further investigation.  One approach is to check if any of these genes are known tumour suppressor genes in breast cancer. Their downregulation of such genes would be an interesting direction to experimentally explore. 
+Although the current list of genes is quite focused on the expression behaviour of interest, it is still quite extensive and, therefore, has to be narrowed down to find hits for further investigation.  One approach is to check if any of these genes are known tumour suppressor genes in breast cancer. Downregulation of such genes would be an interesting direction to  explore experimentally. 
 
 A list of known tumour suppressor genes in breast cancer was extracted from the \hyperlink{https://bioinfo.uth.edu/TSGene/}{\textit{TSGene database}} \cite{Zhao2016TSGeneGenes}. The database provides a manually curated list of 589 human tumour suppressor genes downregulated in tumour versus normal in breast invasive carcinoma samples from TCGA. This list was compared to the current set of candidate genes and 18 matches were found. These genes are: CDH13, YAP1, EGR1, EPAS1, ESR2, FOXO1, BIN1, IGF1, ATF3, NGFR, PARK2, PLD1, ERRFI1, PPARA, PPARG, TGFBR2, TGFBR3, INPP4B. 
 
@@ -675,11 +675,11 @@ The roles of identified genes were explored with a variety of published and onli
 
 
 
-\item  \textbf{PARK2/parkin} is an E3 ligase that is important for mitochondrial homeostasis \cite{Kroemer2010}.  As described in Section \ref{section:automech}, once PARK2 is activated by PINK1 it ubiquitinates proteins on the surface of damaged mitochondria, thereby targeting them for mitophagy \cite{Feng2015}.  Conversely, PARK2 has a negative role in non-selective autophagy. PARK2 stabilizes BCL2 via mono-ubiquitination, which strengthens the interaction between BCL2 and BECN1, thus suppressing autophagy \cite{chen2010parkin}. 
+\item  \textbf{PARK2/parkin} is an E3 ligase that is important for mitochondrial homeostasis \cite{Kroemer2010}.  As described in Section \ref{section:automech}, once PARK2 is activated by PINK1 it ubiquitinates proteins on the surface of damaged mitochondria, thereby targeting them for mitophagy \cite{Feng2015}.  Conversely, PARK2 has a negative role in non-selective autophagy. PARK2 stabilizes Bcl-2 via mono-ubiquitination, which strengthens the interaction between Bcl-2 and Beclin 1, thus suppressing autophagy \cite{chen2010parkin}. 
 
 
 
-\item \textbf{IGF1}, insulin-like growth factor 1, is responsible for the activation of IRS1/2 (insulin receptor substrates 1/2), which mediate the signalling cascades through class I PIK3 that activate PKB,  best-characterized positive modifier of mTOR activity, resulting in negative regulation of autophagy induction, depicted in Figure \ref{fig:autosignal}. Therefore, autophagy may be activated by IGF-1 inhibition. This aspect was explored and reviewed in \cite{renna2013igf}.
+\item \textbf{IGF1}, insulin-like growth factor 1, is responsible for the activation of IRS1/2 (insulin receptor substrates 1/2), which mediate the signalling cascades through class I PIK3 that activate PKB, the best-characterised positive modifier of mTOR activity, resulting in negative regulation of autophagy induction, as depicted in Figure \ref{fig:autosignal}. Therefore, autophagy may be activated by IGF-1 inhibition. This aspect was explored and reviewed in \cite{renna2013igf}.
 Of note, the IRS1/2 are also downregulated in Basal-like subtype along with IGF1. 
 
 

@@ -20,7 +20,7 @@
     linkcolor=black,
     citecolor=gray,
     filecolor=magenta,      
-    urlcolor=cyan,
+    urlcolor=gray,
 }
  
 \usepackage{mwe}% for putting 2 images side by side
@@ -30,6 +30,15 @@
 
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{multirow}
+
+%helps add a blank page
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+    
 
 %abbreviations management 
 \usepackage{nomencl}
@@ -102,8 +111,10 @@
 \pagestyle{plain}
 
 
-\frontmatter
-\newpage
+
+
+\afterpage{\blankpage} %adds an empty page
+
 \chapter{Abstract}
 \input{chapters/abstract}
 
@@ -154,6 +165,8 @@
 \nomenclature{PI3P}{Phosphatidylinositol 3-phosphate}
 \nomenclature{LIR}{LC3-interacting region}
 \nomenclature{ROS}{Reactive oxygen species}
+\nomenclature{PPI}{Protein-protein interactions}
+\nomenclature{STRING}{Search Tool for the Retrieval of Interacting Genes/Proteins (database)}
 
 \listoffigures
 \listoftables
@@ -180,15 +193,20 @@
 \addtocontents{toc}{\protect\vspace{-1.5em}}
 \chapter*{Acknowledgements}
 
-% I would like to thank the Computational Biology Laboratory at the Danish Cancer Research Centre for
-% allowing me to join their group to conduct a university research project.
-% I am especially thankful to Dr Elena Papaleo for her professional guidance and valuable support throughout
-% the project. Her ability to explain difficult bioinformatics concepts and show how to correctly use the software
-% to answer structural biology questions has been greatly appreciated and has enabled me to complete high
-% quality work.
-% I would also like to thank the other members of the group, including Matteo Tiberti, Matteo Lambrughi and
-% Thilde Terkelsen for advice throughout the project.
-%autophafy people who curated data
+I would like to thank the Computational Biology Laboratory at the Danish Cancer Research Centre for allowing me to join their group to write my Master’s thesis with them as a part of my degree at the University of Copenhagen.  
+
+I am very thankful to Dr Elena Papaleo, the group leader, for her professional guidance and valuable support throughout the project. 
+
+I would also like to express my gratitude to Dr Kristoffer Vitting-Seerup, who provided internal supervision of my project. His ability to explain difficult bioinformatics concepts and show how to correctly use the tools to answer biological questions has been greatly appreciated and has enabled me to complete high quality work.
+
+I would also like to thank Prof Albin Sandelin for agreeing to supervise this project, and more importantly, for making the MSc courses on high-throughput data analysis that precede the thesis part of the degree extremely interesting,  as this is what motivated me to do my thesis in this research field. 
+
+Finally, I would like to acknowledge and thank the colleagues at DCRC (in the Cell Death & Metabolism and Cell Stress & Survival Units)  for providing a list of expert-curated autophagy genes to use in this project.
+
+
+
+
+
 \cleardoublepage
 \addcontentsline{toc}{part}{\small Bibliography}
 \addtocontents{toc}{\protect\vspace{-0.2em}}
@@ -202,15 +220,22 @@
 
 \chapter*{Appendices}
 
-\begin{itemize}
-   \textbf{A}\\
-   \textbf{B}\\
-   \textbf{C}\\
-   \textbf{D}\\
-   \textbf{E}\\
-   \textbf{F}\\
-    
-\end{itemize}
+
+   \textbf{Appendix A. }One dimensional PCA plots for year and sample source data, based on cancer samples only.\\
+   
+   
+   \textbf{Appendix B. }Raw counts of differentially expressed genes in the models with a single main effect (PAM50, stages, morphology).\\
+   
+   
+   \textbf{Appendix C. }Enrichment analysis results on differentially expressed genes data.\\
+   
+   
+   \textbf{Appendix D. }Enrichment analysis results on soft-clustering data for individual PAM50 subtypes with the cluster figures.\\
+   
+   
+   \textbf{Appendix E. } Venn Diagrams of Luminal B, HER2-enriched, Normal-like subtypes showing the overlap between downregulated autophagy genes in different cancer stages. \\
+
+
 
 
 
